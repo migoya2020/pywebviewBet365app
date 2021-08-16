@@ -92,13 +92,14 @@ class Ws_Helpers:
         for tona in tournament_ids_table.all():
             # print("TONAAA: ", tona)
             if tona["tona_id"] == tona_id:
-                print("TONA Round", tona["tona_round"])
+                # print("TONA Round", tona["tona_round"])
                 return tona["tona_round"]
-    
+    @staticmethod
     def getCurrentSelectedTona(tona_id):
         for tona in tournament_ids_table.all():
             # print("TONAAA: ", tona)
             if tona["tona_id"] == tona_id:
+                # print("SELECTED TONNAA: ", tona)
                 return tona
 
     @staticmethod

@@ -28,7 +28,7 @@ class HomeFunctions:
             return {"message": 'undefined'}
                  
     def setCurrentTonamentToDb(self, tona_id):
-        current_subscribed_tona={}
+        current_subscribed_tona=None
         try:
             #search if already exist
             tonid = Query()
@@ -45,7 +45,7 @@ class HomeFunctions:
                 # Assign the  id to target_tona_id
                 current_subscribed_tona =helpers_func.getCurrentSelectedTona(tona_id)
                 
-            print("Tona Appended into sucessfully..")
+            print("Tona_ID Appended into DB sucessfully..")
             # print("Total Ids : ",len(selected_tournament_table.all()))
             # print("Total Ids : ", selected_tournament_table.all()[0])
             return  current_subscribed_tona

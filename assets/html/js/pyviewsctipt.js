@@ -58,6 +58,8 @@ function selectValue(){
     tona_name_tag.style.visibility = 'visible';
     // Save the selected  tona to the localDB
     pywebview.api.setCurrentTonamentToDb(value).then(function(response) {
+        // console.log('showCurrentSelectedTonaDetails')
+        // console.log(response);
         showCurrentSelectedTonaDetails(response);
     });
 }
@@ -76,10 +78,17 @@ function makeLight() {
 // })
 
 function showCurrentSelectedTonaDetails(response) {
-    var currnt_status = document.getElementById('tona-status')
+    var currnt_round_status = document.getElementById('tona-round-status')
+    var currnt_tona_round = document.getElementById('tona-round')
+    var currnt_tona_start = document.getElementById('tona-start')
+    var currnt_tona_end = document.getElementById('tona-end')
 
-    currnt_status.innerText ="SATATUS :"+response.message["tona_round_status"]
-    currnt_status.style.display = 'block'
+    currnt_tona_round.innerHTML ="<b> ROUND :</b>"+response['tona_round']
+    currnt_round_status.innerHTML ="<b> STATUS: </b> "+response["tona_round_status"]
+    
+    currnt_tona_start.innerHTML ="<b> START DATE : </b>"+response['start_time']
+    currnt_tona_end.innerHTML ="<b> END DATE :</b>"+response['end_time']
+    // currnt_status.style.display = 'block'
 }
 
 
