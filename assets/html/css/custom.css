@@ -1,0 +1,20 @@
+section.section.is-main-section {
+    padding-top: 1.5rem;
+ 
+    min-height:78vh;
+    }
+.select-wraper{
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+option{
+     
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+/* #select-tona-option {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+} */

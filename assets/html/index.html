@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en" class="has-aside-left has-aside-mobile-transition has-navbar-fixed-top has-aside-expanded">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bet365 Gold App Notification Dashboard</title>
+
+  <!-- Bulma is included -->
+  <link rel="stylesheet" href="css/main.min.css">
+  <link rel="stylesheet" href="css/custom.css">
+
+  <!-- Fonts -->
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="app">
+  <nav id="navbar-main" class="navbar is-fixed-top">
+    <div class="navbar-brand">
+      <a class="navbar-item is-hidden-desktop jb-aside-mobile-toggle">
+        <span class="icon"><i class="mdi mdi-forwardburger mdi-24px"></i></span>
+      </a>
+      <div class="navbar-item has-control">
+        
+      </div>
+    </div>
+    <div class="navbar-brand is-right">
+      <a class="navbar-item is-hidden-desktop jb-navbar-menu-toggle" data-target="navbar-menu">
+        <span class="icon"><i class="mdi mdi-dots-vertical"></i></span>
+      </a>
+    </div>
+    <div class="navbar-menu fadeIn animated faster" id="navbar-menu">
+      <div class="navbar-end">
+        <!-- Select tournamnets -->
+        <div class="level-right mx-2">
+          <div class="level-item">
+      
+            <button class="button is-success is-outlined is-light" onClick="loadTournaments()">Load Tournaments</button>
+          </div>
+        </div>
+        <!-- dropdown -->
+        <div class="level-right mx-2">
+          <div class="level-item">
+          
+            <div class="control has-icons-left is-primary">
+              <div class="select is-focused is-fullwidth" >
+                <select class="select-tona" id="top-select-tona">
+                  <option value="default" id="select-tona-option">--Select Tournament--</option>
+                 
+                </select>
+              </div>
+              <span class="icon is-medium is-left">
+                <span class="icon"><i class="mdi mdi-golf-cart"></i></span>
+              </span>
+            </div>
+          </div>
+      
+       
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown has-dropdown-with-icons has-divider has-user-avatar is-hoverable">
+          <a class="navbar-link is-arrowless">
+           
+            <div class="is-user-name"> <p title="local time" id='local-date'></p></div>
+            
+          </a>
+           
+        </div>
+        <a href="about.html" title="About this App" class="navbar-item has-divider is-desktop-icon-only">
+          <span class="icon"><i class="mdi mdi-help-circle-outline"></i></span>
+          <span>About</span>
+        </a>
+        <!-- <a title="Log out" class="navbar-item is-desktop-icon-only">
+          <span class="icon"><i class="mdi mdi-logout"></i></span>
+          <span>Log out</span>
+        </a> -->
+      </div>
+    </div>
+  </nav>
+  <aside class="aside is-placed-left is-expanded">
+    <div class="aside-tools">
+      <div class="aside-tools-label">
+        <span><b>Bet365 Golf Score</b></span>
+      </div>
+    </div>
+    <div class="menu is-menu-main">
+      <p class="menu-label">Dashboard</p>
+      <ul class="menu-list">
+        <li>
+          <a href="index.html" title="Tournament Notifications" class="is-active router-link-active has-icon">
+            <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
+            <span class="menu-item-label">Notifications</span>
+          </a>
+        </li>
+      </ul>
+      <p class="menu-label">Details</p>
+      <ul class="menu-list">
+        <li>
+          <a href="#" class="has-icon router-link-active " title="All Tournaments in Progress">
+            <span class="icon"><i class="mdi mdi-golf"></i></span>
+            <span class="menu-item-label">Tournaments</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" title="Current Tournament Players" class="has-icon router-link-active ">
+            <span class="icon"><i class="mdi mdi-account-group"></i></span>
+            <span class="menu-item-label">Players</span>
+          </a>
+        </li>
+        <!-- <li>
+          <a href="profile.html" class="has-icon">
+            <span class="icon"><i class="mdi mdi-account-circle"></i></span>
+            <span class="menu-item-label">Profile</span>
+          </a>
+        </li> -->
+        <!-- <li>
+          <a class="has-icon has-dropdown-icon">
+            <span class="icon"><i class="mdi mdi-view-list"></i></span>
+            <span class="menu-item-label">Submenus</span>
+            <div class="dropdown-icon">
+              <span class="icon"><i class="mdi mdi-plus"></i></span>
+            </div>
+          </a>
+          <ul>
+            <li>
+              <a href="#void">
+                <span>Sub-item One</span>
+              </a>
+            </li>
+            <li>
+              <a href="#void">
+                <span>Sub-item Two</span>
+              </a>
+            </li>
+          </ul>
+        </li> -->
+      </ul>
+      <p class="menu-label">About</p>
+      <ul class="menu-list">
+        <!-- <li>
+          <a href="#" target="_self" class="has-icon">
+            <span class="icon"><i class="mdi mdi-credit-card-outline"></i></span>
+            <span class="menu-item-label">Premium Demo</span>
+          </a>
+        </li> -->
+        <li>
+          <a href="about.html" class="has-icon">
+            <span class="icon"><i class="mdi mdi-help-circle"></i></span>
+            <span class="menu-item-label">About</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </aside>
+  <section class="section is-title-bar">
+    <div class="level">
+      <div class="level-left">
+        <div class="level-item">
+          <ul>
+            <li>Bet365 Golf Score</li>
+            <li>Notifications</li>
+            <li id="show-selected-tona" visibility="hidden"></li>
+          </ul>
+        </div>
+        
+      </div>
+      
+    </div>
+    <p id="current-tona-details" > <span id='tona-status'> Inprogress</span> <span id='tona-round'> round3</span> <span id='start-time'> 13/2013</span><span id='end-time'>Friday 2564</span></p>
+  </section>
+  <!-- <section class="hero is-hero-bar">
+    <div class="hero-body">
+      <div class="level">
+        <div class="level-left">
+          <div class="level-item"><h6 class="title">
+            Dashboard
+          </h6></div>
+        </div>
+        <div class="level-right" style="display: none;">
+          <div class="level-item"></div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+  <section class="section is-main-section">
+    <!-- <button onclick="runJsCode()">get js code</button> -->
+    <div class="card has-table">
+      <div class="card-content">
+        <section class="section" id="notify-section">
+          
+          <div class="content has-text-grey has-text-centered" id="notification-default" visibility="visible">
+            <p>
+              <span class="icon is-large"><i class="mdi mdi-emoticon-sad mdi-48px"></i></span>
+            </p>
+            <p>Notifications will appear here... <br>
+              Select a Tournament to start Receiving Notifications
+            </p>
+          </div>
+        </section>
+      </div>
+    </div>
+    
+    
+  </section>
+  <footer class="footer">
+    <div class="container-fluid">
+      <div class="level">
+        <div class="level-left">
+          <div class="level-item">
+            © 2021, Bet365GolfNotifyMe.
+          </div>
+          <!-- <div class="level-item">
+            <a href="https://github.com/vikdiesel/admin-one-bulma-dashboard" style="height: 20px">
+              <img src="https://img.shields.io/github/v/release/vikdiesel/admin-one-bulma-dashboard?color=%23999">
+            </a>
+          </div> -->
+          <div class="level-item">
+            Version 1.0.0
+          </div>
+        </div>
+        <div class="level-right">
+          <div class="level-item">
+            <!-- <div class="logo">
+              <a href="https://justboil.me"><img src="img/justboil-logo.svg" alt="JustBoil.me"></a>
+            </div> -->
+            <p title="dmigoya@gmail.com">With Love from <a href = "#" > David Migoya</a></p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- <div id="sample-modal" class="modal">
+  <div class="modal-background jb-modal-close"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Confirm action</p>
+      <button class="delete jb-modal-close" aria-label="close"></button>
+    </header>
+    <section class="modal-card-body">
+      <p>This will permanently delete <b>Some Object</b></p>
+      <p>This is sample modal</p>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button jb-modal-close">Cancel</button>
+      <button class="button is-danger jb-modal-close">Delete</button>
+    </footer>
+  </div>
+  <button class="modal-close is-large jb-modal-close" aria-label="close"></button>
+</div> -->
+
+<!-- Scripts below are for demo only -->
+
+
+<script type="text/javascript" src="js/main.min.js"></script>
+ 
+<script type="text/javascript" src="js/pyviewsctipt.js"></script>
+<script type="text/javascript" src="js/fontawesome.min.js"></script>
+<!-- <script type="text/javascript" src="js/server.js"></script> -->
+<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script> -->
+<!-- <script type="text/javascript" src="js/chart.sample.min.js"></script> -->
+
+<!-- Icons below are for demo only. Feel free to use any icon pack. Docs: https://bulma.io/documentation/elements/icon/ -->
+<link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css">
+</body>
+</html>
