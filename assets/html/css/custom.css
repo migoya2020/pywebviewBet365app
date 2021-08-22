@@ -18,3 +18,9 @@ option{
     text-overflow: ellipsis;
     white-space: nowrap;
 } */
+
+
+.icon.holed {
+    height: 5rem;
+    width: 3rem;
+    }

@@ -34,7 +34,7 @@ class HomeFunctions:
             tonid = Query()
             if selected_tournament_table.search(tonid.tona_id.exists()):
                 #Update
-                print("updated tona id")
+                print("Updated tona id")
                 selected_tournament_table.update({"tona_id": tona_id})
                 # Assign the new id to target_tona_id
                 current_subscribed_tona =helpers_func.getCurrentSelectedTona(tona_id)
@@ -51,6 +51,12 @@ class HomeFunctions:
             return  current_subscribed_tona
         except:
           raise Exception('Could not Add tona id into  DB.')
+    
+    
+    def on_pywebview_closing(self):
+        
+        print('pywebview window is closing')
+
      
     def getTournaments(self):
          

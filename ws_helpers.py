@@ -22,16 +22,22 @@ target_tona_id = None
 
 
 def tree(src):
-    return [(root, map(lambda f: os.path.join(root, f), filter(lambda f: os.path.splitext(f)[1] != ".map", files))) for (root, dirs, files) in os.walk(os.path.normpath(src))]
+    return [
+        (
+            root,
+            map(
+                lambda f: os.path.join(root, f),
+                filter(lambda f: os.path.splitext(f)[1] != ".map", files),
+            ),
+        )
+        for (root, dirs, files) in os.walk(os.path.normpath(src))
+    ]
 
-
-     
 
 ROOT_DIR = os.path.abspath(os.curdir)
 
 
-
-MYDIR = ("assets/data")
+MYDIR = "assets/data"
 CHECK_FOLDER = os.path.isdir(MYDIR)
 
 # If folder doesn't exist, then create it.
@@ -41,28 +47,27 @@ if not CHECK_FOLDER:
 
 else:
     print(MYDIR, "folder already exists.")
-    
-    
-
-mydatafile=  join('/assets/data/' "v353Golfdata.json")
-mypath_to_data =Path(ROOT_DIR+mydatafile)
 
 
-db_path =""
-if  mypath_to_data.is_file():
-    #remove the path
-    files = glob.glob(ROOT_DIR+'/assets/data/*')
+mydatafile = join("/assets/data/" "v353Golfdata.json")
+mypath_to_data = Path(ROOT_DIR + mydatafile)
+
+
+db_path = ""
+if mypath_to_data.is_file():
+    # remove the path
+    files = glob.glob(ROOT_DIR + "/assets/data/*")
     print("removing existing history DB..")
     for f in files:
         os.remove(f)
-    #create a fresh  data file
+    # create a fresh  data file
     print("creating new data file..")
-    db_path = Path(join(ROOT_DIR+"/assets/data/","v353Golfdata.json"))
-else:     
+    db_path = Path(join(ROOT_DIR + "/assets/data/", "v353Golfdata.json"))
+else:
     print("just creating new data file..")
     db_path = mypath_to_data
-    
- 
+
+
 inhouse_db = TinyDB(db_path)
 
 
@@ -94,6 +99,7 @@ class Ws_Helpers:
             if tona["tona_id"] == tona_id:
                 # print("TONA Round", tona["tona_round"])
                 return tona["tona_round"]
+
     @staticmethod
     def getCurrentSelectedTona(tona_id):
         for tona in tournament_ids_table.all():
@@ -178,23 +184,27 @@ class Ws_Helpers:
         players_clean = "".join(filter(lambda x: x in printable, players_dirty))
         players_list = players_clean.split(splitString)
         print("Total tournament Players:", len(players_list))
-        for player in players_list:
-            # print(player)
-            playerJson = json.loads(player)
-            team_id = playerJson["id"]
-            player_id = playerJson["players"][0]["id"]
-            first_name = playerJson["players"][0]["name"][0]
-            last_name = playerJson["players"][0]["name"][1]
-            player_country = playerJson["players"][0]["country"]
-            tournament_players_table.insert(
-                {
-                    "team_id": int(team_id),
-                    "player_id": int(player_id),
-                    "first_name": first_name,
-                    "last_name": last_name,
-                    "player_country": player_country,
-                }
-            )
+        # for player in players_list:
+        #     # print(player)
+        #     playerJson = json.loads(player)
+        #     team_id = playerJson["id"]
+        #     player_id = playerJson["players"][0]["id"]
+        #     first_name = playerJson["players"][0]["name"][0]
+        #     last_name = playerJson["players"][0]["name"][1]
+        #     player_country = playerJson["players"][0]["country"]
+            
+        #     tournament_players_table.insert(
+        #         {
+        #             "team_id": int(team_id),
+        #             "player_id": int(player_id),
+        #             "first_name": first_name,
+        #             "last_name": last_name,
+        #             "player_country": player_country,
+        #         }
+        #     )
+        players_name_coutries_list =[{"team_id": int(json.loads(player)["id"]),"player_id": int(json.loads(player)["players"][0]["id"]),"first_name": json.loads(player)["players"][0]["name"][0], "last_name": json.loads(player)["players"][0]["name"][1],"player_country": json.loads(player)["players"][0]["country"]} for player in players_list]
+        tournament_players_table.insert_multiple(players_name_coutries_list)   
+            
             # ws_tournament_players.append({"team_id": int(team_id), "player_id": int(player_id), "first_name": first_name, "last_name": last_name, "player_country": player_country})
         print("Done Processing players: --D")
 
@@ -257,16 +267,16 @@ class Ws_Helpers:
             + server_time
             + "/"
         )
+
     @staticmethod
-    def postNotifications(message:dict):
-        #text_parag_tag.innerHTML =message['time'] +": " + message['last_name'] +" "+message['first_name'] +"<br>"+ "SHOT "+message['shot'] +"STATUS :"+message['status'] 
+    def postNotifications(message: dict):
+        # text_parag_tag.innerHTML =message['time'] +": " + message['last_name'] +" "+message['first_name'] +"<br>"+ "SHOT "+message['shot'] +"STATUS :"+message['status']
         # +" "+ "Distance :"+ message['distance'] +"<br>" +" Surface :"+message['surface']
         # print(webview.windows[0])
         # print("Sending to Frontend python function")
-        #notify_section.addEventListener("change", makeLight, false);
+        # notify_section.addEventListener("change", makeLight, false);
         webview.windows[0].evaluate_js(
-                
-                f'''
+            f"""
                 var notify_section = document.getElementById('notify-section');
                 var default_tag = document.getElementById('notification-default');
                 default_tag.style.display = "none";
@@ -283,48 +293,145 @@ class Ws_Helpers:
                 notify_section.prepend(notification_div);
                 notify_section.addEventListener("change", makeLight, false)
                 console.log("Appended Notifications to Frontend..");
-            '''
-            )
+            """
+        )
+
+    @staticmethod
+    def holed(message: dict):
+        # text_parag_tag.innerHTML =message['time'] +": " + message['last_name'] +" "+message['first_name'] +"<br>"+ "SHOT "+message['shot'] +"STATUS :"+message['status']
+        # +" "+ "Distance :"+ message['distance'] +"<br>" +" Surface :"+message['surface']
+        # print(webview.windows[0])
+        # print("Sending to Frontend python function")
+        # notify_section.addEventListener("change", makeLight, false);
+        webview.windows[0].evaluate_js(
+            f"""
+                var notify_section = document.getElementById('notify-section');
+                var default_tag = document.getElementById('notification-default');
+                default_tag.style.display = "none";
+
+                let notification_div = document.createElement('div');
+                notification_div.classList.add("notification","is-success");
+                
+                var notify_btn_el =document.createElement('button');
+                notify_btn_el.classList.add("delete");
+                
+                var column_div =document.createElement("div");
+                column_div.classList.add("column");
+                
+                var article_div =document.createElement("article");
+                article_div.classList.add("media");
+                
+                var media_left_div =document.createElement("div");
+                media_left_div.classList.add("media-left");
+                
+                
+                var span_icon_tag =document.createElement("span");
+                var icon_tag =document.createElement("i");
+                
+                span_icon_tag.classList.add("icon", "is-large","holed");
+                icon_tag.classList.add("mdi", "mdi-golf","mdi-48px");
+                
+                span_icon_tag.appendChild(icon_tag);
+                media_left_div.appendChild(span_icon_tag)
+                
+                var mediacontent_div =document.createElement("div");
+                mediacontent_div.classList.add("media-content");
+                
+                var content_div =document.createElement("div");
+                content_div.classList.add("content");
+                
+                var text_parag_tag =document.createElement("p");
+                text_parag_tag.innerHTML = "{message['time']}: "+  "{message['last_name']} " + " {message['first_name']}" +"<br>" + "SHOT "+ "{message['shot']} " +"STATUS: "+ "{message['status'] }" + " Distance:"+ "{message['distance']}";
+                
+                
+                content_div.appendChild(text_parag_tag);
+                mediacontent_div.appendChild(content_div);
+                article_div.appendChild(media_left_div);
+                article_div.appendChild(mediacontent_div);
+                column_div.appendChild(article_div);
+                notification_div.appendChild(notify_btn_el);
+                notification_div.appendChild(column_div);
+                notify_section.prepend(notification_div);
+                
+                 
+                console.log("Appended Notifications to Frontend..");
+            """
+        )
+
     @staticmethod
     def notifyFrontend(payload):
         # Add simulation Below
         ############################################################
-        payload = """l-lbd-p-282-3/shotlbd/1628968448/{"id":122,"shot":3,"status":"approach","surface":"OGR","distance":1.067,"provider":"dde","receivedTime":1628968448574,"createdTime":1628968447780}"""
+        # payload = """l-lbd-p-282-3/shotlbd/1628968448/{"id":122,"shot":3,"status":"approach","surface":"OGR","distance":1.067,"provider":"dde","receivedTime":1628968448574,"createdTime":1628968447780}"""
         ##########################################################################################################
         myclass = Ws_Helpers()
         try:
             received_msg = payload.rsplit("/", 1)[1].strip()
             clean_msg = "".join(filter(lambda x: x in string.printable, received_msg))
-            
+
             # print("CLEAN: ", clean_msg)
             received_msg_json = json.loads(clean_msg)
             # l-lbd-p-282-3/shotlbd/1628968448/{"id":122,"shot":3,"status":"hit","surface":"OGR","distance":1.067,"provider":"dde","receivedTime":1628968448574,"createdTime":1628968447780}
-            
-            #FILTER messages
-            if received_msg_json["shot"] >= 2 and received_msg_json['status']=="approach":
+
+            # FILTER messages
+            if received_msg_json["status"] == "holed":
+                player_team_id = received_msg_json["id"]
+                player = tournament_players_table.search(
+                    Query()["team_id"] == player_team_id
+                )[0]
+                timestamp = datetime.fromtimestamp(
+                    received_msg_json["receivedTime"] / 1000.0
+                ).strftime("%Y-%m-%d %H:%M:%S.%f")
+                notify_message = {
+                    "first_name": player["first_name"],
+                    "last_name": player["last_name"],
+                    "shot": str(received_msg_json["shot"]),
+                    "status": "HOLED",
+                    "distance": str(received_msg_json["distance"]),
+                    "time": " At: " + timestamp,
+                }
+                print("FrontEnd Notified...")
+                # post to Frontend API
+                return myclass.holed(notify_message)
+
+            elif (
+                received_msg_json["shot"] >= 2
+                and received_msg_json["status"] == "approach"
+            ):
+
                 player_team_id = received_msg_json["id"]
                 # print("PLAYER TEAM ID :", player_team_id)
                 player = tournament_players_table.search(
-                    Query()["team_id"] == player_team_id)[0]#Should return only 1 player in a List
+                    Query()["team_id"] == player_team_id
+                )[
+                    0
+                ]  # Should return only 1 player in a List
                 # print("PLAYER Found: ", player)
-                #{'team_id': 4, 'player_id': 3434, 'first_name': 'Brian', 'last_name': 'Stuard', 'player_country': 'USA'}
-                timestamp=datetime.fromtimestamp(received_msg_json["receivedTime"]/1000.0).strftime("%Y-%m-%d %H:%M:%S.%f")
-                notify_message = {"first_name":player['first_name'], 'last_name':player['last_name'], "shot":str(received_msg_json["shot"]),"status":received_msg_json["status"],"surface":received_msg_json["surface"],"distance":str(received_msg_json["distance"]),"time":timestamp}
-                #{'first_name': 'Kevin', 'last_name': 'Kisner', 'shot': '4', 'status': 'approx', 'surface': 'OGR', 'distance': '0.483', 'time': '2021-08-14 23:34:43.028000'}
+                # {'team_id': 4, 'player_id': 3434, 'first_name': 'Brian', 'last_name': 'Stuard', 'player_country': 'USA'}
+                timestamp = datetime.fromtimestamp(
+                    received_msg_json["receivedTime"] / 1000.0
+                ).strftime("%Y-%m-%d %H:%M:%S.%f")
+                notify_message = {
+                    "first_name": player["first_name"],
+                    "last_name": player["last_name"],
+                    "shot": str(received_msg_json["shot"]),
+                    "status": received_msg_json["status"],
+                    "surface": received_msg_json["surface"],
+                    "distance": str(received_msg_json["distance"]),
+                    "time": timestamp,
+                }
+                # {'first_name': 'Kevin', 'last_name': 'Kisner', 'shot': '4', 'status': 'approx', 'surface': 'OGR', 'distance': '0.483', 'time': '2021-08-14 23:34:43.028000'}
                 print("FrontEnd Notified...")
-                #post to Frontend API
-                return  myclass.postNotifications(notify_message)
+                # post to Frontend API
+                return myclass.postNotifications(notify_message)
             elif received_msg_json["shot"] == None:
                 pass
-        except (Exception ) as err:
+        except (Exception) as err:
             print("Front end NOT Notified...")
             # print("Payload : ", payload)
             print(err)
             pass
-            # notify_message = "Nothing to show yet.."
-            # return notify_message
-        
-        
+
     @staticmethod
     def on_message(ws, payload):
         myclass = Ws_Helpers()
@@ -357,9 +464,7 @@ class Ws_Helpers:
             # sleep(2)
             # Tournments Details
             myclass.tournamentDetails(payload)
-
             # WAIT FOR TONA ID TOBE FOUND, THEN CONTINUE
-
             while True:
                 try:
                     target_tona_id = selected_tournament_table.all()[0]["tona_id"]
@@ -374,19 +479,15 @@ class Ws_Helpers:
 
         elif "l-t-" + tona_id + "/team/" and "players" in payload:
             print("processing players...")
-
             myclass.processTournamentPlayers(payload)
-            
+
         # Subscribe to shot leaderboard
-        elif "l-lbd-p-" and 'shotlbd' in payload:
-            #l-lbd-p-282-3/shotlbd/
+        elif "l-lbd-p-" and "shotlbd" in payload:
+            # l-lbd-p-282-3/shotlbd/
             myclass.notifyFrontend(payload)
-            
-         
+
         else:
             print(payload)
-            # myclass.notifyFrontend(payload)
-            myclass.notifyFrontend(payload)
 
     @staticmethod
     def on_error(ws, error):
