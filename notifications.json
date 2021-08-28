@@ -1,41 +1,735 @@
-l-lbd-p-353-4/shotlbd/1628437771/{"id":24,"shot":4,"status":"approach","surface":"OGR","distance":6.432,"provider":"dde","receivedTime":1628437771646,"createdTime":1628437771000}
-s-0/ping/1628437781/
-l-lbd-p-353-4/shotlbd/1628437785/{"id":24,"shot":4,"status":"hit","surface":"OGR","distance":6.432,"provider":"dde","receivedTime":1628437785100,"createdTime":1628437784000}
-l-lbd-p-353-4/shotlbd/1628437790/{"id":24,"shot":4,"status":"approx","surface":"OGR","distance":0.390108563389274,"provider":"dde","receivedTime":1628437790566,"createdTime":1628437790000}
-l-lbd-p-353-4/shotlbd/1628437792/{"id":24,"shot":4,"status":"lie","surface":"OGR","distance":0.5,"provider":"dde","receivedTime":1628437792430,"createdTime":1628437792000}
-l-r-p-353-4/group/1628437792/{"id":25,"hole":18,"course":"306","teams":[133,56,41],"status":"InProgress","teeTime":1628421300000,"provider":"dde","receivedTime":1628437792600}
-s-0/ping/1628437802/
-s-0/ping/1628437812/
-l-lbd-p-353-4/shotlbd/1628437812/{"id":41,"shot":1,"status":"approach","surface":null,"distance":null,"provider":"dde","receivedTime":1628437812502,"createdTime":1628437812000}
-l-lbd-p-353-4/shotlbd/1628437820/{"id":10,"shot":4,"status":"approach","surface":"OGR","distance":3.625,"provider":"dde","receivedTime":1628437820595,"createdTime":1628437820000}
-l-lbd-p-353-4/shotlbd/1628437827/{"id":41,"shot":1,"status":"hit","surface":null,"distance":null,"provider":"dde","receivedTime":1628437827677,"createdTime":1628437827000}
-l-lbd-p-353-4/shotlbd/1628437829/{"id":10,"shot":4,"status":"hit","surface":"OGR","distance":3.625,"provider":"dde","receivedTime":1628437829012,"createdTime":1628437828000}
-l-lbd-p-353-4/shotlbd/1628437833/{"id":10,"shot":4,"status":"approx","surface":"OGR","distance":0.36271957656927,"provider":"dde","receivedTime":1628437833363,"createdTime":1628437833000}
-l-lbd-p-353-4/shotlbd/1628437835/{"id":10,"shot":4,"status":"lie","surface":"OGR","distance":0.193,"provider":"dde","receivedTime":1628437835007,"createdTime":1628437834000}
-l-lbd-p-353-4/shotlbd/1628437838/{"id":10,"shot":5,"status":"approach","surface":"OGR","distance":0.193,"provider":"dde","receivedTime":1628437838970,"createdTime":1628437838000}
-l-lbd-p-353-4/shotlbd/1628437839/{"id":10,"shot":5,"status":"hit","surface":"OGR","distance":0.193,"provider":"dde","receivedTime":1628437839008,"createdTime":1628437838000}
-l-lbd-p-353-4/shotlbd/1628437839/{"id":10,"shot":5,"status":"holed","surface":"HLD","distance":0,"provider":"dde","receivedTime":1628437839035,"createdTime":1628437838000}
-l-lbd-p-353-4/shotlbd/1628437839/{"id":10,"shot":null,"status":"holeFinished","surface":"HLD","distance":0,"provider":"dde","receivedTime":1628437839123,"createdTime":1628437838000}
-l-lbd-p-353-4/globallbd/1628437839/{"id":10,"pos":"T10","total":-15,"today":1,"round":73,"startingHole":1,"activeHole":18,"hole":"18","provider":"dde","receivedTime":1628437839202,"createdTime":1628437839167}
-l-lbd-p-353-4/orderlbd/1628437839/{"id":10,"pos":"T10","order":13,"provider":"dde","receivedTime":1628437839202,"createdTime":1628437839167}
-l-lbd-p-353-4/globallbd/1628437839/{"id":72,"hole":"18","total":-15,"today":-6,"round":66,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1628437839202,"createdTime":1628437839167}
-l-lbd-p-353-4/globallbd/1628437839/{"id":135,"hole":"17","total":-15,"today":0,"round":0,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1628437839202,"createdTime":1628437839167}
-l-lbd-p-353-4/orderlbd/1628437839/{"id":135,"pos":"T10","order":15,"provider":"dde","receivedTime":1628437839202,"createdTime":1628437839167}
-l-lbd-p-353-4/orderlbd/1628437839/{"id":72,"pos":"T10","order":14,"provider":"dde","receivedTime":1628437839202,"createdTime":1628437839167}
-l-lbd-p-353-4/globallbd/1628437839/{"id":10,"hole":"18","total":-15,"today":1,"round":73,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1628437839202,"createdTime":1628437839167}
-l-lbd-p-353-4/orderlbd/1628437839/{"id":10,"pos":"T10","order":13,"provider":"dde","receivedTime":1628437839202,"createdTime":1628437839167}
-l-lbd-p-353-4/orderlbd/1628437839/{"id":72,"pos":"T10","order":14,"provider":"dde","receivedTime":1628437839202,"createdTime":1628437839167}
-l-lbd-p-353-4/orderlbd/1628437839/{"id":135,"pos":"T10","order":15,"provider":"dde","receivedTime":1628437839202,"createdTime":1628437839167}
-l-r-p-353-4/group/1628437839/{"id":24,"hole":18,"course":"306","teams":[135,10,24],"status":"Finished","teeTime":1628420640000,"provider":"dde","receivedTime":1628437839915,"createdTime":1628437839000}
-l-lbd-p-353-4/shotlbd/1628437839/{"id":10,"shot":null,"status":"roundFinished","surface":null,"distance":0,"provider":"dde","receivedTime":1628437839915,"createdTime":1628437839000}
-l-lbd-p-353-4/shotlbd/1628437841/{"id":41,"shot":1,"status":"approx","surface":"OFW","distance":240.540110384443,"provider":"dde","receivedTime":1628437841825,"createdTime":1628437841000}
-s-0/ping/1628437851/
-l-lbd-p-353-4/shotlbd/1628437855/{"id":135,"shot":5,"status":"approach","surface":"OGR","distance":0.718,"provider":"dde","receivedTime":1628437855438,"createdTime":1628437855000}
-s-0/ping/1628437865/
-l-lbd-p-353-4/shotlbd/1628437924/{"id":56,"shot":1,"status":"approx","surface":"OST","distance":237.954194152368,"provider":"dde","receivedTime":1628437924016,"createdTime":1628437923000}
-s-0/ping/1628437934/
-l-lbd-p-353-4/shotlbd/1628437943/{"id":41,"shot":1,"status":"lie","surface":"OFW","distance":239.856744920672,"provider":"dde","receivedTime":1628437943533,"createdTime":1628437943000}
-s-0/ping/1628437953/
-l-lbd-p-353-4/shotlbd/1628437955/{"id":133,"shot":1,"status":"lie","surface":"OFW","distance":252.025211277576,"provider":"dde","receivedTime":1628437955755,"createdTime":1628437955000}
-s-0/ping/1628437965/
-l-lbd-p-353-4/shotlbd/1628437966/{"id":56,"shot":1,"status":"lie","surface":"OST","distance":238.105653711495,"provider":"dde","receivedTime":1628437966680,"createdTime":1628437966000}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":91,"pos":"T111","order":118,"provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":143,"pos":"T52","order":72,"provider":"dde","receivedTime":1629994470992,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":22,"pos":"T111","order":114,"provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+l-lbd-p-361-1/globallbd/1629994471/{"id":42,"pos":"T74","total":0,"today":0,"round":70,"startingHole":1,"activeHole":18,"hole":"18","provider":"dde","receivedTime":1629994470992,"createdTime":1629994470861}
+l-lbd-p-361-1/globallbd/1629994471/{"id":71,"pos":"T74","total":0,"today":0,"round":70,"startingHole":1,"activeHole":18,"hole":"18","provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":39,"pos":"T74","order":78,"provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+l-lbd-p-361-1/globallbd/1629994471/{"id":95,"pos":"T74","total":0,"today":0,"round":70,"startingHole":10,"activeHole":9,"hole":"18","provider":"dde","receivedTime":1629994470992,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":42,"pos":"T74","order":76,"provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+l-lbd-p-361-1/globallbd/1629994471/{"id":121,"pos":"T52","total":-1,"today":-1,"round":0,"startingHole":10,"activeHole":6,"hole":"14","provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":136,"pos":"T52","order":73,"provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+l-lbd-p-361-1/globallbd/1629994471/{"id":119,"pos":"T74","total":0,"today":0,"round":0,"startingHole":1,"activeHole":17,"hole":"16","provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":95,"pos":"T74","order":89,"provider":"dde","receivedTime":1629994470992,"createdTime":1629994470861}
+l-lbd-p-361-1/globallbd/1629994471/{"id":37,"pos":"T74","total":0,"today":0,"round":70,"startingHole":1,"activeHole":18,"hole":"18","provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+l-lbd-p-361-1/globallbd/1629994471/{"id":136,"hole":"13","total":-1,"today":-1,"round":0,"activeHole":14,"startingHole":1,"provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+l-lbd-p-361-1/globallbd/1629994471/{"id":65,"hole":"18","total":2,"today":2,"round":72,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994470992,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":71,"pos":"T74","order":87,"provider":"dde","receivedTime":1629994470992,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":23,"pos":"T74","order":91,"provider":"dde","receivedTime":1629994470992,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":86,"pos":"T74","order":86,"provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":27,"pos":"T74","order":75,"provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+l-lbd-p-361-1/globallbd/1629994471/{"id":47,"pos":"T74","total":0,"today":0,"round":70,"startingHole":10,"activeHole":9,"hole":"18","provider":"dde","receivedTime":1629994470992,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":211,"pos":"T74","order":93,"provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+l-lbd-p-361-1/globallbd/1629994471/{"id":211,"pos":"T74","total":0,"today":0,"round":0,"startingHole":1,"activeHole":14,"hole":"13","provider":"dde","receivedTime":1629994470992,"createdTime":1629994470861}
+l-lbd-p-361-1/globallbd/1629994471/{"id":14,"hole":"18","total":0,"today":0,"round":70,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+l-lbd-p-361-1/globallbd/1629994471/{"id":152,"pos":"T74","total":0,"today":0,"round":0,"startingHole":1,"activeHole":15,"hole":"14","provider":"dde","receivedTime":1629994470992,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":57,"pos":"T74","order":88,"provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":47,"pos":"T74","order":77,"provider":"dde","receivedTime":1629994470992,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":68,"pos":"T111","order":115,"provider":"dde","receivedTime":1629994470992,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":116,"pos":"T74","order":79,"provider":"dde","receivedTime":1629994470992,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":9,"pos":"T74","order":85,"provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":152,"pos":"T74","order":92,"provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+l-lbd-p-361-1/globallbd/1629994471/{"id":23,"hole":"15","total":0,"today":0,"round":0,"activeHole":16,"startingHole":1,"provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+l-lbd-p-361-1/globallbd/1629994471/{"id":109,"hole":"18","total":0,"today":0,"round":70,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":80,"pos":"T111","order":117,"provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+l-lbd-p-361-1/globallbd/1629994471/{"id":116,"pos":"T74","total":0,"today":0,"round":70,"startingHole":10,"activeHole":9,"hole":"18","provider":"dde","receivedTime":1629994470992,"createdTime":1629994470861}
+l-lbd-p-361-1/globallbd/1629994471/{"id":69,"hole":"18","total":0,"today":0,"round":70,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":87,"pos":"T111","order":116,"provider":"dde","receivedTime":1629994470992,"createdTime":1629994470861}
+l-lbd-p-361-1/globallbd/1629994471/{"id":37,"hole":"18","total":0,"today":0,"round":70,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+l-lbd-p-361-1/globallbd/1629994471/{"id":27,"hole":"18","total":0,"today":0,"round":70,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994470992,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":95,"pos":"T74","order":89,"provider":"dde","receivedTime":1629994470992,"createdTime":1629994470861}
+l-lbd-p-361-1/globallbd/1629994471/{"id":42,"hole":"18","total":0,"today":0,"round":70,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994470992,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":136,"pos":"T52","order":73,"provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+l-lbd-p-361-1/globallbd/1629994471/{"id":87,"hole":"18","total":2,"today":2,"round":72,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994470992,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":109,"pos":"T74","order":82,"provider":"dde","receivedTime":1629994470992,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":39,"pos":"T74","order":78,"provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+l-lbd-p-361-1/globallbd/1629994471/{"id":121,"hole":"14","total":-1,"today":-1,"round":0,"activeHole":6,"startingHole":10,"provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+l-lbd-p-361-1/globallbd/1629994471/{"id":119,"hole":"16","total":0,"today":0,"round":0,"activeHole":17,"startingHole":1,"provider":"dde","receivedTime":1629994470992,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":57,"pos":"T74","order":88,"provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":119,"pos":"T74","order":90,"provider":"dde","receivedTime":1629994470992,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":23,"pos":"T74","order":91,"provider":"dde","receivedTime":1629994470992,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":69,"pos":"T74","order":83,"provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+l-lbd-p-361-1/globallbd/1629994471/{"id":79,"pos":"T74","total":0,"today":0,"round":70,"startingHole":10,"activeHole":9,"hole":"18","provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+l-lbd-p-361-1/globallbd/1629994471/{"id":68,"hole":"18","total":2,"today":2,"round":72,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+l-lbd-p-361-1/globallbd/1629994471/{"id":91,"hole":"18","total":2,"today":2,"round":72,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994470992,"createdTime":1629994470861}
+l-lbd-p-361-1/globallbd/1629994471/{"id":71,"hole":"18","total":0,"today":0,"round":70,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994470992,"createdTime":1629994470861}
+l-lbd-p-361-1/globallbd/1629994471/{"id":57,"hole":"18","total":0,"today":0,"round":70,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994470992,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":71,"pos":"T74","order":87,"provider":"dde","receivedTime":1629994470992,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":14,"pos":"T74","order":84,"provider":"dde","receivedTime":1629994470992,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":143,"pos":"T52","order":72,"provider":"dde","receivedTime":1629994470992,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":79,"pos":"T74","order":80,"provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":113,"pos":"T74","order":81,"provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+l-lbd-p-361-1/globallbd/1629994471/{"id":9,"pos":"T74","total":0,"today":0,"round":70,"startingHole":10,"activeHole":9,"hole":"18","provider":"dde","receivedTime":1629994470992,"createdTime":1629994470861}
+l-lbd-p-361-1/globallbd/1629994471/{"id":211,"hole":"13","total":0,"today":0,"round":0,"activeHole":14,"startingHole":1,"provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":47,"pos":"T74","order":77,"provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+l-lbd-p-361-1/globallbd/1629994471/{"id":86,"hole":"18","total":0,"today":0,"round":70,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":42,"pos":"T74","order":76,"provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":22,"pos":"T111","order":114,"provider":"dde","receivedTime":1629994470992,"createdTime":1629994470861}
+l-lbd-p-361-1/globallbd/1629994471/{"id":47,"hole":"18","total":0,"today":0,"round":70,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994470992,"createdTime":1629994470861}
+l-lbd-p-361-1/globallbd/1629994471/{"id":116,"hole":"18","total":0,"today":0,"round":70,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":37,"pos":"T74","order":74,"provider":"dde","receivedTime":1629994470992,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":91,"pos":"T111","order":118,"provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+l-lbd-p-361-1/globallbd/1629994471/{"id":39,"hole":"18","total":0,"today":0,"round":70,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994470992,"createdTime":1629994470861}
+l-lbd-p-361-1/globallbd/1629994471/{"id":152,"hole":"14","total":0,"today":0,"round":0,"activeHole":15,"startingHole":1,"provider":"dde","receivedTime":1629994470992,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":65,"pos":"T111","order":119,"provider":"dde","receivedTime":1629994470992,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":86,"pos":"T74","order":86,"provider":"dde","receivedTime":1629994470992,"createdTime":1629994470861}
+l-lbd-p-361-1/globallbd/1629994471/{"id":79,"hole":"18","total":0,"today":0,"round":70,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":109,"pos":"T74","order":82,"provider":"dde","receivedTime":1629994470992,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":116,"pos":"T74","order":79,"provider":"dde","receivedTime":1629994470992,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":121,"pos":"T52","order":71,"provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+l-lbd-p-361-1/globallbd/1629994471/{"id":95,"hole":"18","total":0,"today":0,"round":70,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+l-lbd-p-361-1/globallbd/1629994471/{"id":113,"pos":"T74","total":0,"today":0,"round":70,"startingHole":1,"activeHole":18,"hole":"18","provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":37,"pos":"T74","order":74,"provider":"dde","receivedTime":1629994470992,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":211,"pos":"T74","order":93,"provider":"dde","receivedTime":1629994470992,"createdTime":1629994470861}
+l-lbd-p-361-1/globallbd/1629994471/{"id":9,"hole":"18","total":0,"today":0,"round":70,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994470992,"createdTime":1629994470861}
+l-lbd-p-361-1/orderlbd/1629994471/{"id":113,"pos":"T74","order":81,"provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+l-lbd-p-361-1/globallbd/1629994471/{"id":113,"hole":"18","total":0,"today":0,"round":70,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994470990,"createdTime":1629994470861}
+FrontEnd Notified...
+FrontEnd Notified...
+FrontEnd Notified...
+l-lbd-p-361-1/globallbd/1629994485/{"id":136,"pos":"T52","total":-1,"today":-1,"round":0,"startingHole":1,"activeHole":14,"hole":"13","provider":"dde","receivedTime":1629994485318}
+l-lbd-p-361-1/globallbd/1629994485/{"id":143,"pos":"T52","total":-1,"today":-1,"round":0,"startingHole":1,"activeHole":14,"hole":"13","provider":"dde","receivedTime":1629994485318}
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+Front end NOT Notified...
+'>=' not supported between instances of 'NoneType' and 'int'
+l-lbd-p-361-1/globallbd/1629994503/{"id":149,"pos":"156","total":12,"today":12,"round":0,"startingHole":10,"activeHole":6,"hole":"14","provider":"dde","receivedTime":1629994503031,"createdTime":1629994502988}
+l-lbd-p-361-1/orderlbd/1629994503/{"id":149,"pos":"156","order":156,"provider":"dde","receivedTime":1629994503031,"createdTime":1629994502988}
+l-lbd-p-361-1/globallbd/1629994503/{"id":149,"hole":"14","total":12,"today":12,"round":0,"activeHole":6,"startingHole":10,"provider":"dde","receivedTime":1629994503031,"createdTime":1629994502988}
+l-lbd-p-361-1/globallbd/1629994503/{"id":68,"pos":"T111","total":2,"today":2,"round":72,"startingHole":1,"activeHole":18,"hole":"18","provider":"dde","receivedTime":1629994503056,"createdTime":1629994502988}
+l-lbd-p-361-1/globallbd/1629994503/{"id":22,"pos":"T111","total":2,"today":2,"round":72,"startingHole":1,"activeHole":18,"hole":"18","provider":"dde","receivedTime":1629994503056,"createdTime":1629994502988}
+l-lbd-p-361-1/globallbd/1629994503/{"id":87,"pos":"T111","total":2,"today":2,"round":72,"startingHole":1,"activeHole":18,"hole":"18","provider":"dde","receivedTime":1629994503056,"createdTime":1629994502988}
+l-lbd-p-361-1/globallbd/1629994503/{"id":80,"pos":"T111","total":2,"today":2,"round":72,"startingHole":1,"activeHole":18,"hole":"18","provider":"dde","receivedTime":1629994503056,"createdTime":1629994502988}
+l-lbd-p-361-1/globallbd/1629994503/{"id":65,"pos":"T111","total":2,"today":2,"round":72,"startingHole":10,"activeHole":9,"hole":"18","provider":"dde","receivedTime":1629994503056,"createdTime":1629994502988}
+l-lbd-p-361-1/globallbd/1629994503/{"id":91,"pos":"T111","total":2,"today":2,"round":72,"startingHole":10,"activeHole":9,"hole":"18","provider":"dde","receivedTime":1629994503056,"createdTime":1629994502988}
+Front end NOT Notified...
+'>=' not supported between instances of 'NoneType' and 'int'
+l-r-p-361-1/group/1629994505/{"id":48,"hole":8,"course":"38","teams":[28,51,52],"status":"InProgress","teeTime":1629979200000,"provider":"dde","receivedTime":1629994505895,"createdTime":1629994505000}
+Front end NOT Notified...
+'>=' not supported between instances of 'NoneType' and 'int'
+l-r-p-361-1/group/1629994506/{"id":51,"hole":6,"course":"38","teams":[124,149,121],"status":"InProgress","teeTime":1629981000000,"provider":"dde","receivedTime":1629994506304,"createdTime":1629994506000}
+Front end NOT Notified...
+'>=' not supported between instances of 'NoneType' and 'int'
+Front end NOT Notified...
+'>=' not supported between instances of 'NoneType' and 'int'
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+Front end NOT Notified...
+'>=' not supported between instances of 'NoneType' and 'int'
+l-lbd-p-361-1/orderlbd/1629994535/{"id":143,"pos":"T52","order":71,"provider":"dde","receivedTime":1629994535592,"createdTime":1629994535548}
+l-lbd-p-361-1/orderlbd/1629994535/{"id":121,"pos":"T52","order":72,"provider":"dde","receivedTime":1629994535592,"createdTime":1629994535548}
+l-lbd-p-361-1/globallbd/1629994535/{"id":143,"pos":"T52","total":-1,"today":-1,"round":0,"startingHole":1,"activeHole":15,"hole":"14","provider":"dde","receivedTime":1629994535592,"createdTime":1629994535548}
+l-lbd-p-361-1/orderlbd/1629994535/{"id":149,"pos":"156","order":156,"provider":"dde","receivedTime":1629994535592,"createdTime":1629994535548}
+l-lbd-p-361-1/globallbd/1629994535/{"id":121,"hole":"14","total":-1,"today":-1,"round":0,"activeHole":6,"startingHole":10,"provider":"dde","receivedTime":1629994535592,"createdTime":1629994535548}
+l-lbd-p-361-1/orderlbd/1629994535/{"id":121,"pos":"T52","order":72,"provider":"dde","receivedTime":1629994535592,"createdTime":1629994535548}
+l-lbd-p-361-1/orderlbd/1629994535/{"id":143,"pos":"T52","order":71,"provider":"dde","receivedTime":1629994535592,"createdTime":1629994535548}
+l-lbd-p-361-1/globallbd/1629994535/{"id":143,"hole":"14","total":-1,"today":-1,"round":0,"activeHole":15,"startingHole":1,"provider":"dde","receivedTime":1629994535592,"createdTime":1629994535548}
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+Front end NOT Notified...
+'>=' not supported between instances of 'NoneType' and 'int'
+l-lbd-p-361-1/globallbd/1629994549/{"id":11,"pos":"T95","total":1,"today":1,"round":71,"startingHole":10,"activeHole":9,"hole":"18","provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/globallbd/1629994549/{"id":89,"pos":"T95","total":1,"today":1,"round":71,"startingHole":10,"activeHole":9,"hole":"18","provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":59,"pos":"T19","order":21,"provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":54,"pos":"T95","order":99,"provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":2,"pos":"T19","order":23,"provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":88,"pos":"T19","order":25,"provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":21,"pos":"T95","order":100,"provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/globallbd/1629994549/{"id":7,"pos":"T95","total":1,"today":1,"round":0,"startingHole":1,"activeHole":18,"hole":"17","provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/globallbd/1629994549/{"id":66,"pos":"T95","total":1,"today":1,"round":0,"startingHole":10,"activeHole":9,"hole":"17","provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/globallbd/1629994549/{"id":132,"pos":"T95","total":1,"today":1,"round":71,"startingHole":10,"activeHole":9,"hole":"18","provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/globallbd/1629994549/{"id":2,"hole":"18","total":-3,"today":-3,"round":67,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/globallbd/1629994549/{"id":211,"hole":"13","total":0,"today":0,"round":0,"activeHole":14,"startingHole":1,"provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":25,"pos":"T95","order":101,"provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/globallbd/1629994549/{"id":54,"pos":"T95","total":1,"today":1,"round":71,"startingHole":1,"activeHole":18,"hole":"18","provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":110,"pos":"T95","order":109,"provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":7,"pos":"T95","order":105,"provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/globallbd/1629994549/{"id":21,"pos":"T95","total":1,"today":1,"round":71,"startingHole":10,"activeHole":9,"hole":"18","provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":90,"pos":"T95","order":95,"provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/globallbd/1629994549/{"id":133,"pos":"T95","total":1,"today":1,"round":0,"startingHole":1,"activeHole":15,"hole":"14","provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/globallbd/1629994549/{"id":25,"pos":"T95","total":1,"today":1,"round":71,"startingHole":10,"activeHole":9,"hole":"18","provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/globallbd/1629994549/{"id":108,"pos":"T95","total":1,"today":1,"round":71,"startingHole":1,"activeHole":18,"hole":"18","provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":132,"pos":"T95","order":103,"provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":108,"pos":"T95","order":97,"provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":72,"pos":"T19","order":19,"provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":131,"pos":"T95","order":104,"provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":11,"pos":"T95","order":98,"provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":46,"pos":"T19","order":20,"provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":59,"pos":"T19","order":21,"provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":21,"pos":"T95","order":100,"provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/globallbd/1629994549/{"id":124,"pos":"T74","total":0,"today":0,"round":0,"startingHole":10,"activeHole":6,"hole":"14","provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":43,"pos":"T19","order":24,"provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/globallbd/1629994549/{"id":141,"pos":"T95","total":1,"today":1,"round":0,"startingHole":10,"activeHole":5,"hole":"13","provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":133,"pos":"T95","order":107,"provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/globallbd/1629994549/{"id":110,"pos":"T95","total":1,"today":1,"round":0,"startingHole":1,"activeHole":14,"hole":"13","provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":66,"pos":"T95","order":106,"provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":145,"pos":"T19","order":22,"provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/globallbd/1629994549/{"id":59,"hole":"18","total":-3,"today":-3,"round":67,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/globallbd/1629994549/{"id":66,"hole":"17","total":1,"today":1,"round":0,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/globallbd/1629994549/{"id":43,"hole":"18","total":-3,"today":-3,"round":67,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/globallbd/1629994549/{"id":108,"hole":"18","total":1,"today":1,"round":71,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":2,"pos":"T19","order":23,"provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":124,"pos":"T74","order":93,"provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/globallbd/1629994549/{"id":133,"hole":"14","total":1,"today":1,"round":0,"activeHole":15,"startingHole":1,"provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/globallbd/1629994549/{"id":147,"pos":"T95","total":1,"today":1,"round":0,"startingHole":1,"activeHole":14,"hole":"13","provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/globallbd/1629994549/{"id":145,"hole":"18","total":-3,"today":-3,"round":67,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/globallbd/1629994549/{"id":131,"pos":"T95","total":1,"today":1,"round":0,"startingHole":1,"activeHole":18,"hole":"17","provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":211,"pos":"T74","order":94,"provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":89,"pos":"T95","order":102,"provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/globallbd/1629994549/{"id":46,"hole":"18","total":-3,"today":-3,"round":67,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":147,"pos":"T95","order":108,"provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/globallbd/1629994549/{"id":90,"pos":"T95","total":1,"today":1,"round":71,"startingHole":1,"activeHole":18,"hole":"18","provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/globallbd/1629994549/{"id":132,"hole":"18","total":1,"today":1,"round":71,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/globallbd/1629994549/{"id":21,"hole":"18","total":1,"today":1,"round":71,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/globallbd/1629994549/{"id":124,"hole":"14","total":0,"today":0,"round":0,"activeHole":6,"startingHole":10,"provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/globallbd/1629994549/{"id":7,"hole":"17","total":1,"today":1,"round":0,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/globallbd/1629994549/{"id":54,"hole":"18","total":1,"today":1,"round":71,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":46,"pos":"T19","order":20,"provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":88,"pos":"T19","order":25,"provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":54,"pos":"T95","order":99,"provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/globallbd/1629994549/{"id":121,"pos":"T52","total":-1,"today":-1,"round":0,"startingHole":10,"activeHole":6,"hole":"14","provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/globallbd/1629994549/{"id":89,"hole":"18","total":1,"today":1,"round":71,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":132,"pos":"T95","order":103,"provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/globallbd/1629994549/{"id":88,"hole":"18","total":-3,"today":-3,"round":67,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":131,"pos":"T95","order":104,"provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":145,"pos":"T19","order":22,"provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/globallbd/1629994549/{"id":72,"hole":"18","total":-3,"today":-3,"round":67,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":72,"pos":"T19","order":19,"provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/globallbd/1629994549/{"id":11,"hole":"18","total":1,"today":1,"round":71,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":7,"pos":"T95","order":105,"provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":133,"pos":"T95","order":107,"provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":66,"pos":"T95","order":106,"provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/globallbd/1629994549/{"id":110,"hole":"13","total":1,"today":1,"round":0,"activeHole":14,"startingHole":1,"provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":25,"pos":"T95","order":101,"provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/globallbd/1629994549/{"id":141,"hole":"13","total":1,"today":1,"round":0,"activeHole":5,"startingHole":10,"provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":141,"pos":"T95","order":110,"provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/globallbd/1629994549/{"id":25,"hole":"18","total":1,"today":1,"round":71,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":195,"pos":"T95","order":96,"provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":43,"pos":"T19","order":24,"provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":108,"pos":"T95","order":97,"provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/globallbd/1629994549/{"id":195,"pos":"T95","total":1,"today":1,"round":71,"startingHole":10,"activeHole":9,"hole":"18","provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/globallbd/1629994549/{"id":131,"hole":"17","total":1,"today":1,"round":0,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":90,"pos":"T95","order":95,"provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":124,"pos":"T74","order":93,"provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":89,"pos":"T95","order":102,"provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":147,"pos":"T95","order":108,"provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/globallbd/1629994549/{"id":90,"hole":"18","total":1,"today":1,"round":71,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":11,"pos":"T95","order":98,"provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":141,"pos":"T95","order":110,"provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":211,"pos":"T74","order":94,"provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":195,"pos":"T95","order":96,"provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/globallbd/1629994549/{"id":147,"hole":"13","total":1,"today":1,"round":0,"activeHole":14,"startingHole":1,"provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+l-lbd-p-361-1/orderlbd/1629994549/{"id":110,"pos":"T95","order":109,"provider":"dde","receivedTime":1629994549729,"createdTime":1629994549697}
+l-lbd-p-361-1/globallbd/1629994549/{"id":195,"hole":"18","total":1,"today":1,"round":71,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994549727,"createdTime":1629994549697}
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+Front end NOT Notified...
+'>=' not supported between instances of 'NoneType' and 'int'
+l-lbd-p-361-1/globallbd/1629994552/{"id":43,"pos":"T19","total":-3,"today":-3,"round":67,"startingHole":10,"activeHole":9,"hole":"18","provider":"dde","receivedTime":1629994552090,"createdTime":1629994551930}
+l-lbd-p-361-1/globallbd/1629994552/{"id":46,"pos":"T19","total":-3,"today":-3,"round":67,"startingHole":10,"activeHole":9,"hole":"18","provider":"dde","receivedTime":1629994552090,"createdTime":1629994551930}
+l-lbd-p-361-1/orderlbd/1629994552/{"id":18,"pos":"T11","order":17,"provider":"dde","receivedTime":1629994552090,"createdTime":1629994551930}
+l-lbd-p-361-1/globallbd/1629994552/{"id":72,"pos":"T19","total":-3,"today":-3,"round":67,"startingHole":1,"activeHole":18,"hole":"18","provider":"dde","receivedTime":1629994552090,"createdTime":1629994551930}
+l-lbd-p-361-1/globallbd/1629994552/{"id":2,"pos":"T19","total":-3,"today":-3,"round":67,"startingHole":10,"activeHole":9,"hole":"18","provider":"dde","receivedTime":1629994552090,"createdTime":1629994551930}
+l-lbd-p-361-1/globallbd/1629994552/{"id":88,"pos":"T19","total":-3,"today":-3,"round":67,"startingHole":1,"activeHole":18,"hole":"18","provider":"dde","receivedTime":1629994552090,"createdTime":1629994551930}
+l-lbd-p-361-1/globallbd/1629994552/{"id":59,"pos":"T19","total":-3,"today":-3,"round":67,"startingHole":1,"activeHole":18,"hole":"18","provider":"dde","receivedTime":1629994552090,"createdTime":1629994551930}
+l-lbd-p-361-1/globallbd/1629994552/{"id":18,"pos":"T11","total":-4,"today":-4,"round":0,"startingHole":1,"activeHole":18,"hole":"17","provider":"dde","receivedTime":1629994552090,"createdTime":1629994551930}
+l-lbd-p-361-1/globallbd/1629994552/{"id":211,"pos":"T74","total":0,"today":0,"round":0,"startingHole":1,"activeHole":14,"hole":"13","provider":"dde","receivedTime":1629994552101,"createdTime":1629994551930}
+l-lbd-p-361-1/globallbd/1629994552/{"id":145,"pos":"T19","total":-3,"today":-3,"round":67,"startingHole":10,"activeHole":9,"hole":"18","provider":"dde","receivedTime":1629994552090,"createdTime":1629994551930}
+l-lbd-p-361-1/globallbd/1629994552/{"id":18,"hole":"17","total":-4,"today":-4,"round":0,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994552090,"createdTime":1629994551930}
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+l-lbd-p-361-1/orderlbd/1629994554/{"id":18,"pos":"T11","order":17,"provider":"dde","receivedTime":1629994554832}
+l-r-p-361-1/group/1629994554/{"id":48,"hole":8,"course":"38","teams":[28,51,52],"status":"InProgress","teeTime":1629979200000,"provider":"dde","receivedTime":1629994554832}
+l-r-p-361-1/group/1629994554/{"id":51,"hole":6,"course":"38","teams":[124,149,121],"status":"InProgress","teeTime":1629981000000,"provider":"dde","receivedTime":1629994554832}
+Front end NOT Notified...
+'>=' not supported between instances of 'NoneType' and 'int'
+Front end NOT Notified...
+'>=' not supported between instances of 'NoneType' and 'int'
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+Front end NOT Notified...
+'>=' not supported between instances of 'NoneType' and 'int'
+l-lbd-p-361-1/globallbd/1629994559/{"id":7,"pos":"T96","total":1,"today":1,"round":0,"startingHole":1,"activeHole":18,"hole":"17","provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/globallbd/1629994559/{"id":21,"pos":"T96","total":1,"today":1,"round":71,"startingHole":10,"activeHole":9,"hole":"18","provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":11,"pos":"T96","order":99,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":46,"pos":"T19","order":19,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/globallbd/1629994559/{"id":141,"pos":"T96","total":1,"today":1,"round":0,"startingHole":10,"activeHole":5,"hole":"13","provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":88,"pos":"T19","order":24,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":25,"pos":"T96","order":102,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":7,"pos":"T96","order":106,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":133,"pos":"T96","order":108,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":21,"pos":"T96","order":101,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":66,"pos":"T96","order":107,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":90,"pos":"T96","order":96,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/globallbd/1629994559/{"id":25,"pos":"T96","total":1,"today":1,"round":71,"startingHole":10,"activeHole":9,"hole":"18","provider":"dde","receivedTime":1629994559385,"createdTime":1629994559254}
+l-lbd-p-361-1/globallbd/1629994559/{"id":43,"hole":"18","total":-3,"today":-3,"round":67,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":59,"pos":"T19","order":20,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/globallbd/1629994559/{"id":108,"pos":"T96","total":1,"today":1,"round":71,"startingHole":1,"activeHole":18,"hole":"18","provider":"dde","receivedTime":1629994559385,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":131,"pos":"T96","order":105,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":132,"pos":"T96","order":104,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":54,"pos":"T96","order":100,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":141,"pos":"T96","order":110,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":110,"pos":"T96","order":109,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/globallbd/1629994559/{"id":2,"hole":"18","total":-3,"today":-3,"round":67,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994559385,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":108,"pos":"T96","order":98,"provider":"dde","receivedTime":1629994559385,"createdTime":1629994559254}
+l-lbd-p-361-1/globallbd/1629994559/{"id":124,"hole":"14","total":0,"today":0,"round":0,"activeHole":6,"startingHole":10,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/globallbd/1629994559/{"id":11,"pos":"T96","total":1,"today":1,"round":71,"startingHole":10,"activeHole":9,"hole":"18","provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":89,"pos":"T96","order":103,"provider":"dde","receivedTime":1629994559385,"createdTime":1629994559254}
+l-lbd-p-361-1/globallbd/1629994559/{"id":211,"hole":"13","total":0,"today":0,"round":0,"activeHole":14,"startingHole":1,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/globallbd/1629994559/{"id":54,"pos":"T96","total":1,"today":1,"round":71,"startingHole":1,"activeHole":18,"hole":"18","provider":"dde","receivedTime":1629994559385,"createdTime":1629994559254}
+l-lbd-p-361-1/globallbd/1629994559/{"id":147,"pos":"T74","total":0,"today":0,"round":0,"startingHole":1,"activeHole":15,"hole":"14","provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":145,"pos":"T19","order":21,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":2,"pos":"T19","order":22,"provider":"dde","receivedTime":1629994559385,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":88,"pos":"T19","order":24,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":147,"pos":"T74","order":93,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/globallbd/1629994559/{"id":88,"hole":"18","total":-3,"today":-3,"round":67,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/globallbd/1629994559/{"id":90,"pos":"T96","total":1,"today":1,"round":71,"startingHole":1,"activeHole":18,"hole":"18","provider":"dde","receivedTime":1629994559385,"createdTime":1629994559254}
+l-lbd-p-361-1/globallbd/1629994559/{"id":7,"hole":"17","total":1,"today":1,"round":0,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":72,"pos":"T19","order":25,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/globallbd/1629994559/{"id":46,"hole":"18","total":-3,"today":-3,"round":67,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":211,"pos":"T74","order":95,"provider":"dde","receivedTime":1629994559385,"createdTime":1629994559254}
+l-lbd-p-361-1/globallbd/1629994559/{"id":66,"pos":"T96","total":1,"today":1,"round":0,"startingHole":10,"activeHole":9,"hole":"17","provider":"dde","receivedTime":1629994559385,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":124,"pos":"T74","order":94,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/globallbd/1629994559/{"id":110,"pos":"T96","total":1,"today":1,"round":0,"startingHole":1,"activeHole":14,"hole":"13","provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/globallbd/1629994559/{"id":132,"pos":"T96","total":1,"today":1,"round":71,"startingHole":10,"activeHole":9,"hole":"18","provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":108,"pos":"T96","order":98,"provider":"dde","receivedTime":1629994559385,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":66,"pos":"T96","order":107,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/globallbd/1629994559/{"id":89,"pos":"T96","total":1,"today":1,"round":71,"startingHole":10,"activeHole":9,"hole":"18","provider":"dde","receivedTime":1629994559385,"createdTime":1629994559254}
+l-lbd-p-361-1/globallbd/1629994559/{"id":25,"hole":"18","total":1,"today":1,"round":71,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994559385,"createdTime":1629994559254}
+l-lbd-p-361-1/globallbd/1629994559/{"id":133,"pos":"T96","total":1,"today":1,"round":0,"startingHole":1,"activeHole":15,"hole":"14","provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":195,"pos":"T96","order":97,"provider":"dde","receivedTime":1629994559385,"createdTime":1629994559254}
+l-lbd-p-361-1/globallbd/1629994559/{"id":54,"hole":"18","total":1,"today":1,"round":71,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994559385,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":90,"pos":"T96","order":96,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":7,"pos":"T96","order":106,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":43,"pos":"T19","order":23,"provider":"dde","receivedTime":1629994559385,"createdTime":1629994559254}
+l-lbd-p-361-1/globallbd/1629994559/{"id":145,"hole":"18","total":-3,"today":-3,"round":67,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":11,"pos":"T96","order":99,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":131,"pos":"T96","order":105,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":110,"pos":"T96","order":109,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":54,"pos":"T96","order":100,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":141,"pos":"T96","order":110,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":25,"pos":"T96","order":102,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":133,"pos":"T96","order":108,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/globallbd/1629994559/{"id":59,"hole":"18","total":-3,"today":-3,"round":67,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/globallbd/1629994559/{"id":21,"hole":"18","total":1,"today":1,"round":71,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/globallbd/1629994559/{"id":195,"pos":"T96","total":1,"today":1,"round":71,"startingHole":10,"activeHole":9,"hole":"18","provider":"dde","receivedTime":1629994559385,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":46,"pos":"T19","order":19,"provider":"dde","receivedTime":1629994559385,"createdTime":1629994559254}
+l-lbd-p-361-1/globallbd/1629994559/{"id":110,"hole":"13","total":1,"today":1,"round":0,"activeHole":14,"startingHole":1,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/globallbd/1629994559/{"id":108,"hole":"18","total":1,"today":1,"round":71,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994559385,"createdTime":1629994559254}
+l-lbd-p-361-1/globallbd/1629994559/{"id":141,"hole":"13","total":1,"today":1,"round":0,"activeHole":5,"startingHole":10,"provider":"dde","receivedTime":1629994559385,"createdTime":1629994559254}
+l-lbd-p-361-1/globallbd/1629994559/{"id":131,"pos":"T96","total":1,"today":1,"round":0,"startingHole":1,"activeHole":18,"hole":"17","provider":"dde","receivedTime":1629994559385,"createdTime":1629994559254}
+l-lbd-p-361-1/globallbd/1629994559/{"id":89,"hole":"18","total":1,"today":1,"round":71,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994559385,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":59,"pos":"T19","order":20,"provider":"dde","receivedTime":1629994559385,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":147,"pos":"T74","order":93,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":145,"pos":"T19","order":21,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":21,"pos":"T96","order":101,"provider":"dde","receivedTime":1629994559385,"createdTime":1629994559254}
+l-lbd-p-361-1/globallbd/1629994559/{"id":132,"hole":"18","total":1,"today":1,"round":71,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":2,"pos":"T19","order":22,"provider":"dde","receivedTime":1629994559385,"createdTime":1629994559254}
+l-lbd-p-361-1/globallbd/1629994559/{"id":133,"hole":"14","total":1,"today":1,"round":0,"activeHole":15,"startingHole":1,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":89,"pos":"T96","order":103,"provider":"dde","receivedTime":1629994559385,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":124,"pos":"T74","order":94,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":72,"pos":"T19","order":25,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/globallbd/1629994559/{"id":11,"hole":"18","total":1,"today":1,"round":71,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994559385,"createdTime":1629994559254}
+l-lbd-p-361-1/globallbd/1629994559/{"id":90,"hole":"18","total":1,"today":1,"round":71,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994559385,"createdTime":1629994559254}
+l-lbd-p-361-1/globallbd/1629994559/{"id":66,"hole":"17","total":1,"today":1,"round":0,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/globallbd/1629994559/{"id":147,"hole":"14","total":0,"today":0,"round":0,"activeHole":15,"startingHole":1,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/globallbd/1629994559/{"id":195,"hole":"18","total":1,"today":1,"round":71,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994559385,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":132,"pos":"T96","order":104,"provider":"dde","receivedTime":1629994559385,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":211,"pos":"T74","order":95,"provider":"dde","receivedTime":1629994559385,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":195,"pos":"T96","order":97,"provider":"dde","receivedTime":1629994559385,"createdTime":1629994559254}
+l-lbd-p-361-1/orderlbd/1629994559/{"id":43,"pos":"T19","order":23,"provider":"dde","receivedTime":1629994559385,"createdTime":1629994559254}
+l-lbd-p-361-1/globallbd/1629994559/{"id":131,"hole":"17","total":1,"today":1,"round":0,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+l-lbd-p-361-1/globallbd/1629994559/{"id":72,"hole":"18","total":-3,"today":-3,"round":67,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994559383,"createdTime":1629994559254}
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+Front end NOT Notified...
+'>=' not supported between instances of 'NoneType' and 'int'
+l-lbd-p-361-1/orderlbd/1629994607/{"id":92,"pos":"T32","order":46,"provider":"dde","receivedTime":1629994607322,"createdTime":1629994607281}
+l-lbd-p-361-1/orderlbd/1629994607/{"id":1,"pos":"T32","order":47,"provider":"dde","receivedTime":1629994607322,"createdTime":1629994607281}
+l-lbd-p-361-1/globallbd/1629994607/{"id":1,"hole":"16","total":-2,"today":-2,"round":0,"activeHole":17,"startingHole":1,"provider":"dde","receivedTime":1629994607322,"createdTime":1629994607281}
+l-lbd-p-361-1/globallbd/1629994607/{"id":92,"pos":"T32","total":-2,"today":-2,"round":0,"startingHole":1,"activeHole":18,"hole":"17","provider":"dde","receivedTime":1629994607322,"createdTime":1629994607281}
+l-lbd-p-361-1/orderlbd/1629994607/{"id":92,"pos":"T32","order":46,"provider":"dde","receivedTime":1629994607322,"createdTime":1629994607281}
+l-lbd-p-361-1/orderlbd/1629994607/{"id":1,"pos":"T32","order":47,"provider":"dde","receivedTime":1629994607322,"createdTime":1629994607281}
+l-lbd-p-361-1/globallbd/1629994607/{"id":92,"hole":"17","total":-2,"today":-2,"round":0,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994607322,"createdTime":1629994607281}
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+Front end NOT Notified...
+'>=' not supported between instances of 'NoneType' and 'int'
+l-lbd-p-361-1/orderlbd/1629994629/{"id":74,"pos":"T111","order":114,"provider":"dde","receivedTime":1629994629063,"createdTime":1629994629012}
+l-lbd-p-361-1/globallbd/1629994629/{"id":59,"hole":"18","total":-3,"today":-3,"round":67,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994629063,"createdTime":1629994629012}
+l-lbd-p-361-1/orderlbd/1629994629/{"id":80,"pos":"T111","order":118,"provider":"dde","receivedTime":1629994629063,"createdTime":1629994629012}
+l-lbd-p-361-1/orderlbd/1629994629/{"id":91,"pos":"T111","order":119,"provider":"dde","receivedTime":1629994629063,"createdTime":1629994629012}
+l-lbd-p-361-1/orderlbd/1629994629/{"id":65,"pos":"T111","order":112,"provider":"dde","receivedTime":1629994629063,"createdTime":1629994629012}
+l-lbd-p-361-1/orderlbd/1629994629/{"id":59,"pos":"T19","order":19,"provider":"dde","receivedTime":1629994629063,"createdTime":1629994629012}
+l-lbd-p-361-1/globallbd/1629994629/{"id":145,"hole":"18","total":-3,"today":-3,"round":67,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994629063,"createdTime":1629994629012}
+l-lbd-p-361-1/globallbd/1629994629/{"id":1,"pos":"T32","total":-2,"today":-2,"round":0,"startingHole":1,"activeHole":17,"hole":"16","provider":"dde","receivedTime":1629994629063,"createdTime":1629994629012}
+l-lbd-p-361-1/globallbd/1629994629/{"id":87,"hole":"18","total":2,"today":2,"round":72,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994629063,"createdTime":1629994629012}
+l-lbd-p-361-1/orderlbd/1629994629/{"id":88,"pos":"T19","order":23,"provider":"dde","receivedTime":1629994629063,"createdTime":1629994629012}
+l-lbd-p-361-1/orderlbd/1629994629/{"id":87,"pos":"T111","order":117,"provider":"dde","receivedTime":1629994629063,"createdTime":1629994629012}
+l-lbd-p-361-1/orderlbd/1629994629/{"id":43,"pos":"T19","order":22,"provider":"dde","receivedTime":1629994629060,"createdTime":1629994629012}
+l-lbd-p-361-1/orderlbd/1629994629/{"id":5,"pos":"T111","order":113,"provider":"dde","receivedTime":1629994629063,"createdTime":1629994629012}
+l-lbd-p-361-1/globallbd/1629994629/{"id":74,"hole":"18","total":2,"today":2,"round":72,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994629063,"createdTime":1629994629012}
+l-lbd-p-361-1/globallbd/1629994629/{"id":91,"hole":"18","total":2,"today":2,"round":72,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994629063,"createdTime":1629994629012}
+l-lbd-p-361-1/orderlbd/1629994629/{"id":2,"pos":"T19","order":21,"provider":"dde","receivedTime":1629994629063,"createdTime":1629994629012}
+l-lbd-p-361-1/orderlbd/1629994629/{"id":46,"pos":"T19","order":25,"provider":"dde","receivedTime":1629994629060,"createdTime":1629994629012}
+l-lbd-p-361-1/orderlbd/1629994629/{"id":22,"pos":"T111","order":115,"provider":"dde","receivedTime":1629994629060,"createdTime":1629994629012}
+l-lbd-p-361-1/orderlbd/1629994629/{"id":124,"pos":"T74","order":95,"provider":"dde","receivedTime":1629994629060,"createdTime":1629994629012}
+l-lbd-p-361-1/globallbd/1629994629/{"id":46,"hole":"18","total":-3,"today":-3,"round":67,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994629060,"createdTime":1629994629012}
+l-lbd-p-361-1/globallbd/1629994629/{"id":124,"hole":"14","total":0,"today":0,"round":0,"activeHole":6,"startingHole":10,"provider":"dde","receivedTime":1629994629063,"createdTime":1629994629012}
+l-lbd-p-361-1/orderlbd/1629994629/{"id":211,"pos":"T74","order":94,"provider":"dde","receivedTime":1629994629063,"createdTime":1629994629012}
+l-lbd-p-361-1/globallbd/1629994629/{"id":88,"hole":"18","total":-3,"today":-3,"round":67,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994629063,"createdTime":1629994629012}
+l-lbd-p-361-1/globallbd/1629994629/{"id":2,"hole":"18","total":-3,"today":-3,"round":67,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994629063,"createdTime":1629994629012}
+l-lbd-p-361-1/globallbd/1629994629/{"id":5,"hole":"18","total":2,"today":2,"round":72,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994629060,"createdTime":1629994629012}
+l-lbd-p-361-1/globallbd/1629994629/{"id":22,"hole":"18","total":2,"today":2,"round":72,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994629063,"createdTime":1629994629012}
+l-lbd-p-361-1/orderlbd/1629994629/{"id":145,"pos":"T19","order":20,"provider":"dde","receivedTime":1629994629060,"createdTime":1629994629012}
+l-lbd-p-361-1/globallbd/1629994629/{"id":80,"hole":"18","total":2,"today":2,"round":72,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994629060,"createdTime":1629994629012}
+l-lbd-p-361-1/orderlbd/1629994629/{"id":72,"pos":"T19","order":24,"provider":"dde","receivedTime":1629994629063,"createdTime":1629994629012}
+l-lbd-p-361-1/globallbd/1629994629/{"id":65,"hole":"18","total":2,"today":2,"round":72,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994629063,"createdTime":1629994629012}
+l-lbd-p-361-1/globallbd/1629994629/{"id":43,"hole":"18","total":-3,"today":-3,"round":67,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994629060,"createdTime":1629994629012}
+l-lbd-p-361-1/orderlbd/1629994629/{"id":68,"pos":"T111","order":116,"provider":"dde","receivedTime":1629994629063,"createdTime":1629994629012}
+l-lbd-p-361-1/globallbd/1629994629/{"id":72,"hole":"18","total":-3,"today":-3,"round":67,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994629063,"createdTime":1629994629012}
+l-lbd-p-361-1/globallbd/1629994629/{"id":211,"pos":"T74","total":0,"today":0,"round":0,"startingHole":1,"activeHole":15,"hole":"14","provider":"dde","receivedTime":1629994629063,"createdTime":1629994629012}
+l-lbd-p-361-1/globallbd/1629994629/{"id":68,"hole":"18","total":2,"today":2,"round":72,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994629060,"createdTime":1629994629012}
+l-lbd-p-361-1/orderlbd/1629994629/{"id":46,"pos":"T19","order":25,"provider":"dde","receivedTime":1629994629060,"createdTime":1629994629012}
+l-lbd-p-361-1/orderlbd/1629994629/{"id":80,"pos":"T111","order":118,"provider":"dde","receivedTime":1629994629063,"createdTime":1629994629012}
+l-lbd-p-361-1/orderlbd/1629994629/{"id":87,"pos":"T111","order":117,"provider":"dde","receivedTime":1629994629060,"createdTime":1629994629012}
+l-lbd-p-361-1/orderlbd/1629994629/{"id":88,"pos":"T19","order":23,"provider":"dde","receivedTime":1629994629063,"createdTime":1629994629012}
+l-lbd-p-361-1/orderlbd/1629994629/{"id":22,"pos":"T111","order":115,"provider":"dde","receivedTime":1629994629060,"createdTime":1629994629012}
+l-lbd-p-361-1/orderlbd/1629994629/{"id":5,"pos":"T111","order":113,"provider":"dde","receivedTime":1629994629063,"createdTime":1629994629012}
+l-lbd-p-361-1/orderlbd/1629994629/{"id":124,"pos":"T74","order":95,"provider":"dde","receivedTime":1629994629060,"createdTime":1629994629012}
+l-lbd-p-361-1/orderlbd/1629994629/{"id":65,"pos":"T111","order":112,"provider":"dde","receivedTime":1629994629063,"createdTime":1629994629012}
+l-lbd-p-361-1/orderlbd/1629994629/{"id":72,"pos":"T19","order":24,"provider":"dde","receivedTime":1629994629063,"createdTime":1629994629012}
+l-lbd-p-361-1/orderlbd/1629994629/{"id":91,"pos":"T111","order":119,"provider":"dde","receivedTime":1629994629060,"createdTime":1629994629012}
+l-lbd-p-361-1/orderlbd/1629994629/{"id":59,"pos":"T19","order":19,"provider":"dde","receivedTime":1629994629063,"createdTime":1629994629012}
+l-lbd-p-361-1/orderlbd/1629994629/{"id":2,"pos":"T19","order":21,"provider":"dde","receivedTime":1629994629060,"createdTime":1629994629012}
+l-lbd-p-361-1/orderlbd/1629994629/{"id":74,"pos":"T111","order":114,"provider":"dde","receivedTime":1629994629063,"createdTime":1629994629012}
+l-lbd-p-361-1/orderlbd/1629994629/{"id":145,"pos":"T19","order":20,"provider":"dde","receivedTime":1629994629060,"createdTime":1629994629012}
+l-lbd-p-361-1/orderlbd/1629994629/{"id":211,"pos":"T74","order":94,"provider":"dde","receivedTime":1629994629063,"createdTime":1629994629012}
+l-lbd-p-361-1/globallbd/1629994629/{"id":211,"hole":"14","total":0,"today":0,"round":0,"activeHole":15,"startingHole":1,"provider":"dde","receivedTime":1629994629063,"createdTime":1629994629012}
+l-lbd-p-361-1/orderlbd/1629994629/{"id":68,"pos":"T111","order":116,"provider":"dde","receivedTime":1629994629063,"createdTime":1629994629012}
+l-lbd-p-361-1/orderlbd/1629994629/{"id":43,"pos":"T19","order":22,"provider":"dde","receivedTime":1629994629060,"createdTime":1629994629012}
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+l-r-p-361-1/group/1629994661/{"id":38,"hole":15,"course":"38","teams":[143,147,211],"status":"InProgress","teeTime":1629981000000,"provider":"dde","receivedTime":1629994661070,"createdTime":1629994660000}
+Front end NOT Notified...
+'>=' not supported between instances of 'NoneType' and 'int'
+Front end NOT Notified...
+'>=' not supported between instances of 'NoneType' and 'int'
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+Front end NOT Notified...
+'>=' not supported between instances of 'NoneType' and 'int'
+Front end NOT Notified...
+'>=' not supported between instances of 'NoneType' and 'int'
+l-lbd-p-361-1/globallbd/1629994663/{"id":59,"pos":"T19","total":-3,"today":-3,"round":67,"startingHole":1,"activeHole":18,"hole":"18","provider":"dde","receivedTime":1629994663667,"createdTime":1629994663627}
+l-lbd-p-361-1/globallbd/1629994663/{"id":124,"pos":"T74","total":0,"today":0,"round":0,"startingHole":10,"activeHole":6,"hole":"14","provider":"dde","receivedTime":1629994663667,"createdTime":1629994663627}
+l-lbd-p-361-1/globallbd/1629994663/{"id":5,"pos":"T111","total":2,"today":2,"round":72,"startingHole":10,"activeHole":9,"hole":"18","provider":"dde","receivedTime":1629994663667,"createdTime":1629994663627}
+l-lbd-p-361-1/orderlbd/1629994663/{"id":1,"pos":"T32","order":46,"provider":"dde","receivedTime":1629994663667,"createdTime":1629994663627}
+l-lbd-p-361-1/orderlbd/1629994663/{"id":72,"pos":"T19","order":25,"provider":"dde","receivedTime":1629994663667,"createdTime":1629994663627}
+l-lbd-p-361-1/globallbd/1629994663/{"id":2,"pos":"T19","total":-3,"today":-3,"round":67,"startingHole":10,"activeHole":9,"hole":"18","provider":"dde","receivedTime":1629994663667,"createdTime":1629994663627}
+l-lbd-p-361-1/globallbd/1629994663/{"id":43,"pos":"T19","total":-3,"today":-3,"round":67,"startingHole":10,"activeHole":9,"hole":"18","provider":"dde","receivedTime":1629994663667,"createdTime":1629994663627}
+l-lbd-p-361-1/orderlbd/1629994663/{"id":88,"pos":"T19","order":24,"provider":"dde","receivedTime":1629994663667,"createdTime":1629994663627}
+l-lbd-p-361-1/globallbd/1629994663/{"id":68,"pos":"T111","total":2,"today":2,"round":72,"startingHole":1,"activeHole":18,"hole":"18","provider":"dde","receivedTime":1629994663667,"createdTime":1629994663627}
+l-lbd-p-361-1/globallbd/1629994663/{"id":1,"pos":"T32","total":-2,"today":-2,"round":0,"startingHole":1,"activeHole":18,"hole":"17","provider":"dde","receivedTime":1629994663663,"createdTime":1629994663627}
+l-lbd-p-361-1/orderlbd/1629994663/{"id":145,"pos":"T19","order":21,"provider":"dde","receivedTime":1629994663667,"createdTime":1629994663627}
+l-lbd-p-361-1/orderlbd/1629994663/{"id":46,"pos":"T19","order":19,"provider":"dde","receivedTime":1629994663667,"createdTime":1629994663627}
+l-lbd-p-361-1/globallbd/1629994663/{"id":72,"pos":"T19","total":-3,"today":-3,"round":67,"startingHole":1,"activeHole":18,"hole":"18","provider":"dde","receivedTime":1629994663663,"createdTime":1629994663627}
+l-lbd-p-361-1/globallbd/1629994663/{"id":74,"pos":"T111","total":2,"today":2,"round":72,"startingHole":1,"activeHole":18,"hole":"18","provider":"dde","receivedTime":1629994663667,"createdTime":1629994663627}
+l-lbd-p-361-1/globallbd/1629994663/{"id":87,"pos":"T111","total":2,"today":2,"round":72,"startingHole":1,"activeHole":18,"hole":"18","provider":"dde","receivedTime":1629994663667,"createdTime":1629994663627}
+l-lbd-p-361-1/globallbd/1629994663/{"id":46,"pos":"T19","total":-3,"today":-3,"round":67,"startingHole":10,"activeHole":9,"hole":"18","provider":"dde","receivedTime":1629994663663,"createdTime":1629994663627}
+l-lbd-p-361-1/globallbd/1629994663/{"id":80,"pos":"T111","total":2,"today":2,"round":72,"startingHole":1,"activeHole":18,"hole":"18","provider":"dde","receivedTime":1629994663667,"createdTime":1629994663627}
+l-lbd-p-361-1/orderlbd/1629994663/{"id":2,"pos":"T19","order":22,"provider":"dde","receivedTime":1629994663663,"createdTime":1629994663627}
+l-lbd-p-361-1/orderlbd/1629994663/{"id":92,"pos":"T32","order":47,"provider":"dde","receivedTime":1629994663667,"createdTime":1629994663627}
+l-lbd-p-361-1/orderlbd/1629994663/{"id":43,"pos":"T19","order":23,"provider":"dde","receivedTime":1629994663663,"createdTime":1629994663627}
+l-lbd-p-361-1/globallbd/1629994663/{"id":22,"pos":"T111","total":2,"today":2,"round":72,"startingHole":1,"activeHole":18,"hole":"18","provider":"dde","receivedTime":1629994663667,"createdTime":1629994663627}
+l-lbd-p-361-1/orderlbd/1629994663/{"id":59,"pos":"T19","order":20,"provider":"dde","receivedTime":1629994663663,"createdTime":1629994663627}
+l-lbd-p-361-1/globallbd/1629994663/{"id":2,"hole":"18","total":-3,"today":-3,"round":67,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994663663,"createdTime":1629994663627}
+l-lbd-p-361-1/globallbd/1629994663/{"id":145,"pos":"T19","total":-3,"today":-3,"round":67,"startingHole":10,"activeHole":9,"hole":"18","provider":"dde","receivedTime":1629994663663,"createdTime":1629994663627}
+l-lbd-p-361-1/globallbd/1629994663/{"id":91,"pos":"T111","total":2,"today":2,"round":72,"startingHole":10,"activeHole":9,"hole":"18","provider":"dde","receivedTime":1629994663667,"createdTime":1629994663627}
+l-lbd-p-361-1/globallbd/1629994663/{"id":1,"hole":"17","total":-2,"today":-2,"round":0,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994663667,"createdTime":1629994663627}
+l-lbd-p-361-1/globallbd/1629994663/{"id":65,"pos":"T111","total":2,"today":2,"round":72,"startingHole":10,"activeHole":9,"hole":"18","provider":"dde","receivedTime":1629994663663,"createdTime":1629994663627}
+l-lbd-p-361-1/globallbd/1629994663/{"id":92,"hole":"17","total":-2,"today":-2,"round":0,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994663663,"createdTime":1629994663627}
+l-lbd-p-361-1/orderlbd/1629994663/{"id":72,"pos":"T19","order":25,"provider":"dde","receivedTime":1629994663667,"createdTime":1629994663627}
+l-lbd-p-361-1/globallbd/1629994663/{"id":46,"hole":"18","total":-3,"today":-3,"round":67,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994663663,"createdTime":1629994663627}
+l-lbd-p-361-1/globallbd/1629994663/{"id":43,"hole":"18","total":-3,"today":-3,"round":67,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994663667,"createdTime":1629994663627}
+l-lbd-p-361-1/globallbd/1629994663/{"id":88,"pos":"T19","total":-3,"today":-3,"round":67,"startingHole":1,"activeHole":18,"hole":"18","provider":"dde","receivedTime":1629994663667,"createdTime":1629994663627}
+l-lbd-p-361-1/orderlbd/1629994663/{"id":59,"pos":"T19","order":20,"provider":"dde","receivedTime":1629994663663,"createdTime":1629994663627}
+l-lbd-p-361-1/orderlbd/1629994663/{"id":92,"pos":"T32","order":47,"provider":"dde","receivedTime":1629994663667,"createdTime":1629994663627}
+l-lbd-p-361-1/globallbd/1629994663/{"id":59,"hole":"18","total":-3,"today":-3,"round":67,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994663667,"createdTime":1629994663627}
+l-lbd-p-361-1/orderlbd/1629994663/{"id":1,"pos":"T32","order":46,"provider":"dde","receivedTime":1629994663667,"createdTime":1629994663627}
+l-lbd-p-361-1/orderlbd/1629994663/{"id":46,"pos":"T19","order":19,"provider":"dde","receivedTime":1629994663667,"createdTime":1629994663627}
+l-lbd-p-361-1/globallbd/1629994663/{"id":145,"hole":"18","total":-3,"today":-3,"round":67,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994663663,"createdTime":1629994663627}
+l-lbd-p-361-1/orderlbd/1629994663/{"id":88,"pos":"T19","order":24,"provider":"dde","receivedTime":1629994663667,"createdTime":1629994663627}
+l-lbd-p-361-1/orderlbd/1629994663/{"id":2,"pos":"T19","order":22,"provider":"dde","receivedTime":1629994663667,"createdTime":1629994663627}
+l-lbd-p-361-1/orderlbd/1629994663/{"id":145,"pos":"T19","order":21,"provider":"dde","receivedTime":1629994663663,"createdTime":1629994663627}
+l-lbd-p-361-1/globallbd/1629994663/{"id":72,"hole":"18","total":-3,"today":-3,"round":67,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994663663,"createdTime":1629994663627}
+l-lbd-p-361-1/orderlbd/1629994663/{"id":43,"pos":"T19","order":23,"provider":"dde","receivedTime":1629994663663,"createdTime":1629994663627}
+l-lbd-p-361-1/globallbd/1629994663/{"id":88,"hole":"18","total":-3,"today":-3,"round":67,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994663667,"createdTime":1629994663627}
+l-r-p-361-1/group/1629994674/{"id":38,"hole":15,"course":"38","teams":[143,147,211],"status":"InProgress","teeTime":1629981000000,"provider":"dde","receivedTime":1629994674586}
+l-lbd-p-361-1/globallbd/1629994674/{"id":92,"pos":"T32","total":-2,"today":-2,"round":0,"startingHole":1,"activeHole":18,"hole":"17","provider":"dde","receivedTime":1629994674586}
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+Front end NOT Notified...
+'>=' not supported between instances of 'NoneType' and 'int'
+l-lbd-p-361-1/orderlbd/1629994693/{"id":177,"pos":"T111","order":126,"provider":"dde","receivedTime":1629994693664,"createdTime":1629994693626}
+l-lbd-p-361-1/globallbd/1629994693/{"id":177,"pos":"T111","total":2,"today":2,"round":0,"startingHole":10,"activeHole":7,"hole":"15","provider":"dde","receivedTime":1629994693664,"createdTime":1629994693626}
+l-lbd-p-361-1/globallbd/1629994693/{"id":177,"hole":"15","total":2,"today":2,"round":0,"activeHole":7,"startingHole":10,"provider":"dde","receivedTime":1629994693664,"createdTime":1629994693626}
+l-r-p-361-1/group/1629994704/{"id":33,"hole":18,"course":"38","teams":[1,18,92],"status":"InProgress","teeTime":1629978000000,"provider":"dde","receivedTime":1629994704540,"createdTime":1629994704000}
+Front end NOT Notified...
+'>=' not supported between instances of 'NoneType' and 'int'
+Front end NOT Notified...
+'>=' not supported between instances of 'NoneType' and 'int'
+l-lbd-p-361-1/orderlbd/1629994706/{"id":18,"pos":"T11","order":17,"provider":"dde","receivedTime":1629994706648,"createdTime":1629993707000}
+l-lbd-p-361-1/globallbd/1629994706/{"id":18,"hole":"17","total":-4,"today":-4,"round":0,"activeHole":17,"startingHole":1,"provider":"dde","receivedTime":1629994706648,"createdTime":1629993707000}
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+Front end NOT Notified...
+'>=' not supported between instances of 'NoneType' and 'int'
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+Front end NOT Notified...
+'>=' not supported between instances of 'NoneType' and 'int'
+Front end NOT Notified...
+'>=' not supported between instances of 'NoneType' and 'int'
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+l-r-p-361-1/group/1629994725/{"id":45,"hole":9,"course":"38","teams":[48,46,65],"status":"Finished","teeTime":1629977400000,"provider":"dde","receivedTime":1629994725315}
+l-lbd-p-361-1/orderlbd/1629994725/{"id":18,"pos":"T11","order":17,"provider":"dde","receivedTime":1629994725315}
+l-lbd-p-361-1/globallbd/1629994725/{"id":18,"pos":"T11","total":-4,"today":-4,"round":0,"startingHole":1,"activeHole":17,"hole":"17","provider":"dde","receivedTime":1629994725315}
+l-r-p-361-1/group/1629994725/{"id":33,"hole":18,"course":"38","teams":[1,18,92],"status":"InProgress","teeTime":1629978000000,"provider":"dde","receivedTime":1629994725315}
+l-lbd-p-361-1/orderlbd/1629994725/{"id":177,"pos":"T111","order":126,"provider":"dde","receivedTime":1629994725315}
+l-r-p-361-1/group/1629998685/{"id":38,"hole":18,"course":"38","teams":[143,147,211],"status":"InProgress","teeTime":1629981000000,"provider":"dde","receivedTime":1629998685330} 
+Front end NOT Notified...
+list index out of range
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+Front end NOT Notified...
+'>=' not supported between instances of 'NoneType' and 'int'
+l-lbd-p-361-1/orderlbd/1629994742/{"id":10,"pos":"T127","order":132,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/orderlbd/1629994742/{"id":5,"pos":"T111","order":114,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/orderlbd/1629994742/{"id":48,"pos":"T127","order":133,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/orderlbd/1629994742/{"id":50,"pos":"T127","order":130,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/orderlbd/1629994742/{"id":91,"pos":"T111","order":112,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/orderlbd/1629994742/{"id":65,"pos":"T111","order":113,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/globallbd/1629994742/{"id":134,"hole":"18","total":3,"today":3,"round":73,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/globallbd/1629994742/{"id":18,"pos":"T11","total":-4,"today":-4,"round":0,"startingHole":1,"activeHole":18,"hole":"17","provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/globallbd/1629994742/{"id":5,"hole":"18","total":2,"today":2,"round":72,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/orderlbd/1629994742/{"id":117,"pos":"T127","order":129,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/orderlbd/1629994742/{"id":87,"pos":"T111","order":118,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/globallbd/1629994742/{"id":83,"pos":"T152","total":7,"today":7,"round":77,"startingHole":1,"activeHole":18,"hole":"18","provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/orderlbd/1629994742/{"id":80,"pos":"T111","order":119,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/orderlbd/1629994742/{"id":191,"pos":"T127","order":127,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/globallbd/1629994742/{"id":74,"hole":"18","total":2,"today":2,"round":72,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/globallbd/1629994742/{"id":80,"hole":"18","total":2,"today":2,"round":72,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/globallbd/1629994742/{"id":48,"hole":"18","total":3,"today":3,"round":73,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/orderlbd/1629994742/{"id":74,"pos":"T111","order":115,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/orderlbd/1629994742/{"id":83,"pos":"T152","order":152,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/orderlbd/1629994742/{"id":22,"pos":"T111","order":116,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/globallbd/1629994742/{"id":46,"hole":"18","total":-3,"today":-3,"round":67,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/globallbd/1629994742/{"id":191,"hole":"18","total":3,"today":3,"round":73,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/orderlbd/1629994742/{"id":134,"pos":"T127","order":128,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/globallbd/1629994742/{"id":50,"hole":"18","total":3,"today":3,"round":73,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/orderlbd/1629994742/{"id":106,"pos":"T152","order":153,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/globallbd/1629994742/{"id":87,"hole":"18","total":2,"today":2,"round":72,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/orderlbd/1629994742/{"id":46,"pos":"T19","order":19,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/orderlbd/1629994742/{"id":91,"pos":"T111","order":112,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/globallbd/1629994742/{"id":22,"hole":"18","total":2,"today":2,"round":72,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/orderlbd/1629994742/{"id":117,"pos":"T127","order":129,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/orderlbd/1629994742/{"id":68,"pos":"T111","order":117,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/orderlbd/1629994742/{"id":78,"pos":"T127","order":131,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/globallbd/1629994742/{"id":78,"hole":"18","total":3,"today":3,"round":73,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/orderlbd/1629994742/{"id":50,"pos":"T127","order":130,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/orderlbd/1629994742/{"id":65,"pos":"T111","order":113,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/globallbd/1629994742/{"id":106,"pos":"T152","total":7,"today":7,"round":0,"startingHole":10,"activeHole":7,"hole":"15","provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/globallbd/1629994742/{"id":83,"hole":"18","total":7,"today":7,"round":77,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/globallbd/1629994742/{"id":91,"hole":"18","total":2,"today":2,"round":72,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/globallbd/1629994742/{"id":10,"hole":"18","total":3,"today":3,"round":73,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/orderlbd/1629994742/{"id":48,"pos":"T127","order":133,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/orderlbd/1629994742/{"id":5,"pos":"T111","order":114,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/globallbd/1629994742/{"id":18,"hole":"17","total":-4,"today":-4,"round":0,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/globallbd/1629994742/{"id":117,"hole":"18","total":3,"today":3,"round":73,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/orderlbd/1629994742/{"id":10,"pos":"T127","order":132,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/orderlbd/1629994742/{"id":191,"pos":"T127","order":127,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/globallbd/1629994742/{"id":68,"hole":"18","total":2,"today":2,"round":72,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/orderlbd/1629994742/{"id":18,"pos":"T11","order":17,"provider":"dde","receivedTime":1629994742460,"createdTime":1629994742392}
+l-lbd-p-361-1/orderlbd/1629994742/{"id":80,"pos":"T111","order":119,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/orderlbd/1629994742/{"id":22,"pos":"T111","order":116,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/globallbd/1629994742/{"id":106,"hole":"15","total":7,"today":7,"round":0,"activeHole":7,"startingHole":10,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/orderlbd/1629994742/{"id":68,"pos":"T111","order":117,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/orderlbd/1629994742/{"id":78,"pos":"T127","order":131,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/orderlbd/1629994742/{"id":87,"pos":"T111","order":118,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/orderlbd/1629994742/{"id":106,"pos":"T152","order":153,"provider":"dde","receivedTime":1629994742460,"createdTime":1629994742392}
+l-lbd-p-361-1/orderlbd/1629994742/{"id":134,"pos":"T127","order":128,"provider":"dde","receivedTime":1629994742460,"createdTime":1629994742392}
+l-lbd-p-361-1/globallbd/1629994742/{"id":65,"hole":"18","total":2,"today":2,"round":72,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/orderlbd/1629994742/{"id":83,"pos":"T152","order":152,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+l-lbd-p-361-1/orderlbd/1629994742/{"id":74,"pos":"T111","order":115,"provider":"dde","receivedTime":1629994742455,"createdTime":1629994742392}
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+Front end NOT Notified...
+'>=' not supported between instances of 'NoneType' and 'int'
+l-lbd-p-361-1/globallbd/1629994771/{"id":134,"pos":"T127","total":3,"today":3,"round":73,"startingHole":10,"activeHole":9,"hole":"18","provider":"dde","receivedTime":1629994771560}
+l-lbd-p-361-1/globallbd/1629994771/{"id":68,"pos":"T111","total":2,"today":2,"round":72,"startingHole":1,"activeHole":18,"hole":"18","provider":"dde","receivedTime":1629994771560}
+l-lbd-p-361-1/orderlbd/1629994771/{"id":46,"pos":"T19","order":19,"provider":"dde","receivedTime":1629994771560}
+l-lbd-p-361-1/globallbd/1629994771/{"id":50,"pos":"T127","total":3,"today":3,"round":73,"startingHole":10,"activeHole":9,"hole":"18","provider":"dde","receivedTime":1629994771560}
+l-lbd-p-361-1/globallbd/1629994771/{"id":91,"pos":"T111","total":2,"today":2,"round":72,"startingHole":10,"activeHole":9,"hole":"18","provider":"dde","receivedTime":1629994771560}
+l-lbd-p-361-1/globallbd/1629994771/{"id":87,"pos":"T111","total":2,"today":2,"round":72,"startingHole":1,"activeHole":18,"hole":"18","provider":"dde","receivedTime":1629994771560}
+l-lbd-p-361-1/globallbd/1629994771/{"id":74,"pos":"T111","total":2,"today":2,"round":72,"startingHole":1,"activeHole":18,"hole":"18","provider":"dde","receivedTime":1629994771560}
+l-lbd-p-361-1/globallbd/1629994771/{"id":191,"pos":"T127","total":3,"today":3,"round":73,"startingHole":10,"activeHole":9,"hole":"18","provider":"dde","receivedTime":1629994771560}
+l-lbd-p-361-1/globallbd/1629994771/{"id":22,"pos":"T111","total":2,"today":2,"round":72,"startingHole":1,"activeHole":18,"hole":"18","provider":"dde","receivedTime":1629994771560}
+l-lbd-p-361-1/globallbd/1629994771/{"id":48,"pos":"T127","total":3,"today":3,"round":73,"startingHole":10,"activeHole":9,"hole":"18","provider":"dde","receivedTime":1629994771560}
+l-lbd-p-361-1/globallbd/1629994771/{"id":78,"pos":"T127","total":3,"today":3,"round":73,"startingHole":10,"activeHole":9,"hole":"18","provider":"dde","receivedTime":1629994771560}
+l-lbd-p-361-1/globallbd/1629994771/{"id":65,"pos":"T111","total":2,"today":2,"round":72,"startingHole":10,"activeHole":9,"hole":"18","provider":"dde","receivedTime":1629994771560}
+l-lbd-p-361-1/globallbd/1629994771/{"id":80,"pos":"T111","total":2,"today":2,"round":72,"startingHole":1,"activeHole":18,"hole":"18","provider":"dde","receivedTime":1629994771560}
+l-lbd-p-361-1/globallbd/1629994771/{"id":117,"pos":"T127","total":3,"today":3,"round":73,"startingHole":10,"activeHole":9,"hole":"18","provider":"dde","receivedTime":1629994771560}
+l-lbd-p-361-1/globallbd/1629994771/{"id":46,"pos":"T19","total":-3,"today":-3,"round":67,"startingHole":10,"activeHole":9,"hole":"18","provider":"dde","receivedTime":1629994771560}
+l-lbd-p-361-1/globallbd/1629994771/{"id":10,"pos":"T127","total":3,"today":3,"round":73,"startingHole":1,"activeHole":18,"hole":"18","provider":"dde","receivedTime":1629994771560}
+l-lbd-p-361-1/globallbd/1629994771/{"id":5,"pos":"T111","total":2,"today":2,"round":72,"startingHole":10,"activeHole":9,"hole":"18","provider":"dde","receivedTime":1629994771560}
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+Front end NOT Notified...
+'>=' not supported between instances of 'NoneType' and 'int'
+l-lbd-p-361-1/orderlbd/1629994781/{"id":80,"pos":"T111","order":118,"provider":"dde","receivedTime":1629994781001,"createdTime":1629994780946}
+l-lbd-p-361-1/orderlbd/1629994781/{"id":87,"pos":"T111","order":117,"provider":"dde","receivedTime":1629994781001,"createdTime":1629994780946}
+l-lbd-p-361-1/globallbd/1629994781/{"id":23,"pos":"T74","total":0,"today":0,"round":0,"startingHole":1,"activeHole":17,"hole":"16","provider":"dde","receivedTime":1629994781001,"createdTime":1629994780946}
+l-lbd-p-361-1/orderlbd/1629994781/{"id":65,"pos":"T111","order":112,"provider":"dde","receivedTime":1629994781001,"createdTime":1629994780946}
+l-lbd-p-361-1/orderlbd/1629994781/{"id":68,"pos":"T111","order":116,"provider":"dde","receivedTime":1629994781001,"createdTime":1629994780946}
+l-lbd-p-361-1/orderlbd/1629994781/{"id":22,"pos":"T111","order":115,"provider":"dde","receivedTime":1629994781001,"createdTime":1629994780946}
+l-lbd-p-361-1/globallbd/1629994781/{"id":68,"hole":"18","total":2,"today":2,"round":72,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994781001,"createdTime":1629994780946}
+l-lbd-p-361-1/orderlbd/1629994781/{"id":91,"pos":"T111","order":119,"provider":"dde","receivedTime":1629994780996,"createdTime":1629994780946}
+l-lbd-p-361-1/globallbd/1629994781/{"id":87,"hole":"18","total":2,"today":2,"round":72,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994781001,"createdTime":1629994780946}
+l-lbd-p-361-1/orderlbd/1629994781/{"id":23,"pos":"T74","order":91,"provider":"dde","receivedTime":1629994781001,"createdTime":1629994780946}
+l-lbd-p-361-1/globallbd/1629994781/{"id":74,"hole":"18","total":2,"today":2,"round":72,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994781001,"createdTime":1629994780946}
+l-lbd-p-361-1/globallbd/1629994781/{"id":80,"hole":"18","total":2,"today":2,"round":72,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994781001,"createdTime":1629994780946}
+l-lbd-p-361-1/globallbd/1629994781/{"id":5,"hole":"18","total":2,"today":2,"round":72,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994781001,"createdTime":1629994780946}
+l-lbd-p-361-1/orderlbd/1629994781/{"id":74,"pos":"T111","order":114,"provider":"dde","receivedTime":1629994781001,"createdTime":1629994780946}
+l-lbd-p-361-1/globallbd/1629994781/{"id":91,"hole":"18","total":2,"today":2,"round":72,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994781001,"createdTime":1629994780946}
+l-lbd-p-361-1/orderlbd/1629994781/{"id":5,"pos":"T111","order":113,"provider":"dde","receivedTime":1629994781001,"createdTime":1629994780946}
+l-lbd-p-361-1/globallbd/1629994781/{"id":65,"hole":"18","total":2,"today":2,"round":72,"activeHole":9,"startingHole":10,"provider":"dde","receivedTime":1629994781001,"createdTime":1629994780946}
+l-lbd-p-361-1/orderlbd/1629994781/{"id":68,"pos":"T111","order":116,"provider":"dde","receivedTime":1629994781001,"createdTime":1629994780946}
+l-lbd-p-361-1/orderlbd/1629994781/{"id":65,"pos":"T111","order":112,"provider":"dde","receivedTime":1629994781001,"createdTime":1629994780946}
+l-lbd-p-361-1/globallbd/1629994781/{"id":23,"hole":"16","total":0,"today":0,"round":0,"activeHole":17,"startingHole":1,"provider":"dde","receivedTime":1629994781001,"createdTime":1629994780946}
+l-lbd-p-361-1/globallbd/1629994781/{"id":22,"hole":"18","total":2,"today":2,"round":72,"activeHole":18,"startingHole":1,"provider":"dde","receivedTime":1629994781001,"createdTime":1629994780946}
+l-lbd-p-361-1/orderlbd/1629994781/{"id":87,"pos":"T111","order":117,"provider":"dde","receivedTime":1629994781001,"createdTime":1629994780946}
+l-lbd-p-361-1/orderlbd/1629994781/{"id":22,"pos":"T111","order":115,"provider":"dde","receivedTime":1629994781001,"createdTime":1629994780946}
+l-lbd-p-361-1/orderlbd/1629994781/{"id":80,"pos":"T111","order":118,"provider":"dde","receivedTime":1629994781001,"createdTime":1629994780946}
+l-lbd-p-361-1/orderlbd/1629994781/{"id":91,"pos":"T111","order":119,"provider":"dde","receivedTime":1629994781001,"createdTime":1629994780946}
+l-lbd-p-361-1/orderlbd/1629994781/{"id":5,"pos":"T111","order":113,"provider":"dde","receivedTime":1629994781001,"createdTime":1629994780946}
+l-lbd-p-361-1/orderlbd/1629994781/{"id":74,"pos":"T111","order":114,"provider":"dde","receivedTime":1629994781001,"createdTime":1629994780946}
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+l-lbd-p-361-1/orderlbd/1629994782/{"id":23,"pos":"T74","order":91,"provider":"dde","receivedTime":1629994782755}
+Front end NOT Notified...
+'>=' not supported between instances of 'NoneType' and 'int'
+FrontEnd Notified...
+Front end NOT Notified...
+list index out of range
+Front end NOT Notified...
+'>=' not supported between instances of 'NoneType' and 'int'
+l-lbd-p-361-1/globallbd/1629994789/{"id":99,"hole":"14","total":-1,"today":-1,"round":0,"activeHole":15,"startingHole":1,"provider":"dde","receivedTime":1629994789599,"createdTime":1629994789564}
+l-lbd-p-361-1/globallbd/1629994789/{"id":98,"pos":"T52","total":-1,"today":-1,"round":0,"startingHole":10,"activeHole":7,"hole":"15","provider":"dde","receivedTime":1629994789599,"createdTime":1629994789564}
+l-lbd-p-361-1/orderlbd/1629994789/{"id":98,"pos":"T52","order":69,"provider":"dde","receivedTime":1629994789599,"createdTime":1629994789564}
+l-lbd-p-361-1/globallbd/1629994789/{"id":98,"hole":"15","total":-1,"today":-1,"round":0,"activeHole":7,"startingHole":10,"provider":"dde","receivedTime":1629994789599,"createdTime":1629994789564}
+l-lbd-p-361-1/orderlbd/1629994789/{"id":99,"pos":"T52","order":70,"provider":"dde","receivedTime":1629994789596,"createdTime":1629994789564}
+l-lbd-p-361-1/orderlbd/1629994789/{"id":98,"pos":"T52","order":69,"provider":"dde","receivedTime":1629994789599,"createdTime":1629994789564}
+l-lbd-p-361-1/orderlbd/1629994789/{"id":99,"pos":"T52","order":70,"provider":"dde","receivedTime":1629994789596,"createdTime":1629994789564}
+l-r-p-361-1/group/1629994794/{"id":33,"hole":18,"course":"38","teams":[1,18,92],"status":"InProgress","teeTime":1629978000000,"provider":"dde","receivedTime":1629994794831}
+l-r-p-361-1/group/1629994794/{"id":45,"hole":9,"course":"38","teams":[48,46,65],"status":"Finished","teeTime":1629977400000,"provider":"dde","receivedTime":1629994794831}
+l-lbd-p-361-1/globallbd/1629994794/{"id":99,"pos":"T52","total":-1,"today":-1,"round":0,"startingHole":1,"activeHole":15,"hole":"14","provider":"dde","receivedTime":1629994794831}

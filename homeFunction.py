@@ -14,10 +14,7 @@ ws_headers={
 class HomeFunctions:
     def __init__(self):
         return
-
-
-
-     
+    
     def showTournamentsOnFrontend(self):
         try:
             assert tournament_ids_table.all(), "Waiting for  Tournaments to be loaded..."

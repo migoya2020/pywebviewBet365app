@@ -11,9 +11,6 @@ homePath = os.path.abspath(os.getcwd())
 api = HomeFunctions()
 
 
- 
-
-
 def expose(window):
     window.expose(api.getTournaments())  # expose a function during the runtime
 

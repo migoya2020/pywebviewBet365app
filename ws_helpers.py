@@ -21,17 +21,17 @@ import glob
 target_tona_id = None
 
 
-def tree(src):
-    return [
-        (
-            root,
-            map(
-                lambda f: os.path.join(root, f),
-                filter(lambda f: os.path.splitext(f)[1] != ".map", files),
-            ),
-        )
-        for (root, dirs, files) in os.walk(os.path.normpath(src))
-    ]
+# def tree(src):
+#     return [
+#         (
+#             root,
+#             map(
+#                 lambda f: os.path.join(root, f),
+#                 filter(lambda f: os.path.splitext(f)[1] != ".map", files),
+#             ),
+#         )
+#         for (root, dirs, files) in os.walk(os.path.normpath(src))
+#     ]
 
 
 ROOT_DIR = os.path.abspath(os.curdir)
@@ -79,7 +79,7 @@ clientInfo = "|8|enmassejs-23.2.1," + USER_AGENT + ",lvis-23.7.3"
 tournament_ids_table = inhouse_db.table("tournamentIds")
 selected_tournament_table = inhouse_db.table("current_tona")
 tournament_players_table = inhouse_db.table("tournament_players")
-
+group_table =inhouse_db.table("groups")
 
 class Ws_Helpers:
     #    def __init__(self):
@@ -107,6 +107,8 @@ class Ws_Helpers:
             if tona["tona_id"] == tona_id:
                 # print("SELECTED TONNAA: ", tona)
                 return tona
+            
+    # @staticmethod
 
     @staticmethod
     def parseSSCP(sscp):
@@ -125,7 +127,6 @@ class Ws_Helpers:
                     if body:
                         values = body.split("|")
                         for v in values:
-
                             data["body"].append(v)
 
         return data
@@ -480,11 +481,15 @@ class Ws_Helpers:
         elif "l-t-" + tona_id + "/team/" and "players" in payload:
             print("processing players...")
             myclass.processTournamentPlayers(payload)
+            
 
+            
         # Subscribe to shot leaderboard
         elif "l-lbd-p-" and "shotlbd" in payload:
             # l-lbd-p-282-3/shotlbd/
             myclass.notifyFrontend(payload)
+            
+
 
         else:
             print(payload)
