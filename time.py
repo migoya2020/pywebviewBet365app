@@ -1,6 +1,26 @@
-from datetime import datetime
+# from datetime import datetime
 
-timestamp = 1586507536367
+# timestamp = 1586507536367
  
-dt_object = datetime.fromtimestamp(timestamp/1000.0).strftime("%Y-%m-%d %H:%M:%S")
-print(dt_object)
+# dt_object = datetime.fromtimestamp(timestamp/1000.0).strftime("%Y-%m-%d %H:%M:%S")
+# print(dt_object)
+import json
+import string
+
+payload  ='l-r-p-361-3/holes/1630148120/{"courseId":"38","holes":[{"no":1,"hole":1,"par":4},{"no":2,"hole":2,"par":4},{"no":3,"hole":3,"par":3},{"no":4,"hole":4,"par":4},{"no":5,"hole":5,"par":4},{"no":6,"hole":6,"par":4},{"no":7,"hole":7,"par":4},{"no":8,"hole":8,"par":3},{"no":9,"hole":9,"par":5},{"no":10,"hole":10,"par":4},{"no":11,"hole":11,"par":3},{"no":12,"hole":12,"par":4},{"no":13,"hole":13,"par":3},{"no":14,"hole":14,"par":5},{"no":15,"hole":15,"par":5},{"no":16,"hole":16,"par":3},{"no":17,"hole":17,"par":4},{"no":18,"hole":18,"par":4}],"provider":"dde","receivedTime":1630089136280}l-r-p-361-3/group/1630148120/{"id":1,"hole":18,"course":"38","teams":[95,135],"status":"Finished","teeTime":1630130100000,"provider":"dde","receivedTime":1630144315166}l-r-p-361-3/group/1630148120/{"id":2,"hole":18,"course":"38","teams":[57,85],"status":"Finished","teeTime":1630130640000,"provider":"dde","receivedTime":1630145035169}l-r-p-361-3/group/1630148120/{"id":3,"hole":18,"course":"38","teams":[70,145,17],"status":"Finished","teeTime":1630131180000,"provider":"dde","receivedTime":1630146475195}l-r-p-361-3/group/1630148120/{"id":25,"hole":2,"course":"38","teams":[49,3,76],"status":"InProgress","teeTime":1630146000000,"provider":"dde","receivedTime":1630146955166}l-r-p-361-3/group/1630148120/{"id":22,"hole":4,"course":"38","teams":[88,41,18],"status":"InProgress","teeTime":1630144020000,"provider":"dde","receivedTime":1630147195138}l-r-p-361-3/group/1630148120/{"id":12,"hole":11,"course":"38","teams":[43,63,105],"status":"InProgress","teeTime":1630137120000,"provider":"dde","receivedTime":1630147315136}l-r-p-361-3/group/1630148120/{"id":19,"hole":6,"course":"38","teams":[7,46,128],"status":"InProgress","teeTime":1630142040000,"provider":"dde","receivedTime":1630147315136}l-r-p-361-3/group/1630148120/{"id":11,"hole":12,"course":"38","teams":[114,21,71],"status":"InProgress","teeTime":1630136460000,"provider":"dde","receivedTime":1630147315136}l-r-p-361-3/group/1630148120/{"id":16,"hole":9,"course":"38","teams":[142,130,74],"status":"InProgress","teeTime":1630140060000,"provider":"dde","receivedTime":1630147435098}l-r-p-361-3/group/1630148120/{"id":14,"hole":10,"course":"38","teams":[153,29,127],"status":"InProgress","teeTime":1630138440000,"provider":"dde","receivedTime":1630147435098}l-r-p-361-3/group/1630148120/{"id":9,"hole":14,"course":"38","teams":[20,119,92],"status":"InProgress","teeTime":1630135140000,"provider":"dde","receivedTime":1630147435098}l-r-p-361-3/group/1630148120/{"id":21,"hole":5,"course":"38","teams":[84,55,112],"status":"InProgress","teeTime":1630143360000,"provider":"dde","receivedTime":1630147555323}l-r-p-361-3/group/1630148120/{"id":5,"hole":18,"course":"38","teams":[19,26,32],"status":"InProgress","teeTime":1630132500000,"provider":"dde","receivedTime":1630147675370}l-r-p-361-3/group/1630148120/{"id":4,"hole":18,"course":"38","teams":[113,146,58],"status":"InProgress","teeTime":1630131840000,"provider":"dde","receivedTime":1630147675370}l-r-p-361-3/group/1630148120/{"id":23,"hole":4,"course":"38","teams":[36,98,34],"status":"InProgress","teeTime":1630144680000,"provider":"dde","receivedTime":1630147795144}l-r-p-361-3/group/1630148120/{"id":8,"hole":15,"course":"38","teams":[136,147,51],"status":"InProgress","teeTime":1630134480000,"provider":"dde","receivedTime":1630147795144}l-r-p-361-3/group/1630148120/{"id":18,"hole":8,"course":"38","teams":[1,131,6],"status":"InProgress","teeTime":1630141380000,"provider":"dde","receivedTime":1630147915275}l-r-p-361-3/group/1630148120/{"id":17,"hole":9,"course":"38","teams":[30,28,66],"status":"InProgress","teeTime":1630140720000,"provider":"dde","receivedTime":1630147915275}l-r-p-361-3/group/1630148120/{"id":6,"hole":17,"course":"38","teams":[134,97,123],"status":"InProgress","teeTime":1630133160000,"provider":"dde","receivedTime":1630147915275}l-r-p-361-3/group/1630148120/{"id":20,"hole":6,"course":"38","teams":[2,59,38],"status":"InProgress","teeTime":1630142700000,"provider":"dde","receivedTime":1630147915275}l-r-p-361-3/group/1630148120/{"id":24,"hole":3,"course":"38","teams":[24,13,40],"status":"InProgress","teeTime":1630145340000,"provider":"dde","receivedTime":1630147915275}l-r-p-361-3/group/1630148120/{"id":15,"hole":10,"course":"38","teams":[8,65,120],"status":"InProgress","teeTime":1630139100000,"provider":"dde","receivedTime":1630148035171}l-r-p-361-3/group/1630148120/{"id":7,"hole":16,"course":"38","teams":[205,72,62],"status":"InProgress","teeTime":1630133820000,"provider":"dde","receivedTime":1630148035171}l-r-p-361-3/group/1630148120/{"id":10,"hole":14,"course":"38","teams":[56,31,27],"status":"InProgress","teeTime":1630135800000,"provider":"dde","receivedTime":1630148035171}l-r-p-361-3/group/1630148120/{"id":13,"hole":11,"course":"38","teams":[211,152,126],"status":"InProgress","teeTime":1630137780000,"provider":"dde","receivedTime":1630148086220}l-r-p-361-3/eoc/1630148120/'
+
+
+received_msg_1 = payload.split('"holes":', 1)[1].strip()
+received_msg_2 = received_msg_1.split("]", 1)[0].strip()
+clean_msg = "".join(filter(lambda x: x in string.printable,received_msg_2))
+holes =clean_msg+"]"
+# print("CLEAN: ", holes )
+received_holes = json.loads(holes)
+
+
+group_msg =payload.split("]", 1)[1].split("}", 1)[1].rsplit("l-r-p",1)[0]
+spliter_text =group_msg.split('{', 1)[0].strip()
+print("GROUP MSG: ",spliter_text )
+groups =group_msg.split("{", 1)[1]
+final_group_msg ="{"+groups
+print(len(final_group_msg.split(spliter_text)))
