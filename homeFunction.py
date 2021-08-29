@@ -35,13 +35,14 @@ class HomeFunctions:
                 selected_tournament_table.update({"tona_id": tona_id})
                 # Assign the new id to target_tona_id
                 current_subscribed_tona =helpers_func.getCurrentSelectedTona(tona_id)
+                #print(current_subscribed_tona)
                  
             else:
                 print("Inserted Tona id")
                 selected_tournament_table.insert({"tona_id": tona_id})
                 # Assign the  id to target_tona_id
                 current_subscribed_tona =helpers_func.getCurrentSelectedTona(tona_id)
-                
+                # print(current_subscribed_tona)
             print("Tona_ID Appended into DB sucessfully..")
             # print("Total Ids : ",len(selected_tournament_table.all()))
             # print("Total Ids : ", selected_tournament_table.all()[0])
