@@ -1,0 +1,26 @@
+l-lbd-p-360-1/globallbd/1631180290/{
+    "id": 43,
+    "hole": "11",
+    "total": 3,
+    "today": 3,
+    "round": 0,
+    "activeHole": 12,
+    "startingHole": 1,
+    "provider": "dde",
+    "receivedTime": 1631180290373,
+    "createdTime": 1631180290352
+}
+
+{
+    "id": 37,
+    "pos": "T26",
+    "total": 0,
+    "today": 0,
+    "round": 0,
+    "startingHole": 1,
+    "activeHole": 9,
+    "hole": "8",
+    "provider": "dde",
+    "receivedTime": 1631183500047,
+    "createdTime": 1631183500000
+}

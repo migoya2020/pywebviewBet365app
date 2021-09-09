@@ -1,0 +1,30 @@
+ng/1630856574/	21	
+18:42:54.149
+l-fpc-p-358-4-33/grpcomment/1630856574/{"club":"CUK","teamId":143,"playerId":7543,"holeNo":18,"shotNo":4,"status":"hit","surface":"OGR","prevSurface":"OGR","timestamp":1630856573000,"provider":"dde","receivedTime":1630856574258,"createdTime":1630856573000}	257	
+18:42:54.369
+l-h-p-358-4-317-18-33/shot/1630856581/{"timestamp":1630856580000,"player":7543,"shot":4,"status":"approx","surface":"OGR","prevSurface":"OGR","lie":7.03574197436892,"distance":0.880559994438058,"point":[12.635589324085876,41.96104215038033,null],"pointUTM":{"zone":33,"hemisphere":"N","easting":304059.7501,"northing":4648154.798291},"provider":"dde","receivedTime":1630856581067,"createdTime":1630856580000}	409	
+18:43:01.215
+l-fpc-p-358-4-33/grpcomment/1630856581/{"club":"CUK","teamId":143,"playerId":7543,"holeNo":18,"shotNo":4,"status":"approx","surface":"OGR","prevSurface":"OGR","timestamp":1630856580000,"lie":7.03574197436892,"distance":0.880559994438058,"provider":"dde","receivedTime":1630856581067,"createdTime":1630856580000}	312	
+18:43:01.221
+l-fpc-p-358-4-33/grpcomment/1630856584/{"club":"CUK","teamId":143,"playerId":7543,"holeNo":18,"shotNo":4,"status":"lie","surface":"OGR","prevSurface":"OGR","timestamp":1630856583000,"lie":7.63705249210141,"distance":1.275,"provider":"dde","receivedTime":1630856584072,"createdTime":1630856583000}	297	
+18:43:04.184
+l-h-p-358-4-317-18-33/shot/1630856584/{"timestamp":1630856583000,"player":7543,"shot":4,"status":"lie","surface":"OGR","prevSurface":"OGR","lie":7.63705249210141,"distance":1.275,"point":[12.635591838656829,41.96103544485779,null],"pointUTM":{"zone":33,"hemisphere":"N","easting":304059.937941,"northing":4648154.047968},"provider":"dde","receivedTime":1630856584072,"createdTime":1630856583000}	396	
+18:43:04.185
+s-0/ping/1630856594/	21	
+18:43:14.116
+s-0/ping/1630856604/	21	
+18:43:24.146
+l-fpc-p-358-4-33/grpcomment/1630856611/{"club":"CUK","teamId":143,"playerId":7543,"holeNo":18,"shotNo":5,"status":"approach","surface":"OGR","prevSurface":"OGR","timestamp":1630856611000,"provider":"dde","receivedTime":1630856611470,"createdTime":1630856611000}	262	
+18:43:31.627
+l-fpc-p-358-4-33/grpcomment/1630856614/{"club":"CUK","teamId":143,"playerId":7543,"holeNo":18,"shotNo":5,"status":"hit","surface":"OGR","prevSurface":"OGR","timestamp":1630856614000,"provider":"dde","receivedTime":1630856614325,"createdTime":1630856614000}	257	
+18:43:34.494
+l-fpc-p-358-4-33/grpcomment/1630856616/{"club":"CUK","teamId":143,"playerId":7543,"holeNo":18,"shotNo":5,"status":"holed","surface":"OGR","prevSurface":"OGR","timestamp":1630856616000,"provider":"dde","receivedTime":1630856616620,"createdTime":1630856616000}	259	
+18:43:36.778
+l-h-p-358-4-317-18-33/shot/1630856616/{"timestamp":1630856616000,"player":7543,"shot":5,"status":"holed","surface":"HLD","prevSurface":"OGR","provider":"dde","receivedTime":1630856616620,"createdTime":1630856616000}	216	
+18:43:36.778
+l-lbd-p-358-4-33/groupholes/1630856617/{"id":143,"holes":[4,5,4,2,4,4,4,5,8,5,4,5,4,3,4,5,4,5],"scoreIn":39,"scoreOut":40,"provider":"dde","receivedTime":1630856617106,"createdTime":1630856617088}	197	
+18:43:37.258
+l-lbd-p-358-4-33/groupscore/1630856617/{"id":143,"pos":"T27","total":-4,"today":8,"round":79,"startingHole":1,"activeHole":18,"hole":"18","provider":"dde","receivedTime":1630856617195,"createdTime":1630856617152}	213	
+18:43:37.441
+l-r-p-358-4/group/1630856618/{"id":33,"hole":18,"course":"317","teams":[143,181],"status":"Finished","teeTime":1630841400000,"provider":"dde","receivedTime":1630856618218,"createdTime":1630856617000}	200	
+18:43:

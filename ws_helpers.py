@@ -80,7 +80,9 @@ tournament_ids_table = inhouse_db.table("tournamentIds")
 selected_tournament_table = inhouse_db.table("current_tona")
 tournament_players_table = inhouse_db.table("tournament_players")
 group_table =inhouse_db.table("groups")
-holes_table =inhouse_db.table("holes")
+holes_and_distance =inhouse_db.table("holes_distance")
+holes_par =inhouse_db.table('holes_par')
+active_holes_table =inhouse_db.table("active_holes")
 
 class Ws_Helpers:
     #    def __init__(self):
@@ -311,42 +313,35 @@ class Ws_Helpers:
             + server_time
             + "/"
         )
-    # @staticmethod
-    # def unSubscribe(ws, tona_id, course_id):
-    #     server_time = str(int(time.time()))
-    #     myclass = Ws_Helpers()
-    #     #Unsubscribe from Holes
-    #     #l-h-p-361-2-38-17/unsub/1630251275/
-    #     for hole in range(1, 18+1):
-    #         ws.send(
-    #         "l-h-"
-    #         + str(tona_id)
-    #         + "-"
-    #         + myclass.getSelectedTonaRound(tona_id=tona_id)
-    #         +"-"
-    #         + str(course_id)
-    #         +"-"
-    #         +str(hole)
-    #         + "/unsub/"
-    #         + server_time
-    #         + "/"
-    #     )
-    #     print("Un Subscribed All Holes..")
+    @staticmethod
+    def saveActiveHoles(payload):
+        UserQuery =Query()
+        server_time = str(int(time.time()))
+        #l-lbd-p-360-1/globallbd/1631180290/{"id":43,"hole":"11","total":3,"today":3,"round":0,"activeHole":12,"startingHole":1,"provider":"dde","receivedTime":1631180290373,"createdTime":1631180290352}
+        globallbd=payload.rsplit("/",1)[1].strip()
+        clean_global ="".join(filter(lambda x: x in string.printable,globallbd))
+        globallbd_json =json.loads(clean_global)
+        team_id =globallbd_json['id']
+        if active_holes_table.search(UserQuery.id ==team_id ):
+            active_holes_table.update({"activeHole": globallbd_json["activeHole"]}, UserQuery.id ==team_id)
+            # print("activeHole Updated :", globallbd_json['id'])
+        else:
+            active_holes_table.insert({"id":globallbd_json['id'],"activeHole": globallbd_json["activeHole"]})
+            # print("ACTIVE HOLES INSERTED :",globallbd_json['id'] )
         
-    # @staticmethod
-    # def saveHolesintoDB(payload_msg):
-    #     #l-r-p-361-3/holes/1630148120/{"courseId":"38","holes":[{"no":1,"hole":1,"par":4},{"no":2,"hole":2,"par":4},{"no":3,"hole":3,"par":3},{"no":4,"hole":4,"par":4},{"no":5,"hole":5,"par":4},{"no":6,"hole":6,"par":4},{"no":7,"hole":7,"par":4},{"no":8,"hole":8,"par":3},{"no":9,"hole":9,"par":5},{"no":10,"hole":10,"par":4},{"no":11,"hole":11,"par":3},{"no":12,"hole":12,"par":4},{"no":13,"hole":13,"par":3},{"no":14,"hole":14,"par":5},{"no":15,"hole":15,"par":5},{"no":16,"hole":16,"par":3},{"no":17,"hole":17,"par":4},{"no":18,"hole":18,"par":4}],"provider":"dde","receivedTime":1630089136280}l-r-p-361-3/group/1630148120/{"id":1,"hole":18,"course":"38","teams":[95,135],"status":"Finished","teeTime":1630130100000,"provider":"dde","receivedTime":1630144315166}l-r-p-361-3/group/1630148120/{"id":2,"hole":18,"course":"38","teams":[57,85],"status":"Finished","teeTime":1630130640000,"provider":"dde","receivedTime":1630145035169}l-r-p-361-3/group/1630148120/{"id":3,"hole":18,"course":"38","teams":[70,145,17],"status":"Finished","teeTime":1630131180000,"provider":"dde","receivedTime":1630146475195}l-r-p-361-3/group/1630148120/{"id":25,"hole":2,"course":"38","teams":[49,3,76],"status":"InProgress","teeTime":1630146000000,"provider":"dde","receivedTime":1630146955166}l-r-p-361-3/group/1630148120/{"id":22,"hole":4,"course":"38","teams":[88,41,18],"status":"InProgress","teeTime":1630144020000,"provider":"dde","receivedTime":1630147195138}l-r-p-361-3/group/1630148120/{"id":12,"hole":11,"course":"38","teams":[43,63,105],"status":"InProgress","teeTime":1630137120000,"provider":"dde","receivedTime":1630147315136}l-r-p-361-3/group/1630148120/{"id":19,"hole":6,"course":"38","teams":[7,46,128],"status":"InProgress","teeTime":1630142040000,"provider":"dde","receivedTime":1630147315136}l-r-p-361-3/group/1630148120/{"id":11,"hole":12,"course":"38","teams":[114,21,71],"status":"InProgress","teeTime":1630136460000,"provider":"dde","receivedTime":1630147315136}l-r-p-361-3/group/1630148120/{"id":16,"hole":9,"course":"38","teams":[142,130,74],"status":"InProgress","teeTime":1630140060000,"provider":"dde","receivedTime":1630147435098}l-r-p-361-3/group/1630148120/{"id":14,"hole":10,"course":"38","teams":[153,29,127],"status":"InProgress","teeTime":1630138440000,"provider":"dde","receivedTime":1630147435098}l-r-p-361-3/group/1630148120/{"id":9,"hole":14,"course":"38","teams":[20,119,92],"status":"InProgress","teeTime":1630135140000,"provider":"dde","receivedTime":1630147435098}l-r-p-361-3/group/1630148120/{"id":21,"hole":5,"course":"38","teams":[84,55,112],"status":"InProgress","teeTime":1630143360000,"provider":"dde","receivedTime":1630147555323}l-r-p-361-3/group/1630148120/{"id":5,"hole":18,"course":"38","teams":[19,26,32],"status":"InProgress","teeTime":1630132500000,"provider":"dde","receivedTime":1630147675370}l-r-p-361-3/group/1630148120/{"id":4,"hole":18,"course":"38","teams":[113,146,58],"status":"InProgress","teeTime":1630131840000,"provider":"dde","receivedTime":1630147675370}l-r-p-361-3/group/1630148120/{"id":23,"hole":4,"course":"38","teams":[36,98,34],"status":"InProgress","teeTime":1630144680000,"provider":"dde","receivedTime":1630147795144}l-r-p-361-3/group/1630148120/{"id":8,"hole":15,"course":"38","teams":[136,147,51],"status":"InProgress","teeTime":1630134480000,"provider":"dde","receivedTime":1630147795144}l-r-p-361-3/group/1630148120/{"id":18,"hole":8,"course":"38","teams":[1,131,6],"status":"InProgress","teeTime":1630141380000,"provider":"dde","receivedTime":1630147915275}l-r-p-361-3/group/1630148120/{"id":17,"hole":9,"course":"38","teams":[30,28,66],"status":"InProgress","teeTime":1630140720000,"provider":"dde","receivedTime":1630147915275}l-r-p-361-3/group/1630148120/{"id":6,"hole":17,"course":"38","teams":[134,97,123],"status":"InProgress","teeTime":1630133160000,"provider":"dde","receivedTime":1630147915275}l-r-p-361-3/group/1630148120/{"id":20,"hole":6,"course":"38","teams":[2,59,38],"status":"InProgress","teeTime":1630142700000,"provider":"dde","receivedTime":1630147915275}l-r-p-361-3/group/1630148120/{"id":24,"hole":3,"course":"38","teams":[24,13,40],"status":"InProgress","teeTime":1630145340000,"provider":"dde","receivedTime":1630147915275}l-r-p-361-3/group/1630148120/{"id":15,"hole":10,"course":"38","teams":[8,65,120],"status":"InProgress","teeTime":1630139100000,"provider":"dde","receivedTime":1630148035171}l-r-p-361-3/group/1630148120/{"id":7,"hole":16,"course":"38","teams":[205,72,62],"status":"InProgress","teeTime":1630133820000,"provider":"dde","receivedTime":1630148035171}l-r-p-361-3/group/1630148120/{"id":10,"hole":14,"course":"38","teams":[56,31,27],"status":"InProgress","teeTime":1630135800000,"provider":"dde","receivedTime":1630148035171}l-r-p-361-3/group/1630148120/{"id":13,"hole":11,"course":"38","teams":[211,152,126],"status":"InProgress","teeTime":1630137780000,"provider":"dde","receivedTime":1630148086220}l-r-p-361-3/eoc/1630148120/
-    #     received_msg_1 = payload_msg.split('"holes":', 1)[1].strip()
-    #     received_msg_2 = received_msg_1.split("]", 1)[0].strip()
-    #     clean_msg = "".join(filter(lambda x: x in string.printable,received_msg_2))
-    #     holes =clean_msg+"]"
-    #     print("CLEAN: ", holes )
-    #     received_holes = json.loads(holes)
-    #     spliter_text =payload_msg.split('{', 1)[0].strip()
-    
-    #     group_msg =payload_msg.split("]", 1)[1].split(spliter_text, 1)[1]
+        return
         
-    #     print("GROUP MSG: ",group_msg )
+    @staticmethod
+    def saveHolesintoDB(payload_msg):
+        #l-r-p-361-3/holes/1630148120/{"courseId":"38","holes":[{"no":1,"hole":1,"par":4},{"no":2,"hole":2,"par":4},{"no":3,"hole":3,"par":3},{"no":4,"hole":4,"par":4},{"no":5,"hole":5,"par":4},{"no":6,"hole":6,"par":4},{"no":7,"hole":7,"par":4},{"no":8,"hole":8,"par":3},{"no":9,"hole":9,"par":5},{"no":10,"hole":10,"par":4},{"no":11,"hole":11,"par":3},{"no":12,"hole":12,"par":4},{"no":13,"hole":13,"par":3},{"no":14,"hole":14,"par":5},{"no":15,"hole":15,"par":5},{"no":16,"hole":16,"par":3},{"no":17,"hole":17,"par":4},{"no":18,"hole":18,"par":4}],"provider":"dde","receivedTime":1630089136280}l-r-p-361-3/group/1630148120/{"id":1,"hole":18,"course":"38","teams":[95,135],"status":"Finished","teeTime":1630130100000,"provider":"dde","receivedTime":1630144315166}l-r-p-361-3/group/1630148120/{"id":2,"hole":18,"course":"38","teams":[57,85],"status":"Finished","teeTime":1630130640000,"provider":"dde","receivedTime":1630145035169}l-r-p-361-3/group/1630148120/{"id":3,"hole":18,"course":"38","teams":[70,145,17],"status":"Finished","teeTime":1630131180000,"provider":"dde","receivedTime":1630146475195}l-r-p-361-3/group/1630148120/{"id":25,"hole":2,"course":"38","teams":[49,3,76],"status":"InProgress","teeTime":1630146000000,"provider":"dde","receivedTime":1630146955166}l-r-p-361-3/group/1630148120/{"id":22,"hole":4,"course":"38","teams":[88,41,18],"status":"InProgress","teeTime":1630144020000,"provider":"dde","receivedTime":1630147195138}l-r-p-361-3/group/1630148120/{"id":12,"hole":11,"course":"38","teams":[43,63,105],"status":"InProgress","teeTime":1630137120000,"provider":"dde","receivedTime":1630147315136}l-r-p-361-3/group/1630148120/{"id":19,"hole":6,"course":"38","teams":[7,46,128],"status":"InProgress","teeTime":1630142040000,"provider":"dde","receivedTime":1630147315136}l-r-p-361-3/group/1630148120/{"id":11,"hole":12,"course":"38","teams":[114,21,71],"status":"InProgress","teeTime":1630136460000,"provider":"dde","receivedTime":1630147315136}l-r-p-361-3/group/1630148120/{"id":16,"hole":9,"course":"38","teams":[142,130,74],"status":"InProgress","teeTime":1630140060000,"provider":"dde","receivedTime":1630147435098}l-r-p-361-3/group/1630148120/{"id":14,"hole":10,"course":"38","teams":[153,29,127],"status":"InProgress","teeTime":1630138440000,"provider":"dde","receivedTime":1630147435098}l-r-p-361-3/group/1630148120/{"id":9,"hole":14,"course":"38","teams":[20,119,92],"status":"InProgress","teeTime":1630135140000,"provider":"dde","receivedTime":1630147435098}l-r-p-361-3/group/1630148120/{"id":21,"hole":5,"course":"38","teams":[84,55,112],"status":"InProgress","teeTime":1630143360000,"provider":"dde","receivedTime":1630147555323}l-r-p-361-3/group/1630148120/{"id":5,"hole":18,"course":"38","teams":[19,26,32],"status":"InProgress","teeTime":1630132500000,"provider":"dde","receivedTime":1630147675370}l-r-p-361-3/group/1630148120/{"id":4,"hole":18,"course":"38","teams":[113,146,58],"status":"InProgress","teeTime":1630131840000,"provider":"dde","receivedTime":1630147675370}l-r-p-361-3/group/1630148120/{"id":23,"hole":4,"course":"38","teams":[36,98,34],"status":"InProgress","teeTime":1630144680000,"provider":"dde","receivedTime":1630147795144}l-r-p-361-3/group/1630148120/{"id":8,"hole":15,"course":"38","teams":[136,147,51],"status":"InProgress","teeTime":1630134480000,"provider":"dde","receivedTime":1630147795144}l-r-p-361-3/group/1630148120/{"id":18,"hole":8,"course":"38","teams":[1,131,6],"status":"InProgress","teeTime":1630141380000,"provider":"dde","receivedTime":1630147915275}l-r-p-361-3/group/1630148120/{"id":17,"hole":9,"course":"38","teams":[30,28,66],"status":"InProgress","teeTime":1630140720000,"provider":"dde","receivedTime":1630147915275}l-r-p-361-3/group/1630148120/{"id":6,"hole":17,"course":"38","teams":[134,97,123],"status":"InProgress","teeTime":1630133160000,"provider":"dde","receivedTime":1630147915275}l-r-p-361-3/group/1630148120/{"id":20,"hole":6,"course":"38","teams":[2,59,38],"status":"InProgress","teeTime":1630142700000,"provider":"dde","receivedTime":1630147915275}l-r-p-361-3/group/1630148120/{"id":24,"hole":3,"course":"38","teams":[24,13,40],"status":"InProgress","teeTime":1630145340000,"provider":"dde","receivedTime":1630147915275}l-r-p-361-3/group/1630148120/{"id":15,"hole":10,"course":"38","teams":[8,65,120],"status":"InProgress","teeTime":1630139100000,"provider":"dde","receivedTime":1630148035171}l-r-p-361-3/group/1630148120/{"id":7,"hole":16,"course":"38","teams":[205,72,62],"status":"InProgress","teeTime":1630133820000,"provider":"dde","receivedTime":1630148035171}l-r-p-361-3/group/1630148120/{"id":10,"hole":14,"course":"38","teams":[56,31,27],"status":"InProgress","teeTime":1630135800000,"provider":"dde","receivedTime":1630148035171}l-r-p-361-3/group/1630148120/{"id":13,"hole":11,"course":"38","teams":[211,152,126],"status":"InProgress","teeTime":1630137780000,"provider":"dde","receivedTime":1630148086220}l-r-p-361-3/eoc/1630148120/
+        received_msg_1 = payload_msg.split('"holes":', 1)[1].strip()
+        received_msg_2 = received_msg_1.split("]", 1)[0].strip()
+        clean_msg = "".join(filter(lambda x: x in string.printable,received_msg_2))
+        holes =clean_msg+"]"
+        # print("CLEAN: ", holes )
+        received_holes = json.loads(holes)
+        holes_par.insert_multiple(received_holes)
+        print("Holes and Par Done.. ")
     @staticmethod
     def saveHolesDetails(payload_msg):
         #l-h-p-361-4-38-8/hole/1630229132/{"par":3,"yardage":175,"tees":[{"type":"Black","tee":[7.4593498,46.3001712,0]}],"pin":[7.4587349,46.3015296,0],"holeLabel":8,"teesUTM":[{"type":"Black","tee":{"zone":32,"hemisphere":"N","easting":381351.262138,"northing":5128552.866127}}],"pinUTM":{"zone":32,"hemisphere":"N","easting":381306.843978,"northing":5128704.720241},"provider":"dde","receivedTime":1630219787545}l-h-p-361-4-38-8/eoc/1630229132/
@@ -356,7 +351,7 @@ class Ws_Helpers:
         # print( "HOLE HARDS", hole_yardage)
         hole_yardage_json =json.loads(hole_yardage)
         # print("HOLE",hole_yardage_json )
-        holes_table.insert(hole_yardage_json)
+        holes_and_distance.insert(hole_yardage_json)
         #Unsubscribe immedeately
         print("Holes Done...")
         return
@@ -379,12 +374,14 @@ class Ws_Helpers:
                 var notify_btn_el =document.createElement('button');
                 notify_btn_el.classList.add("delete");
                 var text_parag_tag =document.createElement("p");
-                text_parag_tag.innerHTML = "{message['time']}: "+  "{message['last_name']} " + " {message['first_name']}" +"<br>" + "SHOT "+ "{message['shot']} " +"STATUS: "+ "{message['status'] }" + " Distance:"+ "{message['distance']}" +"<br>" +"Surface :"+ "{message['surface']}" ;
+                
+                text_parag_tag.innerHTML = "<h2>"+"{message['time']}:"</h2>"+ "<h1>"+"{message['last_name']} " + " {message['first_name']}" + "</h1>" +"<br>" + "SHOT "+ "{message['shot']} " +"STATUS: "+ "{message['status'] }" + " Distance:"+ "{message['distance']}" +"<br>" +"Surface :"+ "{message['surface']}" ;
                 
                 notification_div.appendChild(notify_btn_el);
                 notification_div.appendChild(text_parag_tag);
                 notify_section.prepend(notification_div);
-                notify_section.addEventListener("change", makeLight, false)
+                notify_section.addEventListener("change", makeLight, false);
+                addClickEventToNotifications();
                 console.log("Appended Notifications to Frontend..");
             """
         )
@@ -431,10 +428,11 @@ class Ws_Helpers:
                 mediacontent_div.classList.add("media-content");
                 
                 var content_div =document.createElement("div");
-                content_div.classList.add("content");
+                content_div.classList.add("content", "is-large");
                 
                 var text_parag_tag =document.createElement("p");
-                text_parag_tag.innerHTML = "{message['time']}: "+  "{message['last_name']} " + " {message['first_name']}" +"<br>" + "SHOT "+ "{message['shot']} " +"STATUS: "+ "{message['status'] }" + " Distance:"+ "{message['distance']}";
+ 
+                text_parag_tag.innerHTML = "{message['time']}: "+ "<b>"+"STATUS: "+ "{message['status'] }"+"</b>" + "<br>"+"<b>"+"{message['last_name']} " + " {message['first_name']}" +"</b>"+"<br>" +"<b> HOLE No: </b>"+ "{message['activeHole']} "+ " <b> SHOT </b> "+ "{message['shot']} : "+ "<b> PAR: "+"{message['hole_par']} ";
                 
                 
                 content_div.appendChild(text_parag_tag);
@@ -445,9 +443,9 @@ class Ws_Helpers:
                 notification_div.appendChild(notify_btn_el);
                 notification_div.appendChild(column_div);
                 notify_section.prepend(notification_div);
-                
-                 
+                addClickEventToNotifications();
                 console.log("Appended Notifications to Frontend..");
+                
             """
         )
 
@@ -466,30 +464,46 @@ class Ws_Helpers:
             received_msg_json = json.loads(clean_msg)
             # l-lbd-p-282-3/shotlbd/1628968448/{"id":122,"shot":3,"status":"hit","surface":"OGR","distance":1.067,"provider":"dde","receivedTime":1628968448574,"createdTime":1628968447780}
 
-            # FILTER messages
-            if received_msg_json["status"] == "holed":
+            ##---------------------------------------------------------------
+            # FILTER messages for HOLED Notifications
+            player_active_hole =""
+            hole_par =""
+            try:
+                active_holes_table.search(Query()["id"] ==received_msg_json["id"])[0]
+                player_active_hole =active_holes_table.search(Query()["id"] ==received_msg_json["id"])[0]["activeHole"]
+                hole_par =holes_par.search(Query()["hole"]==player_active_hole)[0]["par"]
+            except:
+                player_active_hole="N/A"
+                hole_par ="N/A"
+            if received_msg_json["status"] == "holed" :
                 player_team_id = received_msg_json["id"]
                 player = tournament_players_table.search(
                     Query()["team_id"] == player_team_id
                 )[0]
+                
+                
+                    
                 timestamp = datetime.fromtimestamp(
                     received_msg_json["receivedTime"] / 1000.0
-                ).strftime("%Y-%m-%d %H:%M:%S.%f")
+                ).strftime("%Y-%m-%d %H:%M:%S")
                 notify_message = {
                     "first_name": player["first_name"],
-                    "last_name": player["last_name"],
+                    "last_name": player["last_name"].upper(),
+                    'activeHole':player_active_hole,
                     "shot": str(received_msg_json["shot"]),
                     "status": "HOLED",
-                    "distance": str(received_msg_json["distance"]),
-                    "time": " At: " + timestamp,
+                    "hole_par": str(hole_par),
+                    "time": timestamp,
                 }
                 print("FrontEnd Notified...")
                 # post to Frontend API
                 return myclass.holed(notify_message)
-
+            
+            ##-------------------------------------------------------------------------
+            ## FILTER messages for BALL GOES Into WAter
+            # l-lbd-p-358-2/shotlbd/1630686084/{"id":11,"shot":2,"status":"approach","surface":"OFW","distance":276.768860892705,"provider":"dde","receivedTime":1630686084050,"createdTime":1630686083000}
             elif (
-                received_msg_json["shot"] >= 2
-                and received_msg_json["status"] == "approach"
+                received_msg_json["surface"] == "OWA"
             ):
 
                 player_team_id = received_msg_json["id"]
@@ -506,17 +520,20 @@ class Ws_Helpers:
                 ).strftime("%Y-%m-%d %H:%M:%S.%f")
                 notify_message = {
                     "first_name": player["first_name"],
-                    "last_name": player["last_name"],
+                    "last_name": player["last_name"].upper(),
                     "shot": str(received_msg_json["shot"]),
-                    "status": received_msg_json["status"],
+                    "status": "BALL IN WATER",
                     "surface": received_msg_json["surface"],
                     "distance": str(received_msg_json["distance"]),
                     "time": timestamp,
                 }
-                # {'first_name': 'Kevin', 'last_name': 'Kisner', 'shot': '4', 'status': 'approx', 'surface': 'OGR', 'distance': '0.483', 'time': '2021-08-14 23:34:43.028000'}
+                
                 print("FrontEnd Notified...")
                 # post to Frontend API
                 return myclass.postNotifications(notify_message)
+            
+            ##-------------------------------------------------------------------------
+            ## FILTER messages for  
             elif received_msg_json["shot"] == None:
                 pass
         except (Exception) as err:
@@ -577,6 +594,11 @@ class Ws_Helpers:
         elif "l-t-" + tona_id + "/team/" and "players" in payload:
             print("processing players...")
             myclass.processTournamentPlayers(payload)
+            #l-r-p-361-3/holes/1630148120/{"courseId
+        elif 'l-r-'+ str(tona_id)+"-" and "/holes/" and "courseId" in payload:
+            #save  holes and Par intoDB 
+            print('processing holes and par only...')
+            myclass.saveHolesintoDB(payload_msg=payload)
             
         elif "l-h-"+ str(tona_id)+"-" and "/hole/" in payload:
             #l-h-p-361-4-38-8/hole/1630229132/{"par":3,"yardage":175,"tees":[{"type":"Black","tee":[7.4593498,46.3001712,0]}],"pin":[7.4587349,46.3015296,0],"holeLabel":8,"teesUTM":[{"type":"Black","tee":{"zone":32,"hemisphere":"N","easting":381351.262138,"northing":5128552.866127}}],"pinUTM":{"zone":32,"hemisphere":"N","easting":381306.843978,"northing":5128704.720241},"provider":"dde","receivedTime":1630219787545}l-h-p-361-4-38-8/eoc/1630229132/
@@ -584,14 +606,21 @@ class Ws_Helpers:
             # print(payload)
             myclass.saveHolesDetails(payload_msg=payload)
             
+        
             
         # Notify Frontend
         elif "l-lbd-p-" and "shotlbd" in payload and "orderlbd" not in payload:
             # l-lbd-p-282-3/shotlbd/
             # print("# Notify Frontend")
             myclass.notifyFrontend(payload)
+           
             
-
+        elif "l-lbd-"+str(tona_id)+"-" and  '/globallbd/' in payload and '/shotlbd/' not in payload:
+            #print("l-lbd-"+str(tona_id)+"-"+str(myclass.getSelectedTonaRound(tona_id=tona_id))+'/globallbd/')
+            #l-lbd-p-360-1/globallbd/1631180290/{"id":43,"hole":"11","total":3,"today":3,"round":0,"activeHole":12,"startingHole":1,"provider":"dde","receivedTime":1631180290373,"createdTime":1631180290352}
+            # print("processing Active  Holes ...")
+            # print(payload)
+            myclass.saveActiveHoles(payload=payload)
 
         else:
             # pass
