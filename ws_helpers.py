@@ -19,7 +19,8 @@ import glob
 
 
 target_tona_id = None
-
+tona_id = ""
+course_id =""
 
 # def tree(src):
 #     return [
@@ -324,10 +325,10 @@ class Ws_Helpers:
         team_id =globallbd_json['id']
         if active_holes_table.search(UserQuery.id ==team_id ):
             active_holes_table.update({"activeHole": globallbd_json["activeHole"]}, UserQuery.id ==team_id)
-            # print("activeHole Updated :", globallbd_json['id'])
+            print("Active Hole Updated :", globallbd_json['id'])
         else:
             active_holes_table.insert({"id":globallbd_json['id'],"activeHole": globallbd_json["activeHole"]})
-            # print("ACTIVE HOLES INSERTED :",globallbd_json['id'] )
+            print("Active Hole Inserted :",globallbd_json['id'] )
         
         return
         
@@ -353,9 +354,29 @@ class Ws_Helpers:
         # print("HOLE",hole_yardage_json )
         holes_and_distance.insert(hole_yardage_json)
         #Unsubscribe immedeately
-        print("Holes Done...")
+        # print("Holes Done...")
         return
         
+    @staticmethod
+    def initializeActiveHoles(payload_msg):
+        UserQuery =Query()
+        orderlbd_splitText =payload_msg.split("{", 1)[0].strip()
+        # print("orderlbd_splitText",orderlbd_splitText)
+        globallbd_splitText =payload_msg.split("activeHole",1)[0].rsplit("{",1)[0].rsplit("}",1)[1].strip()
+        shotlbd_splitText =orderlbd_splitText.replace("orderlbd", 'shotlbd')
+        # print("globallbd_splitText",globallbd_splitText)
+        mainText =payload_msg.rsplit("}",1)[0].split("/",3)[3].replace(orderlbd_splitText,",").replace(globallbd_splitText,",").replace(shotlbd_splitText, ",").strip()+"}"
+        clean_msg = "".join(filter(lambda x: x in string.printable,mainText))
+      
+        mainText_list_json = json.loads("["+clean_msg+"]")
+        # if active_holes_table.search(UserQuery.id ==team_id ):
+        #     active_holes_table.update({"activeHole": globallbd_json["activeHole"]}, UserQuery.id ==team_id)
+        #     # print("activeHole Updated :", globallbd_json['id'])
+        # else:
+        #     active_holes_table.insert({"id":globallbd_json['id'],"activeHole": globallbd_json["activeHole"]})
+        #     # print("ACTIVE HOLES INSERTED :",globallbd_json['id'] )
+        active_Hol =[active_holes_table.insert({"id":item['id'],"activeHole": item["activeHole"]}) for item in mainText_list_json if  'activeHole' in item]
+        print("Initial Active Holes added", len(active_Hol))
     @staticmethod
     def postNotifications(message: dict):
         # text_parag_tag.innerHTML =message['time'] +": " + message['last_name'] +" "+message['first_name'] +"<br>"+ "SHOT "+message['shot'] +"STATUS :"+message['status']
@@ -517,7 +538,7 @@ class Ws_Helpers:
                 # {'team_id': 4, 'player_id': 3434, 'first_name': 'Brian', 'last_name': 'Stuard', 'player_country': 'USA'}
                 timestamp = datetime.fromtimestamp(
                     received_msg_json["receivedTime"] / 1000.0
-                ).strftime("%Y-%m-%d %H:%M:%S.%f")
+                ).strftime("%Y-%m-%d %H:%M:%S")
                 notify_message = {
                     "first_name": player["first_name"],
                     "last_name": player["last_name"].upper(),
@@ -545,8 +566,7 @@ class Ws_Helpers:
     @staticmethod
     def on_message(ws, payload):
         myclass = Ws_Helpers()
-        tona_id = ""
-        course_id =""
+        global tona_id, course_id
         # print("Rayload: "+ payload)
         if "/auth/" in payload:
             data = myclass.parseSSCP(payload)
@@ -587,9 +607,14 @@ class Ws_Helpers:
             target_course_id =myclass.getCurrentSelectedTona(tona_id)
             
             course_id =target_course_id['course_id']
-            print("COrSE ID ", course_id)
+            print("Course ID ", course_id)
             # subscribe to leaderboard Notifications
             myclass.subscribeToLeaderboard(ws, tona_id, course_id)
+        
+        
+        elif  str(payload).startswith("l-lbd-"+tona_id+"-"+str(myclass.getSelectedTonaRound(tona_id=tona_id))+"/orderlbd/")and "/globallbd/" in payload:
+            print("Initializing Active holes..")
+            myclass.initializeActiveHoles(payload_msg=payload)
 
         elif "l-t-" + tona_id + "/team/" and "players" in payload:
             print("processing players...")
