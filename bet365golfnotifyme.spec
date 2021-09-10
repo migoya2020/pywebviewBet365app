@@ -42,4 +42,4 @@ exe = EXE(pyz,
           target_arch=None,
           codesign_identity=None,
           entitlements_file=None ,
-          icon='./golf.png')
+          icon='./golf.ico')
