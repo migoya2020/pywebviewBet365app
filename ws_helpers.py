@@ -394,12 +394,18 @@ class Ws_Helpers:
                 notification_div.classList.add("notification","is-link");
                 var notify_btn_el =document.createElement('button');
                 notify_btn_el.classList.add("delete");
+                
+                var content_div =document.createElement("div");
+                content_div.classList.add("content", "is-large");
+                
                 var text_parag_tag =document.createElement("p");
                 
-                text_parag_tag.innerHTML = "<h2>"+"{message['time']}:"</h2>"+ "<h1>"+"{message['last_name']} " + " {message['first_name']}" + "</h1>" +"<br>" + "SHOT "+ "{message['shot']} " +"STATUS: "+ "{message['status'] }" + " Distance:"+ "{message['distance']}" +"<br>" +"Surface :"+ "{message['surface']}" ;
+                text_parag_tag.innerHTML ="{message['time']} : "+ "<b> STATUS : "+ "{message['status'] } </b>" +"<br>" +"<b> {message['last_name']} " + " {message['first_name']} </b>"  +"<br>"+ "<b>Hole No: </b>"+ " {message['activeHole']}"  + "<b>"+"  SHOT: " +"</b>"+ " {message['shot']}" +"<b> PAR :"+" {message['hole_par']} </b>" ;
+                
+                content_div.appendChild(text_parag_tag);
                 
                 notification_div.appendChild(notify_btn_el);
-                notification_div.appendChild(text_parag_tag);
+                notification_div.appendChild(content_div);
                 notify_section.prepend(notification_div);
                 notify_section.addEventListener("change", makeLight, false);
                 addClickEventToNotifications();
@@ -453,7 +459,7 @@ class Ws_Helpers:
                 
                 var text_parag_tag =document.createElement("p");
  
-                text_parag_tag.innerHTML = "{message['time']}: "+ "<b>"+"STATUS: "+ "{message['status'] }"+"</b>" + "<br>"+"<b>"+"{message['last_name']} " + " {message['first_name']}" +"</b>"+"<br>" +"<b> HOLE No: </b>"+ "{message['activeHole']} "+ " <b> SHOT </b> "+ "{message['shot']} : "+ "<b> PAR: "+"{message['hole_par']} ";
+                text_parag_tag.innerHTML = "{message['time']}: "+ "<b>"+"STATUS: "+ "{message['status'] }"+"</b>" + "<br>"+"<b>"+"{message['last_name']} " + " {message['first_name']}" +"</b>"+"<br>" +"<b>"+"HOLE No: "+"</b>"+ "{message['activeHole']} "+ " <b>"+" SHOT :"+"</b> "+ "{message['shot']} :"+ "<b>"+" PAR :"+" {message['hole_par']} </b>";
                 
                 
                 content_div.appendChild(text_parag_tag);
@@ -461,6 +467,7 @@ class Ws_Helpers:
                 article_div.appendChild(media_left_div);
                 article_div.appendChild(mediacontent_div);
                 column_div.appendChild(article_div);
+                
                 notification_div.appendChild(notify_btn_el);
                 notification_div.appendChild(column_div);
                 notify_section.prepend(notification_div);
@@ -489,6 +496,8 @@ class Ws_Helpers:
             # FILTER messages for HOLED Notifications
             player_active_hole =""
             hole_par =""
+            holedStatus =""
+            shotstatus =""
             try:
                 active_holes_table.search(Query()["id"] ==received_msg_json["id"])[0]
                 player_active_hole =active_holes_table.search(Query()["id"] ==received_msg_json["id"])[0]["activeHole"]
@@ -501,8 +510,16 @@ class Ws_Helpers:
                 player = tournament_players_table.search(
                     Query()["team_id"] == player_team_id
                 )[0]
-                
-                
+                if received_msg_json["shot"] < hole_par:
+                    difference =hole_par -received_msg_json["shot"]
+                    holedStatus ="HOLED "+ str(difference)+" Below PAR."
+                elif received_msg_json["shot"] > hole_par:
+                    difference =received_msg_json["shot"] -hole_par
+                    holedStatus = "HOLED "+ str(difference)+" Above PAR."
+                elif received_msg_json["shot"] == hole_par:
+                    # difference =received_msg_json["shot"] -hole_par
+                    holedStatus = "HOLED"+" At PAR."
+                    
                     
                 timestamp = datetime.fromtimestamp(
                     received_msg_json["receivedTime"] / 1000.0
@@ -512,11 +529,11 @@ class Ws_Helpers:
                     "last_name": player["last_name"].upper(),
                     'activeHole':player_active_hole,
                     "shot": str(received_msg_json["shot"]),
-                    "status": "HOLED",
+                    "status": holedStatus,
                     "hole_par": str(hole_par),
                     "time": timestamp,
                 }
-                print("FrontEnd Notified...")
+                print("Front-End Notified...")
                 # post to Frontend API
                 return myclass.holed(notify_message)
             
@@ -543,20 +560,55 @@ class Ws_Helpers:
                     "first_name": player["first_name"],
                     "last_name": player["last_name"].upper(),
                     "shot": str(received_msg_json["shot"]),
-                    "status": "BALL IN WATER",
-                    "surface": received_msg_json["surface"],
-                    "distance": str(received_msg_json["distance"]),
+                    "status": "IN WATER",
+                    # "surface": received_msg_json["surface"],
+                    "hole_par": str(hole_par),
+                    "activeHole": player_active_hole,
                     "time": timestamp,
                 }
                 
-                print("FrontEnd Notified...")
+                print("Front-End Notified...")
                 # post to Frontend API
                 return myclass.postNotifications(notify_message)
             
+            elif (
+                received_msg_json["surface"] == "OGR" and received_msg_json['status']=="lie"
+            ):
+                if (hole_par-received_msg_json["shot"]) ==2:
+                    shotstatus ="GREEN "+"2shots Less PAR."
+                    player_team_id = received_msg_json["id"]
+                    # print("PLAYER TEAM ID :", player_team_id)
+                    player = tournament_players_table.search(
+                        Query()["team_id"] == player_team_id
+                    )[
+                        0
+                    ]  # Should return only 1 player in a List
+                    # print("PLAYER Found: ", player)
+                    # {'team_id': 4, 'player_id': 3434, 'first_name': 'Brian', 'last_name': 'Stuard', 'player_country': 'USA'}
+                    timestamp = datetime.fromtimestamp(
+                        received_msg_json["receivedTime"] / 1000.0
+                    ).strftime("%Y-%m-%d %H:%M:%S")
+                    notify_message = {
+                        "first_name": player["first_name"],
+                        "last_name": player["last_name"].upper(),
+                        "shot": str(received_msg_json["shot"]),
+                        "status": shotstatus,
+                         
+                        "hole_par": str(hole_par),
+                        "activeHole": player_active_hole,
+                        "time": timestamp,
+                    }
+                    
+                    print("Front-End Notified...")
+                    # post to Frontend API
+                    return myclass.postNotifications(notify_message)
+                else:
+                    pass
+            
             ##-------------------------------------------------------------------------
             ## FILTER messages for  
-            elif received_msg_json["shot"] == None:
-                pass
+            # elif received_msg_json["shot"] == None:
+            #     pass
         except (Exception) as err:
             print("Front end NOT Notified... ERROR: ", err)
             # print("Payload : ", payload)
