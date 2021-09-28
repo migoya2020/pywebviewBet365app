@@ -1,0 +1,772 @@
+from sys import int_info
+import requests
+from bs4 import BeautifulSoup
+import time
+import datetime
+import json
+from datetime import datetime
+import pendulum
+from time import sleep
+from random import randint
+from requests import cookies
+
+# from http.cookiejar import MozillaCookieJar
+
+# import requests_cache
+from tinydb import TinyDB, Query
+import os
+from os.path import dirname, join
+from pathlib import Path
+from db.send_to_db import UpdateDb
+from addons.utilities import Utilities
+from search_queries import SearchTerms
+from collections import Counter
+import pandas as pd
+from email_script import *
+from email_template import email_body_temp, email_body_error
+from pretty_html_table import build_table
+from chameleon import PageTemplate
+import html
+import pendulum
+from getuseragent import UserAgent
+from nordvpn_switcher import initialize_VPN, rotate_VPN, terminate_VPN
+
+import undetected_chromedriver.v2 as uc
+
+# from selenium import webdriver
+# from seleniumwire import webdriver
+# from requestium import Session, Keys
+import requests_random_user_agent as ua
+import secrets
+
+from webdriver_manager.chrome import ChromeDriverManager
+
+from requests.cookies import RequestsCookieJar
+from slugify import slugify
+from us_vpns import US_SERVERS
+from datadomeAPI import *
+ 
+ 
+import http.cookiejar
+# from seleniumrequests import Chrome
+# from seleniumrequests.request import RequestMixin
+from requests_futures.sessions import FuturesSession
+from concurrent.futures import as_completed, ProcessPoolExecutor
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.keys import Keys
+
+runCycle = 0
+ses = None
+driver = None
+# allProperties =[]
+BASE_URL = "https://www.idealista.com/venta-viviendas/"
+overalStartTime = datetime.now()
+startTime = pendulum.now().format("YYYY-MM-DD-HH_mm_ss")
+
+# Initialize VPN settings
+# server_list =["Spain", "Sweden", "Ireland", "France", "Austria", "Portugal", "Poland", "Italy", "Switzerland"]
+server_list = ["Spain", "Ireland", "Spain", "United Kingdom", "United States"]
+# server_list = US_SERVERS
+vpn_instructions = initialize_VPN(save=1, area_input=server_list, skip_settings=1)
+# settings = initialize_VPN(save=1,area_input=['complete rotation'])
+
+
+def printLog(*args, **kwargs):
+    print(*args, **kwargs)
+    with open("idealistaLogs" + startTime + ".log", "a") as file:
+        print(*args, **kwargs, file=file)
+
+
+# -----------------------------------------------#
+# e_from = "Idealist Bot" + "<notify@idealistbot.com>"
+e_from = "CAI Data" + "<data@calcuttaai.com>"
+send_to_email_list = [
+    "david@techgrids.com",
+    "danieldolz@calcuttaai.com",
+    "salmanbecomps13@gmail.com",
+]
+# send_to_email_list = ["david@techgrids.com"]
+log_file_name = "idealistaLogs" + startTime + ".log"
+
+
+# some inhouse Db
+ROOT_DIR = os.path.abspath(os.curdir)
+# printLog(ROOT_DIR)
+my_file = Path(join(ROOT_DIR, "properties.json"))
+# Check if inhouse Db exists, clear and/or create new.
+if my_file.is_file():
+    # Delete
+    printLog("removing existing history....")
+    os.remove("properties.json")
+    # db_path = join(ROOT_DIR, 'properties.json')
+else:
+    printLog("creating a new temp inhouse DB...")
+# #Create new
+db_path = join(ROOT_DIR, "properties.json")
+inhouse_db = TinyDB(db_path)
+
+listings_properties_table = inhouse_db.table("listings")
+listings_country_table = inhouse_db.table("country")
+listings_province_table = inhouse_db.table("province")
+listings_county_table = inhouse_db.table("county")
+listings_municipality_table = inhouse_db.table("municipality")
+listings_district_table = inhouse_db.table("district")
+
+final_headers = ""
+
+didomi_token = ""
+utag_main = ""
+atidvisitor = ""
+atuserid = ""
+euconsent = ""
+datadome = ""
+
+
+def getCollinaDate():
+    date = int(round(time.time() * 1000))
+    return date
+
+
+def generateDataDomeToken(
+    jsData, events, eventCounters, jsType, cid, ddk, referer, responsePage
+):
+    printLog("Generating fresh Datadome Token..")
+    url = "https://api-js.datadome.co/js/"
+    datadome_headers = {
+        "authority": "api-js.datadome.co",
+        "sec-ch-ua": '"Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"',
+        "sec-ch-ua-mobile": "?0",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36",
+        "content-type": "application/x-www-form-urlencoded",
+        "accept": "*/*",
+        "origin": "https://www.idealista.com",
+        "sec-fetch-site": "cross-site",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-dest": "empty",
+        "referer": "https://www.idealista.com/",
+        "accept-language": "en",
+    }
+
+    newEvents = []
+
+    for event in events:
+        event["date"] = getCollinaDate()
+        newEvents.append(event)
+        time.sleep(0.005)
+    payload = ""
+    payload += (
+        "jsData="
+        + str(jsData)
+        + "&events="
+        + str(newEvents)
+        + "&eventCounters="
+        + str(eventCounters)
+        + "&jsType="
+        + jsType
+        + "&cid="
+        + cid
+        + "&Referer="
+        + referer
+        + "&responsePage="
+        + responsePage
+        + "&ddk="
+        + str(ddk)
+        + "&ddv="
+        + "4.1.60"
+    )
+    response = requests.request(
+        "POST", url, headers=datadome_headers, data=str(payload).encode("utf-8")
+    )
+    # print(response.text)
+    results_json = json.loads(response.text)
+    new_datadome_cookie = results_json["cookie"].split(";",1)[0]
+    print(new_datadome_cookie)
+    return new_datadome_cookie
+
+
+def findElemToWait(driver, Id: str, Timeout: int = 5):
+    while Timeout > 0:
+        try:
+            driver.find_element_by_id(Id)
+            driver.find_element_by_id("didomi-notice").find_element_by_id(
+                "didomi-notice-agree-button"
+            ).click()
+            return
+
+        except:  # if element isn't already loaded or doesn't exist
+            sleep(1)
+            Timeout -= 1
+            print("Waiting for Element to Load...: " + str(Timeout))
+def generate_cookie(cookie_raw):
+    """
+    Creates a http.cookiejar.Cookie object, given raw cookie information as dict.
+   
+    """
+ 
+    # expiry is optional, so default it to false if not set
+    if not 'expiry' in cookie_raw:
+        cookie_raw['expiry'] = False
+ 
+    # initialize Cookie object
+    cookie = http.cookiejar.Cookie(
+        0,                      # version
+        cookie_raw['name'],     # name
+        cookie_raw['value'],    # value
+        None,                   # port
+        False,                  # port_specified
+        cookie_raw['domain'],   # domain
+        True,                   # domain_specified
+        "",                     # domain_initial_dot
+        cookie_raw['path'],     # path
+        True,                   # path_specified,
+        cookie_raw['secure'],   # secure
+        cookie_raw['expiry'],   # expires
+        False,                  # discard
+        "",                     # comment
+        "",                     # comment_url
+        None,                   # rest
+        )
+ 
+    return cookie
+def delete_cache():
+    driver.execute_script("window.open('');")
+    time.sleep(2)
+    driver.switch_to.window(driver.window_handles[-1])
+    time.sleep(2)
+    driver.get('chrome://settings/clearBrowserData') # for old chromedriver versions use cleardriverData
+    time.sleep(2)
+    actions = ActionChains(driver) 
+    actions.send_keys(Keys.TAB * 3 + Keys.DOWN * 3) # send right combination
+    actions.perform()
+    time.sleep(2)
+    actions = ActionChains(driver) 
+    actions.send_keys(Keys.TAB * 4 + Keys.ENTER) # confirm
+    actions.perform()
+    time.sleep(5) # wait some time to finish
+    driver.close() # close this tab
+    driver.switch_to.window(driver.window_handles[0]) # switch back
+    
+    
+def prepaireBrowserSession(my_query):
+    printLog("Generating Browser Session..")
+    global ses, final_headers,datadome
+  
+    prov_link = (
+        BASE_URL
+        + slugify(my_query["province"].lower().strip())
+        + "-"
+        + "provincia"
+        + "/mapa"
+    )
+
+    init_headers = {
+        "authority": "www.idealista.com",
+        "cache-control": "max-age=0",
+        "sec-ch-ua": '"Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"',
+        "sec-ch-ua-mobile": "?0",
+        "upgrade-insecure-requests": "1",
+        "user-agent":  str(secrets.choice(ua.AND_USER_AGENTS)),
+        "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+        "sec-fetch-site": "same-origin",
+        "sec-fetch-mode": "navigate",
+        "sec-fetch-dest": "document",
+        "referer": "https://www.idealista.com",
+        "accept-language": "en",
+    }
+
+   
+    
+    didomi_token = "didomi_token=eyJ1c2VyX2lkIjoiMTdiYWJmNGQtZDJlZS02YThkLTg1OTUtZjk5M2Q2YWI2ZmMyIiwiY3JlYXRlZCI6IjIwMjEtMDktMDNUMTM6NTk6MTYuNTk0WiIsInVwZGF0ZWQiOiIyMDIxLTA5LTAzVDEzOjU5OjE2LjU5NFoiLCJ2ZXJzaW9uIjpudWxsfQ=="
+    utag_main = "utag_main=v_id:017babf4da62004fbcb3445844a805069004206100bd0$_sn:2$_se:8$_ss:0$_st:1630707349326$ses_id:1630704052428%3Bexp-session$_pn:8%3Bexp-session$_prevVtSource:directTraffic%3Bexp-1630707652438$_prevVtCampaignCode:%3Bexp-1630707652438$_prevVtDomainReferrer:%3Bexp-1630707652438$_prevVtSubdomaninReferrer:%3Bexp-1630707652438$_prevVtUrlReferrer:%3Bexp-1630707652438$_prevVtCampaignLinkName:%3Bexp-1630707652438$_prevVtCampaignName:%3Bexp-1630707652438$_prevVtRecommendationId:%3Bexp-1630707652438$_prevCompletePageName:10%3A%3A%3A%3A%3A%3A%3A%3Ahome%3Bexp-1630709149601$_prevLevel2:10%3Bexp-1630709149601$_prevAdId:undefined%3Bexp-1630709149603$_prevAdOriginTypeRecommended:undefined%3Bexp-1630707652442"
+    atidvisitor = '"atidvisitor"="%7B%22name%22%3A%22atidvisitor%22%2C%22val%22%3A%7B%22vrn%22%3A%22-582065-%22%7D%2C%22options%22%3A%7B%22path%22%3A%22%2F%22%2C%22session%22%3A15724800%2C%22end%22%3A15724800%7D%7D'
+    atuserid = "atuserid=%7B%22name%22%3A%22atuserid%22%2C%22val%22%3A%22f838afff-a042-4f4d-b315-747858269725%22%2C%22options%22%3A%7B%22end%22%3A%222022-10-05T21%3A45%3A49.895Z%22%2C%22path%22%3A%22%2F%22%7D%7D"
+    euconsent = "euconsent-v2=CPL-to-PL-to-AHABBENBpCoAP_AAAAAAAAAF5wBAAIAAtAC2AvMAAABAaADAAEEFyUAGAAIILlIAMAAQQXIQAYAAgguOgAwABBBcJABgACCC4yADAAEEFxUAGAAIILg.f_gAAAAAAAAA"
+    other_extra_cookies = "_gcl_au=1.1.1663458243.1630513022; _fbp=fb.1.1630513023041.1068858915; TestIfCookieP=ok; contact3f914827-de83-4560-9525-a1966e6cbdf9=\"{'email':null,'phone':null,'phonePrefix':null,'friendEmails':null,'name':null,'message':null,'message2Friends':null,'maxNumberContactsAllow':10,'defaultMessage':true}\"; sasd2=q=%24qc%3D86647696%3B%24ql%3DMedium%3B%24qpc%3D00001%3B%24qt%3D199_202_5018t%3B%24dma%3D0&c=1&l=68407723&lo=152280353&lt=637662498745599263&o=1; sasd=%24qc%3D86647696%3B%24ql%3DMedium%3B%24qpc%3D00001%3B%24qt%3D199_202_5018t%3B%24dma%3D0; cookieSearch-1=\"/venta-viviendas/barcelona-barcelona/:1630656805328\"; utag_main=v_id:017ba2260744001af667e0a4e39105069001a06100bd0$_sn:7$_se:2$_ss:0$_st:1630658605676$ses_id:1630656787091%3Bexp-session$_pn:2%3Bexp-session$_prevVtSource:portalSites%3Bexp-1630660387098$_prevVtCampaignCode:%3Bexp-1630660387098$_prevVtDomainReferrer:idealista.com%3Bexp-1630660387098$_prevVtSubdomaninReferrer:www.idealista.com%3Bexp-1630660387098$_prevVtUrlReferrer:https%3A%2F%2Fwww.idealista.com%2F%3Bexp-1630660387098$_prevVtCampaignLinkName:%3Bexp-1630660387098$_prevVtCampaignName:%3Bexp-1630660387098$_prevVtRecommendationId:%3Bexp-1630660387098$_prevCompletePageName:11%3A%3Amapas%3A%3Awww.idealista.com%2Fventa-viviendas%2Fbarcelona-barcelona%2Fmapa%3Bexp-1630660405827$_prevLevel2:11%3Bexp-1630660405827$_prevAdId:undefined%3Bexp-1630660405829$_prevAdOriginTypeRecommended:undefined%3Bexp-1630660387104; vs=33114=4560973; dyncdn=5"
+    
+    # delete_cache()
+    # with driver:
+    #     print("Loading Initial Url...")
+    #     driver.get("https://www.idealista.com")
+     
+    browser_cookies =""
+    # findElemToWait(driver=driver, Id="didomi-notice")
+    
+    cookiefile  = Path(ROOT_DIR + "/cookiejar.txt")
+    # printLog("Loading initial url ....")
+    # browser_cookies = driver.get_cookies()
+    # print("TOTAL BROWSER COOKIES: ",browser_cookies)
+    browser_cookies += (
+           
+            didomi_token
+            + ";"
+            + utag_main
+            + ";"
+            + atidvisitor
+            + ";"
+            + atuserid
+            + ";"
+            +euconsent 
+            +";"
+            + other_extra_cookies
+        )
+    fresh_data_dome =generateDataDomeToken(jsData=jsData, events=datadome_events,eventCounters=eventCounters,jsType=jsType,cid=datadome,ddk=ddk,referer=referer,responsePage=responsePage)
+    # other_extra_cookies = "_gcl_au=1.1.1663458243.1630513022; _fbp=fb.1.1630513023041.1068858915; TestIfCookieP=ok; pbw=%24b%3d16920%3b%24o%3d99999%3b%24sw%3d1920%3b%24sh%3d1080; pid=2401150206342427129; pdomid=4; _hjid=7f95f697-81e0-48ec-b9bc-68dd59396f5d; lcsrd=2021-09-01T21:23:14.7878640Z; contact3f914827-de83-4560-9525-a1966e6cbdf9=\"{'email':null,'phone':null,'phonePrefix':null,'friendEmails':null,'name':null,'message':null,'message2Friends':null,'maxNumberContactsAllow':10,'defaultMessage':true}\"; sasd2=q=%24qc%3D86647696%3B%24ql%3DMedium%3B%24qpc%3D00001%3B%24qt%3D199_202_5018t%3B%24dma%3D0&c=1&l=68407723&lo=152280353&lt=637662498745599263&o=1; sasd=%24qc%3D86647696%3B%24ql%3DMedium%3B%24qpc%3D00001%3B%24qt%3D199_202_5018t%3B%24dma%3D0; _hjCachedUserAttributes=eyJhdHRyaWJ1dGVzIjp7ImlkX3BhZ2VMYW5ndWFnZSI6ImVzIiwiaWRfdXNlclJvbGUiOiIifSwidXNlcklkIjpudWxsfQ==; csync=0:5842365354942389228|22:23822498531683052|25:5caf612c-f76f-4600-bc79-d7b4b3e48111|31:d1a34a0a-f63c-4e12-8ca4-c6d868eb4efd|32:4277779464435203627|33:YSzxmScHuXb6ZS9xGu9GCwAA&694|43:yniysazSLGBPBjkwuDIW|49:7002340716049660043|66:06a6200500548700d77c4aa3|69:05030001_612d4fc7a3741|75:13d58537-7b71-40b0-93f3-a42f4259b794|76:CAESEL65oItFDp-uSz4NQldtagc|79:k-1MRMjdr357_Y_7I07tQjdEcuC_nUC4C-JRF6rQ|80:11AyP9UHY2zMUDZvhVEtaoAEZGjMAjBu1VFpIHhw|86:1355787568522582310|91:2FD469A6-5B4E-44E5-AEFA-09EA78881E88|92:tPLNZiU9AcMk|96:d8a768b2-41a7-4c0e-b6ad-ee3825f789b4|100:b78c8fe6-5a3e-4559-8685-efd2ffe0643f|111:ID5-ZHMONYhgmXtTjuFu22xXwXEUJsGrou1lR-4B0fykFQ|113:RX-26ea3fe3-3258-4851-9c8a-f50ecb6f5a46-005|116:I7I77k5H5Jm-VmtlI2aR|117:577b321fca49059f1a68a9651fa1d5c2|124:a3f1dfe0-6e44-46c0-a086-a219ef4068f5|127:AAmJk07CWqAAAB7NdNzTsg|130:c363c5641e638c696bc684038721f28f34d719fb|133:e27b18fa21c2f7f4884a|134:OB_OK|135:TAM_OK; SESSION=ef256b4791da9513~20a86050-5a03-4184-adb0-d2b132ee2bf8; cto_bundle=kJRDjF9kbTY1bXlNZEp5RTFmJTJCcEtINDhiWVAyelg0OW5kN1JKcDB5M2F2U1RLd3FIQlY5M2U2NG9ndGJnZXNzN2pPaVVaTUVyT0JOQ1IlMkIlMkY5UkZkbjR5bCUyRnppMmNiRlNSTk5aeG9sWUpuWnB6RHFPb0c2NHpUcFN4Vjh6TiUyQjVwT0p1REJCOTUlMkZsVnhkb2dKMmpEZWlMbXJmbWclM0QlM0Q; cookieSearch-1=\"/venta-viviendas/barcelona-barcelona/:1630656805328\"; utag_main=v_id:017ba2260744001af667e0a4e39105069001a06100bd0$_sn:7$_se:2$_ss:0$_st:1630658605676$ses_id:1630656787091%3Bexp-session$_pn:2%3Bexp-session$_prevVtSource:portalSites%3Bexp-1630660387098$_prevVtCampaignCode:%3Bexp-1630660387098$_prevVtDomainReferrer:idealista.com%3Bexp-1630660387098$_prevVtSubdomaninReferrer:www.idealista.com%3Bexp-1630660387098$_prevVtUrlReferrer:https%3A%2F%2Fwww.idealista.com%2F%3Bexp-1630660387098$_prevVtCampaignLinkName:%3Bexp-1630660387098$_prevVtCampaignName:%3Bexp-1630660387098$_prevVtRecommendationId:%3Bexp-1630660387098$_prevCompletePageName:11%3A%3Amapas%3A%3Awww.idealista.com%2Fventa-viviendas%2Fbarcelona-barcelona%2Fmapa%3Bexp-1630660405827$_prevLevel2:11%3Bexp-1630660405827$_prevAdId:undefined%3Bexp-1630660405829$_prevAdOriginTypeRecommended:undefined%3Bexp-1630660387104; vs=33114=4560973; dyncdn=5"
+    browser_cookies+= ";"+str(fresh_data_dome)
+    init_headers.update({"cookie": browser_cookies})
+    
+    ses = requests.Session()
+    
+    cookie_jar = http.cookiejar.MozillaCookieJar('cookiejar.txt')
+    
+    if  os.path.exists('cookiejar.txt'):
+        # Create a new cookies file and set our Session's cookies
+        os.remove(cookiefile)
+        cookie_jar.save()
+        print("creating new CookieJar file..")
+        os.path.join(ROOT_DIR, "cookiejar.txt")      
+       
+    else:
+        print("creating a fresh CookieJar file..")
+        cookie_jar.save()
+        # os.path.join(ROOT_DIR, "cookiejar.txt")
+    
+    #passing the cookies generated from the browser to the session
+    # for cookie_raw in browser_cookies:
+    #     cookie = generate_cookie(cookie_raw)
+        
+    #     cookie_jar.set_cookie(cookie)
+ 
+    ses.cookies = cookie_jar
+    # printLog("SESSION COOKIES FROM BROWSER: ",ses.cookies)
+    # ses.cookies.load(ignore_discard=True)
+    response1 = ses.get(prov_link, headers=init_headers)
+    ses.cookies.save(ignore_discard=False)
+    printLog("response1: ", response1)
+    printLog("response1 Cookies: ", response1.cookies)
+    printLog("response1 Headers: ", response1.headers)
+    # ses.cookies.save(ignore_discard=True)
+    
+    assert (
+        response1.status_code == 200
+    ), "uups.. we are stuck... Repeating the request with new IP"
+     
+    final_headers = init_headers
+
+    
+
+    printLog("We are good to go..")
+     
+    return ses
+
+
+def prepairSearchList(file_name: str):
+    printLog("Prepairing Search Queries..")
+    df_from_csv = pd.read_csv(file_name)
+    search_terms_data = df_from_csv.to_dict("records")
+    sleep(2)
+    assert bool(search_terms_data), "Search List Data is Empty or Not Valid"
+    return search_terms_data
+
+
+# print(headers)
+def prepareInHouseDBs(prop_list):
+    """prepair various variabes for holding our data just before send to the main Database"""
+    for item in prop_list:
+        # printLog(item)
+        if {"country": item["country"]} not in listings_country_table.all():
+            # insert
+            listings_country_table.insert({"country": item["country"]})
+        if {
+            "province": item["province"],
+            "country": item["country"],
+        } not in listings_province_table.all():
+            # insert
+            listings_province_table.insert(
+                {"province": item["province"], "country": item["country"]}
+            )
+        if {
+            "county": item["county"],
+            "province": item["province"],
+        } not in listings_county_table.all():
+            # insert
+            listings_county_table.insert(
+                {"county": item["county"], "province": item["province"]}
+            )
+        if {
+            "municipality": item["municipality"],
+            "county": item["county"],
+        } not in listings_municipality_table.all():
+            # insert
+            listings_municipality_table.insert(
+                {"municipality": item["municipality"], "county": item["county"]}
+            )
+
+        if {
+            "district": item["district"],
+            "municipality": item["municipality"],
+        } not in listings_district_table.all():
+            # insert
+            listings_district_table.insert(
+                {"district": item["district"], "municipality": item["municipality"]}
+            )
+
+
+def getListings(url_terms, myheaders, my_query, ses):
+    """get the search results for the queries"""
+    printLog("getting property listings")
+    # update Cookies
+    # search other
+    if url_terms["keyword"] == "municipality":
+        # get District Links
+        # printLog(url_terms)
+        districtLinks = Utilities.getMunicipalityLinks(
+            search_keyword=url_terms,
+            my_headers=myheaders,
+            my_session=ses,
+            original_query=my_query,
+        )
+        # printLog(districtLinks)
+        for location in districtLinks:
+            printLog("Getting  Properties under: ", location["sub_name"])
+            ses.cookies.load(ignore_discard=True)
+            listing_response = ses.get(location["sub_link"], headers=myheaders)
+            ses.cookies.save(ignore_discard=True)
+            if listing_response.status_code == 200:
+                district_soup = BeautifulSoup(listing_response.text, "html.parser")
+                getPropertyDetails(
+                    myses=ses,
+                    my_soup=district_soup,
+                    sub_link=location,
+                    my_headers=myheaders,
+                )
+                # return soup
+            else:
+                printLog(" Network Request Error.")
+    elif url_terms["keyword"] == "district":
+        properties_links = Utilities.getDisctrictLinks(
+            search_keyword=url_terms, original_query=my_query
+        )
+        for p_link in properties_links:
+            printLog("Getting Properties under: ", p_link["sub_name"])
+            ses.cookies.load(ignore_discard=True)
+            listing_response = ses.get(url_terms["url"], headers=myheaders)
+            ses.cookies.save(ignore_discard=True)
+            # print("LISTING RESPONSE",listing_response)
+            if listing_response.status_code == 200:
+                district_soup = BeautifulSoup(listing_response.text, "html.parser")
+                getPropertyDetails(
+                    myses=ses,
+                    my_soup=district_soup,
+                    sub_link=p_link,
+                    my_headers=myheaders,
+                )
+                # return soup
+            else:
+                printLog("Network Request Error.")
+    elif url_terms["keyword"] == "county":
+        districtLinks = Utilities.getCountyLinks(
+            printLog=printLog,
+            search_keyword=url_terms,
+            my_headers=myheaders,
+            my_session=ses,
+            original_query=my_query,
+        )
+        for location in districtLinks:
+            printLog("Getting  Properties under: ", location["sub_name"])
+            ses.cookies.load(ignore_discard=True)
+            listing_response = ses.get(location["sub_link"], headers=myheaders)
+            ses.cookies.save(ignore_discard=True)
+            if listing_response.status_code == 200:
+                district_soup = BeautifulSoup(listing_response.text, "html.parser")
+                getPropertyDetails(
+                    myses=ses,
+                    my_soup=district_soup,
+                    sub_link=location,
+                    my_headers=myheaders,
+                )
+                # return soup
+            else:
+                printLog("Network Request Error.")
+
+    elif url_terms["keyword"] == "province":
+        districtLinks = Utilities.getProvinceLinks(
+            printLog=printLog,
+            search_keyword=url_terms,
+            my_headers=myheaders,
+            my_session=ses,
+            original_query=my_query,
+        )
+        for location in districtLinks:
+            printLog("Getting  Properties under: ", location["sub_name"])
+            ses.cookies.load(ignore_discard=True)
+            listing_response = ses.get(location["sub_link"], headers=myheaders)
+            ses.cookies.save(ignore_discard=True)
+            if listing_response.status_code == 200:
+                district_soup = BeautifulSoup(listing_response.text, "html.parser")
+                getPropertyDetails(
+                    myses=ses,
+                    my_soup=district_soup,
+                    sub_link=location,
+                    my_headers=myheaders,
+                )
+                # return soup
+            else:
+                printLog("Network Request Error.")
+
+
+def getPropertyDetails(myses, my_soup, sub_link, my_headers):
+    # printLog(my_soup)
+    """Returns Property Details from Listing soup contents
+
+    Args:
+        my_soup ([html]): [parsed html content]
+    """
+    # get Page numbers
+    scripts = my_soup.select("script")
+    pageResults = None
+    for script_tag in scripts:
+        if "var utag_data =" in str(script_tag):
+            pageData = (
+                str(script_tag)
+                .replace("<script>", "")
+                .replace("</script>", "")
+                .replace("var utag_data =", "")
+                .rsplit("var dataLayerContext", 1)[0]
+                .rsplit(";", 1)[0]
+                .strip()
+            )
+            pageData_json = json.loads(pageData)
+            # printLog(pageData_json)
+            pageResults = pageData_json["list"]
+        else:
+            pass
+    totalResults = pageResults["totalResult"]
+    no_of_pages = pageResults["totalPageNumber"]
+    printLog("Total Pages : ", no_of_pages)
+    # current_page_no=int(pageResults["currentPageNumber"])
+    printLog("PROVINCE: ", sub_link["province"])
+    printLog("COUNTY: ", sub_link["county"])
+    printLog("MUNICIPALITY: ", sub_link["municipality"])
+    printLog("DISTRICT: ", sub_link["sub_name"])
+    # loop through the pages and  get listings
+    url = sub_link["sub_link"].rsplit("/", 1)[0]
+    # for page in range(1, int(no_of_pages) + 1):
+    # # for page in range(1, 1 + 1):
+    #     printLog("Working on Page: ", page)
+    #     listings = ""
+    #     if page != 1:
+    #         new_url = url + "/" + "pagina-" + str(page) + ".htm"
+    #         # update the URl Term to reflect the new Link for page 2
+    #         printLog("New URL: ", new_url)
+    #         myses.cookies.load(ignore_discard=True)
+    #         response2 = myses.get(new_url, headers=my_headers)
+    #         myses.cookies.save(ignore_discard=True)
+
+    #         my_soup2 = BeautifulSoup(response2.text, "html.parser")
+    #         listings = my_soup2.find("main", id="main-content").find("section")
+    #     else:
+    #         listings = my_soup.find("main", id="main-content").find("section")
+    mySession =myses.cookies.load(ignore_discard=True)
+    future_session = FuturesSession(session=mySession,executor=ProcessPoolExecutor(max_workers=10))
+    
+    # futures=[]
+    
+    futures=[future_session.get(url + "/pagina-" + str(page) + ".htm", headers= my_headers) for page in range(1, int(no_of_pages) + 1)]
+    printLog("Total Results: ", len(futures))
+    for future in as_completed(futures):
+    
+        printLog("Working on Page: ", futures.index(future))
+        resp = future.result()
+        my_soup2 = BeautifulSoup(resp.text, "html.parser")
+        listings = my_soup2.find("main", id="main-content").find("section")
+        property_list = listings.select("article")
+        property_details = list(map(Utilities.processProperties, property_list))
+        other_details = {
+            "country": sub_link["country"],
+            "province": sub_link["province"],
+            "county": sub_link["county"],
+            "municipality": sub_link["municipality"],
+            "district": sub_link["sub_name"],
+        }
+        clean_listings = list(filter(None, property_details))
+        update_listings = [
+            property.update(other_details) for property in clean_listings
+        ]
+        # printLog("CLean List:", clean_listings)
+        try:
+            listings_properties_table.insert_multiple(clean_listings)
+            prepareInHouseDBs(prop_list=listings_properties_table.all())
+            printLog("page listings collected succesfully..")
+        except:
+            printLog("Cannot insert into inhouse collection db")
+            raise RuntimeError(
+                f"Database insertion Error.. Cannot insert into inhouse collection db"
+            )
+        # Send to  real DB
+        printLog("Moving to the next page/step..")
+        # sleep(randint(5, 15))
+    return
+
+
+def checkIfDuplicates(listOfElems):
+    duplicates = 0
+    """ Check if given list contains any duplicates """
+    setOfElems = []
+    for elem in listOfElems:
+        if elem in setOfElems:
+            duplicates = +1
+
+        else:
+            setOfElems.append(elem)
+    printLog("Duplicates:", duplicates)
+    printLog("Clean List ", len(setOfElems))
+    return
+
+
+if __name__ == "__main__":
+    try:
+        search_terms_data = prepairSearchList(file_name="searchList.csv")
+
+        for query in search_terms_data:
+
+            try:
+                if runCycle == 0:
+                    trial = True
+                    while trial == True:
+                        try:
+                            printLog("Re-connecting Vpn..")
+                            rotate_VPN(vpn_instructions, google_check=1)
+                            sleep(randint(1, 5))
+                            my_ses = prepaireBrowserSession(my_query=query)
+                            trial = False
+                        except (AssertionError):
+                            printLog("Trying again to load the page...:", trial)
+                            trial = True
+                            sleep(2)
+                            printLog("Refreshing this page...")
+
+                queryStartTime = datetime.now()
+                printLog("Query Index: ", int(search_terms_data.index(query)) + 1)
+                search_url = Utilities.processSearchUrl(
+                    printLog=printLog,
+                    my_query=query,
+                    base_url=BASE_URL,
+                    my_headers=final_headers,
+                    my_session=my_ses,
+                )
+                response_soup = getListings(
+                    url_terms=search_url,
+                    myheaders=final_headers,
+                    my_query=query,
+                    ses=my_ses,
+                )
+                # property_details =getPropertyDetails(my_soup=response_soup, getListing_func=getListings, url_dict_terms=search_url,my_headers=headers)
+                # # Commit to Db
+                query_end_time = datetime.now()
+                time_taken_by_query = query_end_time - queryStartTime
+                printLog(
+                    "Time Taken by Query No "
+                    + str(search_terms_data.index(query) + 1)
+                    + ": "
+                    + str(time_taken_by_query)
+                )
+                runCycle += 1
+                printLog("Run Cycle", runCycle)
+
+                if runCycle >= 3:
+                    ses = None
+                    runCycle = 0
+                sleep(randint(200, 600))
+            except (Exception) as err:
+                runCycle = 0
+                ses = None
+
+                printLog(
+                    "Skipping this Query No."
+                    + str(search_terms_data.index(query))
+                    + " with ERROR: ",
+                    err,
+                )
+                printLog(err)
+                pass
+
+        # kill the VPN
+
+        terminate_VPN(vpn_instructions)
+        # print("Am I being called ?")
+        db_country = UpdateDb.commitCountry(country_list=listings_country_table.all())
+        db_province = UpdateDb.commitProvince(
+            province_list=listings_province_table.all()
+        )
+        db_county = UpdateDb.commitCounty(county_list=listings_county_table.all())
+        db_municipality = UpdateDb.commitMunicipality(
+            muni_list=listings_municipality_table.all()
+        )
+        db_district = UpdateDb.commitDistrict(
+            district_list=listings_district_table.all()
+        )
+        db_property = UpdateDb.commitProperties(
+            property_list=listings_properties_table.all()
+        )
+        # all_property_results.append(db_property)
+        # check for Duplicates
+        checkIfDuplicates(listings_properties_table.all())
+        printLog("Database updated Successfully: ")
+
+        end = datetime.now()
+        time_taken = end - overalStartTime
+
+        # processing email body
+        email_subject = (
+            "Data Run Report, " + pendulum.now().format("DD-MM-YYYY") + " Success."
+        )
+        # results_seris_df = pd.DataFrame(all_property_results)
+        results_seris = pd.Series(db_property, name="Results")
+        printLog(results_seris)
+        results_df = (
+            results_seris.to_frame().rename(columns={0: "Results"}).reset_index()
+        ).rename(columns={"index": "Index"})
+
+        html_table_blue_light = build_table(results_df, "blue_light")
+
+        body_template = PageTemplate(email_body_temp)
+
+        email_body = html.unescape(
+            body_template(results=html_table_blue_light, timetaken=str(time_taken))
+        )
+
+        send_mail(
+            send_from=e_from,
+            send_to=send_to_email_list,
+            subject=email_subject,
+            html=email_body,
+            file=log_file_name,
+        )
+    except (Exception) as error:
+        terminate_VPN(vpn_instructions)
+        sleep(randint(1, 5))
+        printLog(error)
+        error_body_template = PageTemplate(email_body_error)
+        email_body = error_body_template(results=error)
+        email_subject = (
+            "Data Run Report, " + pendulum.now().format("DD-MM-YYYY") + " Failure."
+        )
+        send_mail(
+            send_from=e_from,
+            send_to=send_to_email_list,
+            subject=email_subject,
+            html=email_body,
+            file=log_file_name,
+        )
+
+
+end = datetime.now()
+time_taken = end - overalStartTime
+printLog("Time Taken : ", time_taken)
+printLog("bye..")
+terminate_VPN(vpn_instructions)
+# listings_country_table = inhouse_db.table('country')
+# listings_province_table = inhouse_db.table('province')
+# listings_county_table = inhouse_db.table('county')
+# listings_municipality_table = inhouse_db.table('municipality')
+# listings_district_table = inhouse_db.table('district')

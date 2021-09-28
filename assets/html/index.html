@@ -9,6 +9,7 @@
   <!-- Bulma is included -->
   <link rel="stylesheet" href="css/main.min.css">
   <link rel="stylesheet" href="css/custom.css">
+  <!-- <link rel="stylesheet" href="styles.css"> -->
 
   <!-- Fonts -->
   <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -78,13 +79,67 @@
       </div>
     </div>
   </nav>
+  <section class="section is-title-bar">
+    <div class="level top-level mb-0">
+      <div class="level-left">
+        <div class="level-item">
+          <ul>
+            <li>Bet365 Golf Notify</li>
+            <li>Notifications</li>
+            <li id="show-selected-tona" visibility="hidden"></li>
+          </ul>
+        </div>
+        
+      </div>
+      
+    </div>
+    <p id="current-tona-details" > <span id='tona-round' class="px-2"></span> <span id='tona-round-status'  class="px-2"></span><br> <span id='tona-start'  class="px-2"></span><span id='tona-end'  class="px-2"></span></p>
+  </section>
+  <div class="container">
   <aside class="aside is-placed-left is-expanded">
     <div class="aside-tools">
       <div class="aside-tools-label">
         <span><b>Bet365 Golf Notify Me</b></span>
       </div>
+      
     </div>
-    <div class="menu is-menu-main">
+    <p class="menu-label"><b>Dashboard</b></p>
+    <div id="tabs-with-content">
+      <div class="tabs is-large is-boxed">
+              <ul>
+          
+                <li > 
+                <a title="Tournament Notifications" class="is-active router-link-active has-icon">
+                <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
+                <span class="menu-item-label">Notifications</span>
+                </a>
+                </li>
+                <li>
+                  <a  class="has-icon router-link-active " title="All Tournaments in Progress">
+                    <span class="icon"><i class="mdi mdi-golf"></i></span>
+                    <span class="menu-item-label">Tournaments</span>
+                  </a>
+
+                </li>
+                <li> 
+                  <a href="#" title="Current Tournament Players" class="has-icon router-link-active ">
+                    <span class="icon"><i class="mdi mdi-account-group"></i></span>
+                    <span class="menu-item-label">Players</span>
+                  </a>
+
+                </li>
+                <li>
+                  <a  title="About" class="has-icon">
+                    <span class="icon"><i class="mdi mdi-help-circle"></i></span>
+                    <span class="menu-item-label">About</span>
+                  </a>
+
+                </li>
+              </ul>
+      </div>
+
+     </div>
+    <!-- <div class="menu is-menu-main">
       <p class="menu-label">Dashboard</p>
       <ul class="menu-list">
         <li>
@@ -108,67 +163,28 @@
             <span class="menu-item-label">Players</span>
           </a>
         </li>
-        <!-- <li>
-          <a href="profile.html" class="has-icon">
-            <span class="icon"><i class="mdi mdi-account-circle"></i></span>
-            <span class="menu-item-label">Profile</span>
-          </a>
-        </li> -->
-        <!-- <li>
-          <a class="has-icon has-dropdown-icon">
-            <span class="icon"><i class="mdi mdi-view-list"></i></span>
-            <span class="menu-item-label">Submenus</span>
-            <div class="dropdown-icon">
-              <span class="icon"><i class="mdi mdi-plus"></i></span>
-            </div>
-          </a>
-          <ul>
-            <li>
-              <a href="#void">
-                <span>Sub-item One</span>
-              </a>
-            </li>
-            <li>
-              <a href="#void">
-                <span>Sub-item Two</span>
-              </a>
-            </li>
-          </ul>
-        </li> -->
+      
       </ul>
       <p class="menu-label">About</p>
-      <ul class="menu-list">
+      <ul class="menu-list"> -->
         <!-- <li>
           <a href="#" target="_self" class="has-icon">
             <span class="icon"><i class="mdi mdi-credit-card-outline"></i></span>
             <span class="menu-item-label">Premium Demo</span>
           </a>
         </li> -->
-        <li>
+        <!-- <li>
           <a href="about.html" class="has-icon">
             <span class="icon"><i class="mdi mdi-help-circle"></i></span>
             <span class="menu-item-label">About</span>
           </a>
         </li>
       </ul>
-    </div>
+    </div> -->
+     
   </aside>
-  <section class="section is-title-bar">
-    <div class="level top-level mb-0">
-      <div class="level-left">
-        <div class="level-item">
-          <ul>
-            <li>Bet365 Golf Notify</li>
-            <li>Notifications</li>
-            <li id="show-selected-tona" visibility="hidden"></li>
-          </ul>
-        </div>
-        
-      </div>
-      
-    </div>
-    <p id="current-tona-details" > <span id='tona-round' class="px-2"></span> <span id='tona-round-status'  class="px-2"></span><br> <span id='tona-start'  class="px-2"></span><span id='tona-end'  class="px-2"></span></p>
-  </section>
+</div>
+
   <!-- <section class="hero is-hero-bar">
     <div class="hero-body">
       <div class="level">
@@ -184,26 +200,35 @@
     </div>
   </section> -->
   <section class="section is-main-section">
-    <!-- <button onclick="runJsCode()">get js code</button> -->
-    <div class="card has-table">
-      <div class="card-content">
-        <section class="section" id="notify-section">
-        <!-- Html -->
-         
-          <div class="content has-text-grey has-text-centered" id="notification-default" visibility="visible">
-            <p>
-              <span class="icon is-large"><i class="mdi mdi-emoticon-sad mdi-48px"></i></span>
-            </p>
-            <p>Notifications will appear here... <br>
-              Select a Tournament to start Receiving Notifications
-            </p>
+    <div>
+      <section class="tab-content section is-main-section">
+        <div class="card has-table">
+          <div class="card-content">
+            <section class="section" id="notify-section">
+            <!-- Html -->
+             
+              <div class="content has-text-grey has-text-centered" id="notification-default" visibility="visible">
+                <p>
+                  <span class="icon is-large"><i class="mdi mdi-emoticon-sad mdi-48px"></i></span>
+                </p>
+                <p>Notifications will appear here... <br>
+                  Select a Tournament to start Receiving Notifications
+                </p>
+              </div>
+            </section>
           </div>
-        </section>
-      </div>
-    </div>
+        </div>
+
+      </section>
+      <section class="tab-content section is-main-section">Tournaments</section>
+      <section class="tab-content section is-main-section">Players</section>
+      <section class="tab-content section is-main-section">About the App</section>
+      
+  
+  
+  </div>
     
-    
-  </section>
+</section>
   <footer class="footer">
     <div class="container-fluid">
       <div class="level">

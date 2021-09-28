@@ -24,3 +24,36 @@ option{
     height: 5rem;
     width: 3rem;
     }
+
+.tabs:not(:last-child) {
+    margin-bottom: 0;
+    border: 1px solid #DBDBDB
+    }
+    
+.tab-content {
+    padding: 1rem;
+    display: none;
+    
+    }
+    
+.tab-content.is-active {
+    display: block;
+    
+    }
+
+.tabs{
+    float: left;
+}
+.tabs ul{
+    -webkit-flex-direction: column;
+    flex-direction: column;
+}
+
+.tabs ul {
+    align-items: flex-start;
+}
+
+.tabs li a{
+    color: white;
+    
+    }
