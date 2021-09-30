@@ -341,10 +341,10 @@ class Ws_Helpers:
         team_id =globallbd_json['id']
         if active_holes_table.search(UserQuery.id ==team_id ):
             active_holes_table.update({"activeHole": globallbd_json["activeHole"]}, UserQuery.id ==team_id)
-            print("Active Hole Updated :", globallbd_json['id'])
+            # print("Active Hole Updated :", globallbd_json['id'])
         else:
             active_holes_table.insert({"id":globallbd_json['id'],"activeHole": globallbd_json["activeHole"]})
-            print("Active Hole Inserted :",globallbd_json['id'] )
+            # print("Active Hole Inserted :",globallbd_json['id'] )
         
         return
         
@@ -432,6 +432,41 @@ class Ws_Helpers:
                 console.log("Appended Notifications to Frontend..");
             """
         )
+    @staticmethod
+    def notificationsWaterPenalty(message: dict):
+        # text_parag_tag.innerHTML =message['time'] +": " + message['last_name'] +" "+message['first_name'] +"<br>"+ "SHOT "+message['shot'] +"STATUS :"+message['status']
+        # +" "+ "Distance :"+ message['distance'] +"<br>" +" Surface :"+message['surface']
+        # print(webview.windows[0])
+        # print("Sending to Frontend python function")
+        # notify_section.addEventListener("change", makeLight, false);
+        webview.windows[0].evaluate_js(
+            f"""
+                var notify_section = document.getElementById('notify-section');
+                var default_tag = document.getElementById('notification-default');
+                default_tag.style.display = "none";
+
+                let notification_div = document.createElement('div');
+                notification_div.classList.add("notification","is-danger");
+                var notify_btn_el =document.createElement('button');
+                notify_btn_el.classList.add("delete");
+                
+                var content_div =document.createElement("div");
+                content_div.classList.add("content", "is-normal");
+                
+                var text_parag_tag =document.createElement("p");
+                
+                text_parag_tag.innerHTML ="{message['time']} : "+ "<b> STATUS : "+ "{message['status'] } </b>" +"<br>" +"<b> {message['last_name']} " + " {message['first_name']} </b>"  +"<br>"+ "<b>Hole No: </b>"+ " {message['activeHole']}"  + "<b>"+"  SHOT: " +"</b>"+ " {message['shot']}" +"<b> PAR :"+" {message['hole_par']} </b>" ;
+                
+                content_div.appendChild(text_parag_tag);
+                
+                notification_div.appendChild(notify_btn_el);
+                notification_div.appendChild(content_div);
+                notify_section.prepend(notification_div);
+                notify_section.addEventListener("change", makeLight, false);
+                addClickEventToNotifications();
+                console.log("Appended Notifications to Frontend..");
+            """
+        )
 
     @staticmethod
     def holed(message: dict):
@@ -465,7 +500,7 @@ class Ws_Helpers:
                 var span_icon_tag =document.createElement("span");
                 var icon_tag =document.createElement("i");
                 
-                span_icon_tag.classList.add("icon", "is-large","holed");
+                span_icon_tag.classList.add("icon","holed");
                 icon_tag.classList.add("mdi", "mdi-golf","mdi-48px");
                 
                 span_icon_tag.appendChild(icon_tag);
@@ -515,6 +550,7 @@ class Ws_Helpers:
             ##---------------------------------------------------------------
             # FILTER messages for HOLED Notifications
             # print("received_msg_json_ID", received_msg_json["id"])
+            player_team_id = received_msg_json["id"]
             player_active_hole =""
             hole_par =""
             holedStatus =""
@@ -531,7 +567,7 @@ class Ws_Helpers:
                 hole_par ="N/A"
             if received_msg_json["status"] == "holed" :
                 # print("RECEIVED JSON: ",received_msg_json)
-                player_team_id = received_msg_json["id"]
+                # player_team_id = received_msg_json["id"]
                 player = tournament_players_table.search(
                     Query()["team_id"] == player_team_id
                 )[0]
@@ -566,16 +602,15 @@ class Ws_Helpers:
             ## FILTER messages for BALL GOES Into WAter
             # l-lbd-p-358-2/shotlbd/1630686084/{"id":11,"shot":2,"status":"approach","surface":"OFW","distance":276.768860892705,"provider":"dde","receivedTime":1630686084050,"createdTime":1630686083000}
             elif (
-                received_msg_json["surface"] == "OWA"
+                received_msg_json["surface"] == "OWA" and received_msg_json["status"] =="lie"
             ):
 
-                player_team_id = received_msg_json["id"]
+                # player_team_id = received_msg_json["id"]
                 # print("PLAYER TEAM ID :", player_team_id)
                 player = tournament_players_table.search(
                     Query()["team_id"] == player_team_id
-                )[
-                    0
-                ]  # Should return only 1 player in a List
+                )[0]  
+                # Should return only 1 player in a List
                 # print("PLAYER Found: ", player)
                 # {'team_id': 4, 'player_id': 3434, 'first_name': 'Brian', 'last_name': 'Stuard', 'player_country': 'USA'}
                 timestamp = datetime.fromtimestamp(
@@ -594,14 +629,16 @@ class Ws_Helpers:
                 
                 print("Front-End Notified...")
                 # post to Frontend API
-                return myclass.postNotifications(notify_message)
-            
+                return myclass.notificationsWaterPenalty(notify_message)
+            elif received_msg_json["status"] =="penalty":
+                surface =received_msg_json["surface"]
+                shotstatus ="Penalty on "+surface
             elif (
                 received_msg_json["surface"] == "OGR" and received_msg_json['status']=="lie"
             ):
                 if (int(hole_par)-received_msg_json["shot"]) ==2:
-                    shotstatus ="GREEN "+"2shots Less PAR."
-                    player_team_id = received_msg_json["id"]
+                    shotstatus ="OGR in 2 shots less than Par"
+                    # player_team_id = received_msg_json["id"]
                     # print("PLAYER TEAM ID :", player_team_id)
                     player = tournament_players_table.search(
                         Query()["team_id"] == player_team_id
@@ -728,7 +765,7 @@ class Ws_Helpers:
         else:
             # pass
             print("Payload passed")
-            # print(payload)
+            print(payload)
 
     @staticmethod
     def on_error(ws, error):
