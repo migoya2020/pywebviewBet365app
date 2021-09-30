@@ -137,10 +137,17 @@ function loadTournaments() {
             showCurrentTournaments(response)
             // console.log(response)
             });
+
+          // Load Tournament Tables as well
+
             
         
     }
     
+function showTournamentTable(tona_html){
+    var ton_div = document.getElementById('tonas_table')
+    ton_div.outerText = tona_html
+}
     
 // function postNotifications(message){
 //     var notify_section = document.getElementById('notify-section')

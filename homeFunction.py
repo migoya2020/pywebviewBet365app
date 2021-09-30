@@ -23,7 +23,7 @@ class HomeFunctions:
             return response
         except:
             return {"message": 'undefined'}
-                 
+    
     def setCurrentTonamentToDb(self, tona_id):
         current_subscribed_tona=None
         try:

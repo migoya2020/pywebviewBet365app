@@ -16,8 +16,8 @@ import webview
 import shutil
 import sys
 import glob
-
-
+from prettytable import PrettyTable
+import html
 target_tona_id = None
 tona_id = ""
 course_id =""
@@ -37,6 +37,7 @@ course_id =""
 
 ROOT_DIR = os.path.abspath(os.curdir)
 
+pt = PrettyTable()
 
 MYDIR = "assets/data"
 CHECK_FOLDER = os.path.isdir(MYDIR)
@@ -111,9 +112,18 @@ class Ws_Helpers:
             if tona["tona_id"] == tona_id:
                 # print("SELECTED TONNAA: ", tona)
                 return tona
-            
-    # @staticmethod
-
+               
+    @staticmethod
+    def printTournamentTable(tona_list):
+        pt.field_names = ["Tona Id", "Name", "Tona Round", "Status", "Course Id", "Start", "End"]
+        assert len(tona_list), "Tonament List is Empy"
+        for item in tona_list:
+            raw_item =[item["tona_id"], item['name'], item['tona_round'], item['tona_round_status'], item['course_id'], item['start_time'], item['end_time']]
+            pt.add_row(raw_item)
+        hTmlTable =pt.get_html_string()
+        encoded_html_table = html.unescape(hTmlTable)
+        return encoded_html_table
+    
     @staticmethod
     def parseSSCP(sscp):
         data = {"channel": 0, "klass": "", "sent_at": 0, "body": []}
@@ -138,6 +148,7 @@ class Ws_Helpers:
     # Tournament details
     @staticmethod
     def tournamentDetails(rx_payload: str):
+        myclass = Ws_Helpers()
         assert (
             rx_payload is not None
         ), "## Error, Check internet Connection or Check if Tounament Data is Available and try again"
@@ -184,6 +195,11 @@ class Ws_Helpers:
             print("Response..")
             response = tournament_ids_table.all()
             print("Tonas Added to Db")
+            tonament_html_table =myclass.printTournamentTable(tona_list=tournament_ids_table.all())
+            # print(str(tonament_html_table))
+            webview.windows[0].evaluate_js(
+                f"""showTournamentTable("{tonament_html_table}")
+                                           """)
             return response
         else:
             print("No tournaments found")
@@ -360,15 +376,18 @@ class Ws_Helpers:
     @staticmethod
     def initializeActiveHoles(payload_msg):
         UserQuery =Query()
-        orderlbd_splitText =payload_msg.split("{", 1)[0].strip()
-        # print("orderlbd_splitText",orderlbd_splitText)
+        shotlbd_splitText =payload_msg.split("{", 1)[0].strip()
+        # print("shotlbd_splitText",shotlbd_splitText)
         globallbd_splitText =payload_msg.split("activeHole",1)[0].rsplit("{",1)[0].rsplit("}",1)[1].strip()
-        shotlbd_splitText =orderlbd_splitText.replace("orderlbd", 'shotlbd')
         # print("globallbd_splitText",globallbd_splitText)
-        mainText =payload_msg.rsplit("}",1)[0].split("/",3)[3].replace(orderlbd_splitText,",").replace(globallbd_splitText,",").replace(shotlbd_splitText, ",").strip()+"}"
+        orderlbd_splitText =shotlbd_splitText.replace('shotlbd',"orderlbd")
+        # print("orderlbd_splitText",orderlbd_splitText)
+        mainText =payload_msg.rsplit("}",1)[0].split("/",3)[3].replace(str(orderlbd_splitText),",").replace(str(globallbd_splitText),",").replace(str(shotlbd_splitText), ",").strip()+"}"
+        # print("mainText: ", mainText)
         clean_msg = "".join(filter(lambda x: x in string.printable,mainText))
-      
+        # print("Clean: ", clean_msg)
         mainText_list_json = json.loads("["+clean_msg+"]")
+        # print("mainText_list_json: ", mainText_list_json)
         # if active_holes_table.search(UserQuery.id ==team_id ):
         #     active_holes_table.update({"activeHole": globallbd_json["activeHole"]}, UserQuery.id ==team_id)
         #     # print("activeHole Updated :", globallbd_json['id'])
@@ -377,6 +396,7 @@ class Ws_Helpers:
         #     # print("ACTIVE HOLES INSERTED :",globallbd_json['id'] )
         active_Hol =[active_holes_table.insert({"id":item['id'],"activeHole": item["activeHole"]}) for item in mainText_list_json if  'activeHole' in item]
         print("Initial Active Holes added", len(active_Hol))
+       
     @staticmethod
     def postNotifications(message: dict):
         # text_parag_tag.innerHTML =message['time'] +": " + message['last_name'] +" "+message['first_name'] +"<br>"+ "SHOT "+message['shot'] +"STATUS :"+message['status']
@@ -396,7 +416,7 @@ class Ws_Helpers:
                 notify_btn_el.classList.add("delete");
                 
                 var content_div =document.createElement("div");
-                content_div.classList.add("content", "is-large");
+                content_div.classList.add("content", "is-normal");
                 
                 var text_parag_tag =document.createElement("p");
                 
@@ -455,7 +475,7 @@ class Ws_Helpers:
                 mediacontent_div.classList.add("media-content");
                 
                 var content_div =document.createElement("div");
-                content_div.classList.add("content", "is-large");
+                content_div.classList.add("content", "is-normal");
                 
                 var text_parag_tag =document.createElement("p");
  
@@ -491,32 +511,37 @@ class Ws_Helpers:
             # print("CLEAN: ", clean_msg)
             received_msg_json = json.loads(clean_msg)
             # l-lbd-p-282-3/shotlbd/1628968448/{"id":122,"shot":3,"status":"hit","surface":"OGR","distance":1.067,"provider":"dde","receivedTime":1628968448574,"createdTime":1628968447780}
-
+            # print("received_msg_json: ",received_msg_json)
             ##---------------------------------------------------------------
             # FILTER messages for HOLED Notifications
+            # print("received_msg_json_ID", received_msg_json["id"])
             player_active_hole =""
             hole_par =""
             holedStatus =""
             shotstatus =""
             try:
-                active_holes_table.search(Query()["id"] ==received_msg_json["id"])[0]
-                player_active_hole =active_holes_table.search(Query()["id"] ==received_msg_json["id"])[0]["activeHole"]
-                hole_par =holes_par.search(Query()["hole"]==player_active_hole)[0]["par"]
+                active_hole_query =Query()
+                active_hole = active_holes_table.search(active_hole_query.id ==received_msg_json["id"])[0]
+                # print("ACTIVE HOLE FROM DB:", active_hole)
+                player_active_hole =active_holes_table.search(active_hole_query.id ==received_msg_json["id"])[0]["activeHole"]
+                hole_par =holes_par.search(active_hole_query.hole==player_active_hole)[0]["par"]
+                # print("HOLE PAR:" , hole_par)
             except:
                 player_active_hole="N/A"
                 hole_par ="N/A"
             if received_msg_json["status"] == "holed" :
+                # print("RECEIVED JSON: ",received_msg_json)
                 player_team_id = received_msg_json["id"]
                 player = tournament_players_table.search(
                     Query()["team_id"] == player_team_id
                 )[0]
-                if received_msg_json["shot"] < hole_par:
-                    difference =hole_par -received_msg_json["shot"]
+                if received_msg_json["shot"] < int(hole_par):
+                    difference =int(hole_par) -received_msg_json["shot"]
                     holedStatus ="HOLED "+ str(difference)+" Below PAR."
-                elif received_msg_json["shot"] > hole_par:
-                    difference =received_msg_json["shot"] -hole_par
+                elif received_msg_json["shot"] > int(hole_par):
+                    difference =received_msg_json["shot"]-int(hole_par)
                     holedStatus = "HOLED "+ str(difference)+" Above PAR."
-                elif received_msg_json["shot"] == hole_par:
+                elif received_msg_json["shot"] == int(hole_par):
                     # difference =received_msg_json["shot"] -hole_par
                     holedStatus = "HOLED"+" At PAR."
                     
@@ -574,7 +599,7 @@ class Ws_Helpers:
             elif (
                 received_msg_json["surface"] == "OGR" and received_msg_json['status']=="lie"
             ):
-                if (hole_par-received_msg_json["shot"]) ==2:
+                if (int(hole_par)-received_msg_json["shot"]) ==2:
                     shotstatus ="GREEN "+"2shots Less PAR."
                     player_team_id = received_msg_json["id"]
                     # print("PLAYER TEAM ID :", player_team_id)
@@ -611,7 +636,7 @@ class Ws_Helpers:
             #     pass
         except (Exception) as err:
             print("Front end NOT Notified... ERROR: ", err)
-            # print("Payload : ", payload)
+            print("Payload : ", payload)
             print(err)
             pass
 
@@ -664,8 +689,9 @@ class Ws_Helpers:
             myclass.subscribeToLeaderboard(ws, tona_id, course_id)
         
         
-        elif  str(payload).startswith("l-lbd-"+tona_id+"-"+str(myclass.getSelectedTonaRound(tona_id=tona_id))+"/orderlbd/")and "/globallbd/" in payload:
+        elif  str(payload).startswith("l-lbd-"+tona_id+"-"+str(myclass.getSelectedTonaRound(tona_id=tona_id))+"/shotlbd/")and "/globallbd/" in payload:
             print("Initializing Active holes..")
+            # print(payload)
             myclass.initializeActiveHoles(payload_msg=payload)
 
         elif "l-t-" + tona_id + "/team/" and "players" in payload:
