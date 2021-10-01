@@ -131,7 +131,31 @@ function addClickEventToNotifications(){
         });
     }
 
+function addClickEventToTable(){
+  var table = document.getElementById("tona_palyers_table");
+  var rows = table.querySelectorAll("tr");
+  rows.forEach(row => {
+    
+    row.addEventListener('click', () => {
+      
+      var id_cell = row.getElementsByTagName("td")[0];
+      var player_id = id_cell.innerHTML;
+      pywebview.api.addRemovePlayerFromNotifications(player_id).then(function(response) {
+        
+        console.log(response)
+        row.classList.toggle('is-selected');
+        }); 
+    });
+  });
+  }
  
+
+// function notifyPlayerId(response) {
+//     // var pop_up_box =document.getElementById("tona_palyers_table");
+//     console.log(response.message)
+    
+//    }
+
 function loadTournaments() {
         pywebview.api.showTournamentsOnFrontend().then(function(response) {
             showCurrentTournaments(response)
@@ -143,12 +167,29 @@ function loadTournaments() {
             
         
     }
-    
+
+  //   function escapeHTML(html) {
+  //     return document.createElement('div').appendChild(document.createTextNode(html)).parentNode.innerHTML;
+  // } 
 function showTournamentTable(tona_html){
-    var ton_div = document.getElementById('tonas_table')
-    ton_div.outerText = tona_html
+    var parser = new DOMParser;
+    var table_dom = parser.parseFromString(tona_html,'text/html');
+    var decodedString = table_dom.body.textContent;
+    var ton_div = document.getElementById('tonas_table');
+    ton_div.innerHTML= decodedString;
 }
-    
+
+function showTonaPlayersTable(players_html_table){
+  var parser = new DOMParser;
+  var table_dom = parser.parseFromString(players_html_table,'text/html');
+  var decodedString = table_dom.body.textContent;
+  var ton_div = document.getElementById('tona_palyers_table');
+  ton_div.innerHTML= decodedString;
+  
+  addClickEventToTable()
+}
+
+
 // function postNotifications(message){
 //     var notify_section = document.getElementById('notify-section')
 //     // create notification element

@@ -57,3 +57,23 @@ option{
     color: white;
     
     }
+table th {
+        color: #363636;
+      }
+
+#tona_palyers_table tr:hover{
+    cursor: pointer;
+}
+.table tr.is-selected {
+background-color: #00d1b2;
+color: #fff;
+font-weight:bold;
+}
+
+/* #player_id_pop_up{
+    width: 100px;
+    height: 100px;
+    background: #ffb;
+    padding: 10px;
+    border: 2px solid #999;
+   } */

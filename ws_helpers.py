@@ -37,7 +37,8 @@ course_id =""
 
 ROOT_DIR = os.path.abspath(os.curdir)
 
-pt = PrettyTable()
+pt = PrettyTable(border=True,padding_width=3)
+players_table=PrettyTable(border=True,padding_width=3)
 
 MYDIR = "assets/data"
 CHECK_FOLDER = os.path.isdir(MYDIR)
@@ -85,7 +86,7 @@ group_table =inhouse_db.table("groups")
 holes_and_distance =inhouse_db.table("holes_distance")
 holes_par =inhouse_db.table('holes_par')
 active_holes_table =inhouse_db.table("active_holes")
-
+removed_payers_table=inhouse_db.table("removed_payers")
 class Ws_Helpers:
     #    def __init__(self):
     #        print("lets go..")
@@ -115,14 +116,27 @@ class Ws_Helpers:
                
     @staticmethod
     def printTournamentTable(tona_list):
-        pt.field_names = ["Tona Id", "Name", "Tona Round", "Status", "Course Id", "Start", "End"]
-        assert len(tona_list), "Tonament List is Empy"
+        pt.field_names = ["Id", "Name", "Round", "Status","Start", "End"]
+        assert len(tona_list), "Tonament List is Empty"
         for item in tona_list:
-            raw_item =[item["tona_id"], item['name'], item['tona_round'], item['tona_round_status'], item['course_id'], item['start_time'], item['end_time']]
+            raw_item =[item["tona_id"], item['name'], item['tona_round'], item['tona_round_status'],item['start_time'], item['end_time']]
             pt.add_row(raw_item)
-        hTmlTable =pt.get_html_string()
-        encoded_html_table = html.unescape(hTmlTable)
-        return encoded_html_table
+        hTmlTable =pt.get_html_string(attributes={"id":"tonas_table", "class":"table is-bordered is-striped is-narrow is-hoverable is-fullwidth"})
+        encoded_html_table = str(html.escape(hTmlTable)).split()
+        clean_table = " ".join(encoded_html_table) 
+        return clean_table
+    
+    @staticmethod
+    def printPlayersTable(players_list):
+        players_table.field_names = ["team_id", "Last Name","First Name", "Country"]
+        assert len(players_list), "Players List is Empy"
+        for item in players_list:
+            raw_item =[item["team_id"], item["last_name"].upper(), item["first_name"], item["player_country"]]
+            players_table.add_row(raw_item)
+        hTmlTable =players_table.get_html_string(sortby="Last Name", attributes={"id":"players_table", "class":"table is-bordered is-striped is-narrow is-hoverable"})
+        encoded_html_table = str(html.escape(hTmlTable)).split()
+        clean_players_table = " ".join(encoded_html_table) 
+        return clean_players_table
     
     @staticmethod
     def parseSSCP(sscp):
@@ -195,11 +209,12 @@ class Ws_Helpers:
             print("Response..")
             response = tournament_ids_table.all()
             print("Tonas Added to Db")
-            tonament_html_table =myclass.printTournamentTable(tona_list=tournament_ids_table.all())
-            # print(str(tonament_html_table))
+            tonament_html_table = myclass.printTournamentTable(tona_list=tournament_ids_table.all())
+            # print(tonament_html_table)
             webview.windows[0].evaluate_js(
-                f"""showTournamentTable("{tonament_html_table}")
-                                           """)
+                f"""
+               showTournamentTable("{tonament_html_table}");         
+                """)
             return response
         else:
             print("No tournaments found")
@@ -207,34 +222,23 @@ class Ws_Helpers:
 
     @staticmethod
     def processTournamentPlayers(message: str):
+        myclass = Ws_Helpers()
         splitString = message.split("{", 1)[0].strip()
         players_dirty = message.split("/", 3)[3].rsplit("l-t", 1)[0].strip()
         players_clean = "".join(filter(lambda x: x in printable, players_dirty))
         players_list = players_clean.split(splitString)
         print("Total tournament Players:", len(players_list))
-        # for player in players_list:
-        #     # print(player)
-        #     playerJson = json.loads(player)
-        #     team_id = playerJson["id"]
-        #     player_id = playerJson["players"][0]["id"]
-        #     first_name = playerJson["players"][0]["name"][0]
-        #     last_name = playerJson["players"][0]["name"][1]
-        #     player_country = playerJson["players"][0]["country"]
-            
-        #     tournament_players_table.insert(
-        #         {
-        #             "team_id": int(team_id),
-        #             "player_id": int(player_id),
-        #             "first_name": first_name,
-        #             "last_name": last_name,
-        #             "player_country": player_country,
-        #         }
-        #     )
+        
         players_name_coutries_list =[{"team_id": int(json.loads(player)["id"]),"player_id": int(json.loads(player)["players"][0]["id"]),"first_name": json.loads(player)["players"][0]["name"][0], "last_name": json.loads(player)["players"][0]["name"][1],"player_country": json.loads(player)["players"][0]["country"]} for player in players_list]
         tournament_players_table.insert_multiple(players_name_coutries_list)   
-            
-            # ws_tournament_players.append({"team_id": int(team_id), "player_id": int(player_id), "first_name": first_name, "last_name": last_name, "player_country": player_country})
+        # print(tournament_players_table.all())
+        players_html_table=myclass.printPlayersTable(players_list=tournament_players_table.all())
         print("Done Processing players: --D")
+        # print(players_html_table)
+        webview.windows[0].evaluate_js(
+            f"""
+            showTonaPlayersTable("{players_html_table}");         
+            """)
 
     @staticmethod
     def subscribeToLeaderboard(ws, tona_id, course_id):
@@ -538,107 +542,75 @@ class Ws_Helpers:
         ############################################################
         # payload = """l-lbd-p-282-3/shotlbd/1628968448/{"id":122,"shot":3,"status":"approach","surface":"OGR","distance":1.067,"provider":"dde","receivedTime":1628968448574,"createdTime":1628968447780}"""
         ##########################################################################################################
-        myclass = Ws_Helpers()
-        try:
-            received_msg = payload.rsplit("/", 1)[1].strip()
-            clean_msg = "".join(filter(lambda x: x in string.printable, received_msg))
-
-            # print("CLEAN: ", clean_msg)
-            received_msg_json = json.loads(clean_msg)
-            # l-lbd-p-282-3/shotlbd/1628968448/{"id":122,"shot":3,"status":"hit","surface":"OGR","distance":1.067,"provider":"dde","receivedTime":1628968448574,"createdTime":1628968447780}
-            # print("received_msg_json: ",received_msg_json)
-            ##---------------------------------------------------------------
-            # FILTER messages for HOLED Notifications
-            # print("received_msg_json_ID", received_msg_json["id"])
-            player_team_id = received_msg_json["id"]
-            player_active_hole =""
-            hole_par =""
-            holedStatus =""
-            shotstatus =""
+        myclass = Ws_Helpers()      
+        received_msg = payload.rsplit("/", 1)[1].strip()
+        clean_msg = "".join(filter(lambda x: x in string.printable, received_msg))
+        # print("CLEAN: ", clean_msg)
+        received_msg_json = json.loads(clean_msg)
+        player_team_id = received_msg_json["id"]
+        #Chek if ID is in X-unwanted notifications table
+        if not removed_payers_table.contains(Query().team_id ==player_team_id):
             try:
-                active_hole_query =Query()
-                active_hole = active_holes_table.search(active_hole_query.id ==received_msg_json["id"])[0]
-                # print("ACTIVE HOLE FROM DB:", active_hole)
-                player_active_hole =active_holes_table.search(active_hole_query.id ==received_msg_json["id"])[0]["activeHole"]
-                hole_par =holes_par.search(active_hole_query.hole==player_active_hole)[0]["par"]
-                # print("HOLE PAR:" , hole_par)
-            except:
-                player_active_hole="N/A"
-                hole_par ="N/A"
-            if received_msg_json["status"] == "holed" :
-                # print("RECEIVED JSON: ",received_msg_json)
-                # player_team_id = received_msg_json["id"]
-                player = tournament_players_table.search(
-                    Query()["team_id"] == player_team_id
-                )[0]
-                if received_msg_json["shot"] < int(hole_par):
-                    difference =int(hole_par) -received_msg_json["shot"]
-                    holedStatus ="HOLED "+ str(difference)+" Below PAR."
-                elif received_msg_json["shot"] > int(hole_par):
-                    difference =received_msg_json["shot"]-int(hole_par)
-                    holedStatus = "HOLED "+ str(difference)+" Above PAR."
-                elif received_msg_json["shot"] == int(hole_par):
-                    # difference =received_msg_json["shot"] -hole_par
-                    holedStatus = "HOLED"+" At PAR."
-                    
-                    
-                timestamp = datetime.fromtimestamp(
-                    received_msg_json["receivedTime"] / 1000.0
-                ).strftime("%Y-%m-%d %H:%M:%S")
-                notify_message = {
-                    "first_name": player["first_name"],
-                    "last_name": player["last_name"].upper(),
-                    'activeHole':player_active_hole,
-                    "shot": str(received_msg_json["shot"]),
-                    "status": holedStatus,
-                    "hole_par": str(hole_par),
-                    "time": timestamp,
-                }
-                print("Front-End Notified...")
-                # post to Frontend API
-                return myclass.holed(notify_message)
-            
-            ##-------------------------------------------------------------------------
-            ## FILTER messages for BALL GOES Into WAter
-            # l-lbd-p-358-2/shotlbd/1630686084/{"id":11,"shot":2,"status":"approach","surface":"OFW","distance":276.768860892705,"provider":"dde","receivedTime":1630686084050,"createdTime":1630686083000}
-            elif (
-                received_msg_json["surface"] == "OWA" and received_msg_json["status"] =="lie"
-            ):
-
-                # player_team_id = received_msg_json["id"]
-                # print("PLAYER TEAM ID :", player_team_id)
-                player = tournament_players_table.search(
-                    Query()["team_id"] == player_team_id
-                )[0]  
-                # Should return only 1 player in a List
-                # print("PLAYER Found: ", player)
-                # {'team_id': 4, 'player_id': 3434, 'first_name': 'Brian', 'last_name': 'Stuard', 'player_country': 'USA'}
-                timestamp = datetime.fromtimestamp(
-                    received_msg_json["receivedTime"] / 1000.0
-                ).strftime("%Y-%m-%d %H:%M:%S")
-                notify_message = {
-                    "first_name": player["first_name"],
-                    "last_name": player["last_name"].upper(),
-                    "shot": str(received_msg_json["shot"]),
-                    "status": "IN WATER",
-                    # "surface": received_msg_json["surface"],
-                    "hole_par": str(hole_par),
-                    "activeHole": player_active_hole,
-                    "time": timestamp,
-                }
+                # l-lbd-p-282-3/shotlbd/1628968448/{"id":122,"shot":3,"status":"hit","surface":"OGR","distance":1.067,"provider":"dde","receivedTime":1628968448574,"createdTime":1628968447780}
+                # print("received_msg_json: ",received_msg_json)
+                ##---------------------------------------------------------------
+                # FILTER messages for HOLED Notifications
+                # print("received_msg_json_ID", received_msg_json["id"])
+                player_active_hole =""
+                hole_par =""
+                holedStatus =""
+                shotstatus =""
+                try:
+                    active_hole_query =Query()
+                    active_hole = active_holes_table.search(active_hole_query.id ==received_msg_json["id"])[0]
+                    # print("ACTIVE HOLE FROM DB:", active_hole)
+                    player_active_hole =active_holes_table.search(active_hole_query.id ==received_msg_json["id"])[0]["activeHole"]
+                    hole_par =holes_par.search(active_hole_query.hole==player_active_hole)[0]["par"]
+                    # print("HOLE PAR:" , hole_par)
+                except:
+                    player_active_hole="N/A"
+                    hole_par ="N/A"
+                if received_msg_json["status"] == "holed" :
+                    # print("RECEIVED JSON: ",received_msg_json)
+                    player_team_id = received_msg_json["id"]
+                    player = tournament_players_table.search(
+                        Query()["team_id"] == player_team_id
+                    )[0]
+                    if received_msg_json["shot"] < int(hole_par):
+                        difference =int(hole_par) -received_msg_json["shot"]
+                        holedStatus ="HOLED "+ str(difference)+" Below PAR."
+                    elif received_msg_json["shot"] > int(hole_par):
+                        difference =received_msg_json["shot"]-int(hole_par)
+                        holedStatus = "HOLED "+ str(difference)+" Above PAR."
+                    elif received_msg_json["shot"] == int(hole_par):
+                        # difference =received_msg_json["shot"] -hole_par
+                        holedStatus = "HOLED"+" At PAR."
+                        
+                        
+                    timestamp = datetime.fromtimestamp(
+                        received_msg_json["receivedTime"] / 1000.0
+                    ).strftime("%Y-%m-%d %H:%M:%S")
+                    notify_message = {
+                        "first_name": player["first_name"],
+                        "last_name": player["last_name"].upper(),
+                        'activeHole':player_active_hole,
+                        "shot": str(received_msg_json["shot"]),
+                        "status": holedStatus,
+                        "hole_par": str(hole_par),
+                        "time": timestamp,
+                    }
+                    print("Front-End Notified...")
+                    # post to Frontend API
+                    return myclass.holed(notify_message)
                 
-                print("Front-End Notified...")
-                # post to Frontend API
-                return myclass.notificationsWaterPenalty(notify_message)
-            elif received_msg_json["status"] =="penalty":
-                surface =received_msg_json["surface"]
-                shotstatus ="Penalty on "+surface
-            elif (
-                received_msg_json["surface"] == "OGR" and received_msg_json['status']=="lie"
-            ):
-                if (int(hole_par)-received_msg_json["shot"]) ==2:
-                    shotstatus ="OGR in 2 shots less than Par"
-                    # player_team_id = received_msg_json["id"]
+                ##-------------------------------------------------------------------------
+                ## FILTER messages for BALL GOES Into WAter
+                # l-lbd-p-358-2/shotlbd/1630686084/{"id":11,"shot":2,"status":"approach","surface":"OFW","distance":276.768860892705,"provider":"dde","receivedTime":1630686084050,"createdTime":1630686083000}
+                elif (
+                    received_msg_json["surface"] == "OWA" and received_msg_json["status"] =="lie"
+                ):
+
+                    player_team_id = received_msg_json["id"]
                     # print("PLAYER TEAM ID :", player_team_id)
                     player = tournament_players_table.search(
                         Query()["team_id"] == player_team_id
@@ -654,8 +626,8 @@ class Ws_Helpers:
                         "first_name": player["first_name"],
                         "last_name": player["last_name"].upper(),
                         "shot": str(received_msg_json["shot"]),
-                        "status": shotstatus,
-                         
+                        "status": "IN WATER",
+                        # "surface": received_msg_json["surface"],
                         "hole_par": str(hole_par),
                         "activeHole": player_active_hole,
                         "time": timestamp,
@@ -663,19 +635,73 @@ class Ws_Helpers:
                     
                     print("Front-End Notified...")
                     # post to Frontend API
-                    return myclass.postNotifications(notify_message)
-                else:
-                    pass
-            
-            ##-------------------------------------------------------------------------
-            ## FILTER messages for  
-            # elif received_msg_json["shot"] == None:
-            #     pass
-        except (Exception) as err:
-            print("Front end NOT Notified... ERROR: ", err)
-            print("Payload : ", payload)
-            print(err)
-            pass
+                    return myclass.notificationsWaterPenalty(notify_message)
+                
+                elif received_msg_json["status"] =="penalty":
+                    player_team_id = received_msg_json["id"]
+                    player = tournament_players_table.search(Query()["team_id"] == player_team_id)[0]
+                    print("PLAYER: ", player)
+                    timestamp = datetime.fromtimestamp(
+                            received_msg_json["receivedTime"] / 1000.0
+                        ).strftime("%Y-%m-%d %H:%M:%S")
+                    surface =received_msg_json["surface"]
+                    shotstatus ="Penalty on "+surface
+                    notify_message = {
+                            "first_name": player["first_name"],
+                            "last_name": player["last_name"].upper(),
+                            "shot": str(received_msg_json["shot"]),
+                            "status": shotstatus,
+                            
+                            "hole_par": str(hole_par),
+                            "activeHole": player_active_hole,
+                            "time": timestamp,
+                        }
+                    print("Front-End Notified...")
+                    return myclass.notificationsWaterPenalty(notify_message)
+                    
+                elif (
+                    received_msg_json["surface"] == "OGR" and received_msg_json['status']=="lie"
+                ):
+                    if (int(hole_par)-received_msg_json["shot"]) ==2:
+                        shotstatus ="OGR in 2 shots less than Par"
+                        player_team_id = received_msg_json["id"]
+                        # print("PLAYER TEAM ID :", player_team_id)
+                        player = tournament_players_table.search(
+                            Query()["team_id"] == player_team_id
+                        )[
+                            0
+                        ]  # Should return only 1 player in a List
+                        # print("PLAYER Found: ", player)
+                        # {'team_id': 4, 'player_id': 3434, 'first_name': 'Brian', 'last_name': 'Stuard', 'player_country': 'USA'}
+                        timestamp = datetime.fromtimestamp(
+                            received_msg_json["receivedTime"] / 1000.0
+                        ).strftime("%Y-%m-%d %H:%M:%S")
+                        notify_message = {
+                            "first_name": player["first_name"],
+                            "last_name": player["last_name"].upper(),
+                            "shot": str(received_msg_json["shot"]),
+                            "status": shotstatus,
+                            
+                            "hole_par": str(hole_par),
+                            "activeHole": player_active_hole,
+                            "time": timestamp,
+                        }
+                        
+                        print("Front-End Notified...")
+                        # post to Frontend API
+                        return myclass.postNotifications(notify_message)
+                    else:
+                        pass
+                
+                ##-------------------------------------------------------------------------
+                ## FILTER messages for  
+                # elif received_msg_json["shot"] == None:
+                #     pass
+            except (Exception) as err:
+                print("Front end NOT Notified... ERROR: ", err)
+                print("Payload : ", payload)
+                print(err)
+                pass
 
     @staticmethod
     def on_message(ws, payload):
@@ -765,7 +791,7 @@ class Ws_Helpers:
         else:
             # pass
             print("Payload passed")
-            print(payload)
+            # print(payload)
 
     @staticmethod
     def on_error(ws, error):

@@ -23,7 +23,17 @@ class HomeFunctions:
             return response
         except:
             return {"message": 'undefined'}
-    
+    def addRemovePlayerFromNotifications(self,player_id):
+        notPlayerQuery=Query()
+        if removed_payers_table.contains(notPlayerQuery.team_id ==int(player_id)):
+            removed_payers_table.remove(notPlayerQuery.team_id ==int(player_id))
+            print("Player Removed from X list :",player_id)
+            # return  {"message": str(player_id)+":"+" Will be monitored again."}
+        else:
+            removed_payers_table.insert({"team_id":int(player_id)})
+            print("Player Added to X list :",player_id )
+            # return  {"message": str(player_id)+":"+" Will not be monitored."}
+        
     def setCurrentTonamentToDb(self, tona_id):
         current_subscribed_tona=None
         try:
