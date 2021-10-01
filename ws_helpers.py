@@ -379,13 +379,32 @@ class Ws_Helpers:
         
     @staticmethod
     def initializeActiveHoles(payload_msg):
-        UserQuery =Query()
-        shotlbd_splitText =payload_msg.split("{", 1)[0].strip()
-        # print("shotlbd_splitText",shotlbd_splitText)
-        globallbd_splitText =payload_msg.split("activeHole",1)[0].rsplit("{",1)[0].rsplit("}",1)[1].strip()
+        shotlbd_splitText=""
+        globallbd_splitText=""
+        orderlbd_splitText=""
+        first_splitText =payload_msg.split("{", 1)[0].strip()
+        # print("first_splitText",first_splitText)
+        if "globallbd" in first_splitText:
+            shotlbd_splitText =first_splitText.replace("globallbd", 'shotlbd')
+            globallbd_splitText =first_splitText
+            orderlbd_splitText  =first_splitText.replace("globallbd", 'orderlbd')
+            
+        elif 'shotlbd' in first_splitText:
+            shotlbd_splitText =first_splitText
+            globallbd_splitText =first_splitText.replace('shotlbd',"globallbd")
+            orderlbd_splitText  =first_splitText.replace('shotlbd', 'orderlbd')
+            
+        elif 'orderlbd' in first_splitText:
+            shotlbd_splitText =first_splitText.replace( 'orderlbd','shotlbd')
+            globallbd_splitText =first_splitText.replace('orderlbd',"globallbd")
+            orderlbd_splitText  =first_splitText
+                    
         # print("globallbd_splitText",globallbd_splitText)
-        orderlbd_splitText =shotlbd_splitText.replace('shotlbd',"orderlbd")
+      
         # print("orderlbd_splitText",orderlbd_splitText)
+  
+        # print("shotlbd_splitText",shotlbd_splitText)
+       
         mainText =payload_msg.rsplit("}",1)[0].split("/",3)[3].replace(str(orderlbd_splitText),",").replace(str(globallbd_splitText),",").replace(str(shotlbd_splitText), ",").strip()+"}"
         # print("mainText: ", mainText)
         clean_msg = "".join(filter(lambda x: x in string.printable,mainText))
@@ -752,7 +771,7 @@ class Ws_Helpers:
             myclass.subscribeToLeaderboard(ws, tona_id, course_id)
         
         
-        elif  str(payload).startswith("l-lbd-"+tona_id+"-"+str(myclass.getSelectedTonaRound(tona_id=tona_id))+"/shotlbd/")and "/globallbd/" in payload:
+        elif  str(payload).startswith("l-lbd-"+tona_id+"-"+str(myclass.getSelectedTonaRound(tona_id=tona_id))+"/shotlbd/") and "/globallbd/" in  payload or str(payload).startswith("l-lbd-"+tona_id+"-"+str(myclass.getSelectedTonaRound(tona_id=tona_id))+"/globallbd/") and "/orderlbd/" in payload or  str(payload).startswith("l-lbd-"+tona_id+"-"+str(myclass.getSelectedTonaRound(tona_id=tona_id))+"/orderlbd/")  and "/globallbd/" in payload:
             print("Initializing Active holes..")
             # print(payload)
             myclass.initializeActiveHoles(payload_msg=payload)
