@@ -24,6 +24,7 @@ class HomeFunctions:
         except:
             return {"message": 'undefined'}
     def addRemovePlayerFromNotifications(self,player_id):
+        print(player_id)
         notPlayerQuery=Query()
         if removed_payers_table.contains(notPlayerQuery.team_id ==int(player_id)):
             removed_payers_table.remove(notPlayerQuery.team_id ==int(player_id))

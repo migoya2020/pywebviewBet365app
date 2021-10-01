@@ -213,8 +213,10 @@ class Ws_Helpers:
             # print(tonament_html_table)
             webview.windows[0].evaluate_js(
                 f"""
-               showTournamentTable("{tonament_html_table}");         
+               showTournamentTable("{tonament_html_table}"); 
+               enableBtn();       
                 """)
+            
             return response
         else:
             print("No tournaments found")
@@ -410,23 +412,13 @@ class Ws_Helpers:
         clean_msg = "".join(filter(lambda x: x in string.printable,mainText))
         # print("Clean: ", clean_msg)
         mainText_list_json = json.loads("["+clean_msg+"]")
-        # print("mainText_list_json: ", mainText_list_json)
-        # if active_holes_table.search(UserQuery.id ==team_id ):
-        #     active_holes_table.update({"activeHole": globallbd_json["activeHole"]}, UserQuery.id ==team_id)
-        #     # print("activeHole Updated :", globallbd_json['id'])
-        # else:
-        #     active_holes_table.insert({"id":globallbd_json['id'],"activeHole": globallbd_json["activeHole"]})
-        #     # print("ACTIVE HOLES INSERTED :",globallbd_json['id'] )
+
         active_Hol =[active_holes_table.insert({"id":item['id'],"activeHole": item["activeHole"]}) for item in mainText_list_json if  'activeHole' in item]
         print("Initial Active Holes added", len(active_Hol))
        
     @staticmethod
     def postNotifications(message: dict):
-        # text_parag_tag.innerHTML =message['time'] +": " + message['last_name'] +" "+message['first_name'] +"<br>"+ "SHOT "+message['shot'] +"STATUS :"+message['status']
-        # +" "+ "Distance :"+ message['distance'] +"<br>" +" Surface :"+message['surface']
-        # print(webview.windows[0])
-        # print("Sending to Frontend python function")
-        # notify_section.addEventListener("change", makeLight, false);
+
         webview.windows[0].evaluate_js(
             f"""
                 var notify_section = document.getElementById('notify-section');

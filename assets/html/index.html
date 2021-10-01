@@ -37,7 +37,7 @@
         <div class="level-right mx-2">
           <div class="level-item">
       
-            <button class="button is-success is-outlined is-light" id="load_tona_btn" onClick="loadTournaments()">Please Wait..</button>
+            <button class="button is-success is-focused" id="load_tona_btn" disabled onClick="loadTournaments()">Please Wait..</button>
           </div>
         </div>
         <!-- dropdown -->
@@ -68,10 +68,10 @@
           </a>
            
         </div>
-        <a href="about.html" title="About this App" class="navbar-item has-divider is-desktop-icon-only">
+        <!-- <a href="about.html" title="About this App" class="navbar-item has-divider is-desktop-icon-only">
           <span class="icon"><i class="mdi mdi-help-circle-outline"></i></span>
           <span>About</span>
-        </a>
+        </a> -->
         <!-- <a title="Log out" class="navbar-item is-desktop-icon-only">
           <span class="icon"><i class="mdi mdi-logout"></i></span>
           <span>Log out</span>
@@ -139,66 +139,10 @@
       </div>
 
      </div>
-    <!-- <div class="menu is-menu-main">
-      <p class="menu-label">Dashboard</p>
-      <ul class="menu-list">
-        <li>
-          <a href="index.html" title="Tournament Notifications" class="is-active router-link-active has-icon">
-            <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
-            <span class="menu-item-label">Notifications</span>
-          </a>
-        </li>
-      </ul>
-      <p class="menu-label">Details</p>
-      <ul class="menu-list">
-        <li>
-          <a href="#" class="has-icon router-link-active " title="All Tournaments in Progress">
-            <span class="icon"><i class="mdi mdi-golf"></i></span>
-            <span class="menu-item-label">Tournaments</span>
-          </a>
-        </li>
-        <li>
-          <a href="#" title="Current Tournament Players" class="has-icon router-link-active ">
-            <span class="icon"><i class="mdi mdi-account-group"></i></span>
-            <span class="menu-item-label">Players</span>
-          </a>
-        </li>
-      
-      </ul>
-      <p class="menu-label">About</p>
-      <ul class="menu-list"> -->
-        <!-- <li>
-          <a href="#" target="_self" class="has-icon">
-            <span class="icon"><i class="mdi mdi-credit-card-outline"></i></span>
-            <span class="menu-item-label">Premium Demo</span>
-          </a>
-        </li> -->
-        <!-- <li>
-          <a href="about.html" class="has-icon">
-            <span class="icon"><i class="mdi mdi-help-circle"></i></span>
-            <span class="menu-item-label">About</span>
-          </a>
-        </li>
-      </ul>
-    </div> -->
+
      
   </aside>
 </div>
-
-  <!-- <section class="hero is-hero-bar">
-    <div class="hero-body">
-      <div class="level">
-        <div class="level-left">
-          <div class="level-item"><h6 class="title">
-            Dashboard
-          </h6></div>
-        </div>
-        <div class="level-right" style="display: none;">
-          <div class="level-item"></div>
-        </div>
-      </div>
-    </div>
-  </section> -->
   <section class="section is-main-section">
     <div>
       <section class="tab-content section is-main-section">
@@ -227,7 +171,13 @@
       </div>
       </section>
       <section class="tab-content section is-main-section">
-     
+       <div>
+        <p>Select Player to add to X list. UnSelect to Remove from X list.<br>
+          Selected players will not be monitored.
+        </p>
+
+       </div>
+        
       <div id="tona_palyers_table" class="table-container">
       
       </div>
