@@ -18,6 +18,12 @@ import sys
 import glob
 from prettytable import PrettyTable
 import html
+from distanceConverter import *
+
+
+
+
+
 target_tona_id = None
 tona_id = ""
 course_id =""
@@ -234,13 +240,7 @@ class Ws_Helpers:
         players_name_coutries_list =[{"team_id": int(json.loads(player)["id"]),"player_id": int(json.loads(player)["players"][0]["id"]),"first_name": json.loads(player)["players"][0]["name"][0], "last_name": json.loads(player)["players"][0]["name"][1],"player_country": json.loads(player)["players"][0]["country"]} for player in players_list]
         tournament_players_table.insert_multiple(players_name_coutries_list)   
         # print(tournament_players_table.all())
-        players_html_table=myclass.printPlayersTable(players_list=tournament_players_table.all())
-        print("Done Processing players: --D")
-        # print(players_html_table)
-        webview.windows[0].evaluate_js(
-            f"""
-            showTonaPlayersTable("{players_html_table}");         
-            """)
+        
 
     @staticmethod
     def subscribeToLeaderboard(ws, tona_id, course_id):
@@ -365,6 +365,8 @@ class Ws_Helpers:
         received_holes = json.loads(holes)
         holes_par.insert_multiple(received_holes)
         print("Holes and Par Done.. ")
+        
+        
     @staticmethod
     def saveHolesDetails(payload_msg):
         #l-h-p-361-4-38-8/hole/1630229132/{"par":3,"yardage":175,"tees":[{"type":"Black","tee":[7.4593498,46.3001712,0]}],"pin":[7.4587349,46.3015296,0],"holeLabel":8,"teesUTM":[{"type":"Black","tee":{"zone":32,"hemisphere":"N","easting":381351.262138,"northing":5128552.866127}}],"pinUTM":{"zone":32,"hemisphere":"N","easting":381306.843978,"northing":5128704.720241},"provider":"dde","receivedTime":1630219787545}l-h-p-361-4-38-8/eoc/1630229132/
@@ -381,6 +383,7 @@ class Ws_Helpers:
         
     @staticmethod
     def initializeActiveHoles(payload_msg):
+        myclass= Ws_Helpers()
         shotlbd_splitText=""
         globallbd_splitText=""
         orderlbd_splitText=""
@@ -388,8 +391,8 @@ class Ws_Helpers:
         # print("first_splitText",first_splitText)
         if "globallbd" in first_splitText:
             shotlbd_splitText =first_splitText.replace("globallbd", 'shotlbd')
-            globallbd_splitText =first_splitText
-            orderlbd_splitText  =first_splitText.replace("globallbd", 'orderlbd')
+            globallbd_splitText=first_splitText
+            orderlbd_splitText=first_splitText.replace("globallbd", 'orderlbd')
             
         elif 'shotlbd' in first_splitText:
             shotlbd_splitText =first_splitText
@@ -415,6 +418,14 @@ class Ws_Helpers:
 
         active_Hol =[active_holes_table.insert({"id":item['id'],"activeHole": item["activeHole"]}) for item in mainText_list_json if  'activeHole' in item]
         print("Initial Active Holes added", len(active_Hol))
+        #Now we can add the Players table
+        players_html_table=myclass.printPlayersTable(players_list=tournament_players_table.all())
+        print("Done Processing players: --D")
+        # print(players_html_table)
+        webview.windows[0].evaluate_js(
+            f"""
+            showTonaPlayersTable("{players_html_table}");         
+            """)
        
     @staticmethod
     def postNotifications(message: dict):
@@ -584,7 +595,7 @@ class Ws_Helpers:
                 if received_msg_json["status"] == "holed" :
                     # print("RECEIVED JSON: ",received_msg_json)
                     player_team_id = received_msg_json["id"]
-                    player = tournament_players_table.search(
+                    player= tournament_players_table.search(
                         Query()["team_id"] == player_team_id
                     )[0]
                     if received_msg_json["shot"] < int(hole_par):
@@ -638,7 +649,7 @@ class Ws_Helpers:
                         "last_name": player["last_name"].upper(),
                         "shot": str(received_msg_json["shot"]),
                         "status": "IN WATER",
-                        # "surface": received_msg_json["surface"],
+                        "distance":convert(received_msg_json["distance"]),
                         "hole_par": str(hole_par),
                         "activeHole": player_active_hole,
                         "time": timestamp,
@@ -662,7 +673,7 @@ class Ws_Helpers:
                             "last_name": player["last_name"].upper(),
                             "shot": str(received_msg_json["shot"]),
                             "status": shotstatus,
-                            
+                            "distance":convert(received_msg_json["distance"]),
                             "hole_par": str(hole_par),
                             "activeHole": player_active_hole,
                             "time": timestamp,
@@ -692,7 +703,7 @@ class Ws_Helpers:
                             "last_name": player["last_name"].upper(),
                             "shot": str(received_msg_json["shot"]),
                             "status": shotstatus,
-                            
+                            "distance":convert(received_msg_json["distance"]),
                             "hole_par": str(hole_par),
                             "activeHole": player_active_hole,
                             "time": timestamp,
