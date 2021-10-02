@@ -1,6 +1,6 @@
 import webview
 import os
-from homeFunction import HomeFunctions
+from homeFunction import HomeFunctions, helpers_func, ws
 
 
 homePath = os.path.abspath(os.getcwd())
@@ -8,6 +8,9 @@ homePath = os.path.abspath(os.getcwd())
 
 api = HomeFunctions()
 
+def on_closing():
+    print('pywebview window is closing')
+    helpers_func.on_close(ws)
 
 def expose(window):
     window.expose(api.getTournaments())  # expose a function during the runtime
@@ -24,4 +27,5 @@ if __name__ == "__main__":
         min_size=(768, 820)
     )
     # print(window)
+    window.closing += on_closing
     webview.start(expose, window, debug=False)

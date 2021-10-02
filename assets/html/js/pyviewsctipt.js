@@ -149,14 +149,13 @@ function addClickEventToTable(){
   rows.forEach(row => {
     
     row.addEventListener('click', () => {
-      
       var id_cell = row.getElementsByTagName("td")[0];
       var player_id = id_cell.innerHTML;
       pywebview.api.addRemovePlayerFromNotifications(player_id).then(function(response) {
-        
-        console.log(response)
         row.classList.toggle('is-selected');
-        }); 
+        console.log(response)
+        });
+      
     });
   });
   }
@@ -187,23 +186,6 @@ function showTonaPlayersTable(players_html_table){
   addClickEventToTable()
 }
 
-
-// function postNotifications(message){
-//     var notify_section = document.getElementById('notify-section')
-//     // create notification element
-//     let notification_div = document.createElement('div');
-//     notification_div.classList.add("notification","is-info")
-//     var notify_bnt_el =document.createElement('button').classList.add("delete");
-//     var text_parag_tag =document.createElement("p");
-//     // 'first_name': 'Kevin', 'last_name': 'Kisner', 'shot': '4', 'status': 'approx', 'surface': 'OGR', 'distance': '0.483', 'time': '2021-08-14 23:34:43.028000
-//         text_parag_tag.innerHTML = message['time'] +": " + message['last_name'] +" "+message['first_name'] +"<br>"+ "SHOT "+message['shot'] +"STATUS :"+message['status'] +" "+ "Distance :"+ message['distance'] +"<br>" +" Surface :"+message['surface']
-//     //  Append kids to parents now
-//         notification_div.appendChild(notify_bnt_el)
-//         notification_div.appendChild(text_parag_tag)
-//         notify_section.appendChild(notification_div)
-//         console.log("Appended Notifications to Frontend..")
-       
-// }
     
 let tabsWithContent = (function () {
     let tabs = document.querySelectorAll('.tabs li');

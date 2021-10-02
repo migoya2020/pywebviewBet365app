@@ -322,7 +322,7 @@ class Ws_Helpers:
 
         #Un Subscribe to holes
         for hole in range(1, 18+1):
-            print("Un Subscribe ", hole)
+            # print("Un Subscribe ", hole)
             ws.send(
             "l-h-"
             + str(tona_id)
@@ -437,7 +437,7 @@ class Ws_Helpers:
                 default_tag.style.display = "none";
 
                 let notification_div = document.createElement('div');
-                notification_div.classList.add("notification","is-link");
+                notification_div.classList.add("notification","is-info");
                 var notify_btn_el =document.createElement('button');
                 notify_btn_el.classList.add("delete");
                 
@@ -446,7 +446,7 @@ class Ws_Helpers:
                 
                 var text_parag_tag =document.createElement("p");
                 
-                text_parag_tag.innerHTML ="{message['time']} : "+ "<b> STATUS : "+ "{message['status'] } </b>" +"<br>" +"<b> {message['last_name']} " + " {message['first_name']} </b>"  +"<br>"+ "<b>Hole No: </b>"+ " {message['activeHole']}"  + "<b>"+"  SHOT: " +"</b>"+ " {message['shot']}" +"<b> PAR :"+" {message['hole_par']} </b>" ;
+                text_parag_tag.innerHTML ="{message['time']} : "+ "<b> STATUS : "+ "{message['status'] } </b>"+"<br> <b>Distance: {message['distance']}</b>" +"<br>" +"<b> {message['last_name']} " + " {message['first_name']} </b>"  +"<br>"+ "<b>Hole No: </b>"+ " {message['activeHole']}"  + "<b>"+"  SHOT: " +"</b>"+ " {message['shot']}" +"<b> PAR :"+" {message['hole_par']} </b>" ;
                 
                 content_div.appendChild(text_parag_tag);
                 
@@ -498,9 +498,17 @@ class Ws_Helpers:
     def holed(message: dict):
         # text_parag_tag.innerHTML =message['time'] +": " + message['last_name'] +" "+message['first_name'] +"<br>"+ "SHOT "+message['shot'] +"STATUS :"+message['status']
         # +" "+ "Distance :"+ message['distance'] +"<br>" +" Surface :"+message['surface']
-        # print(webview.windows[0])
+        # print(message)
         # print("Sending to Frontend python function")
         # notify_section.addEventListener("change", makeLight, false);
+        if message['status']=="Birdie":
+            color_class="is-link"
+        elif message['status']=="Eagle":
+            color_class="is-eagle-yellow"
+        elif message['status']=="Bogey" or message['status']=="D Bogey +":
+            color_class='is-warning'
+        else:
+            color_class='is-success'
         webview.windows[0].evaluate_js(
             f"""
                 var notify_section = document.getElementById('notify-section');
@@ -508,7 +516,7 @@ class Ws_Helpers:
                 default_tag.style.display = "none";
 
                 let notification_div = document.createElement('div');
-                notification_div.classList.add("notification","is-success");
+                notification_div.classList.add("notification","{color_class}");
                 
                 var notify_btn_el =document.createElement('button');
                 notify_btn_el.classList.add("delete");
@@ -594,21 +602,32 @@ class Ws_Helpers:
                     hole_par ="N/A"
                 if received_msg_json["status"] == "holed" :
                     # print("RECEIVED JSON: ",received_msg_json)
+                    holedStatus=""
                     player_team_id = received_msg_json["id"]
                     player= tournament_players_table.search(
                         Query()["team_id"] == player_team_id
                     )[0]
                     if received_msg_json["shot"] < int(hole_par):
                         difference =int(hole_par) -received_msg_json["shot"]
-                        holedStatus ="HOLED "+ str(difference)+" Below PAR."
+                        if difference ==1:
+                            holedStatus ="Birdie"
+                        elif difference ==2:
+                            holedStatus="Eagle"
+                        else:
+                            holedStatus="Unknown"
+                            
                     elif received_msg_json["shot"] > int(hole_par):
                         difference =received_msg_json["shot"]-int(hole_par)
-                        holedStatus = "HOLED "+ str(difference)+" Above PAR."
+                        if difference ==1:
+                            holedStatus ="Bogey"
+                        elif difference >=2:
+                            holedStatus="D Bogey +"
+                        else:
+                            holedStatus="Unknown"
+                            
                     elif received_msg_json["shot"] == int(hole_par):
-                        # difference =received_msg_json["shot"] -hole_par
-                        holedStatus = "HOLED"+" At PAR."
-                        
-                        
+                            # difference =received_msg_json["shot"] -hole_par
+                            holedStatus = "HOLED"+" At PAR."
                     timestamp = datetime.fromtimestamp(
                         received_msg_json["receivedTime"] / 1000.0
                     ).strftime("%Y-%m-%d %H:%M:%S")
@@ -621,7 +640,7 @@ class Ws_Helpers:
                         "hole_par": str(hole_par),
                         "time": timestamp,
                     }
-                    print("Front-End Notified...")
+                    # print("Front-End Notified...")
                     # post to Frontend API
                     return myclass.holed(notify_message)
                 
@@ -662,7 +681,7 @@ class Ws_Helpers:
                 elif received_msg_json["status"] =="penalty":
                     player_team_id = received_msg_json["id"]
                     player = tournament_players_table.search(Query()["team_id"] == player_team_id)[0]
-                    print("PLAYER: ", player)
+                    # print("PLAYER: ", player)
                     timestamp = datetime.fromtimestamp(
                             received_msg_json["receivedTime"] / 1000.0
                         ).strftime("%Y-%m-%d %H:%M:%S")
@@ -683,9 +702,10 @@ class Ws_Helpers:
                     
                 elif (
                     received_msg_json["surface"] == "OGR" and received_msg_json['status']=="lie"
-                ):
+                ):  
+                    shotstatus=""
                     if (int(hole_par)-received_msg_json["shot"]) ==2:
-                        shotstatus ="OGR in 2 shots less than Par"
+                        shotstatus ="OGR in 2 shots less than Par."
                         player_team_id = received_msg_json["id"]
                         # print("PLAYER TEAM ID :", player_team_id)
                         player = tournament_players_table.search(
@@ -698,6 +718,7 @@ class Ws_Helpers:
                         timestamp = datetime.fromtimestamp(
                             received_msg_json["receivedTime"] / 1000.0
                         ).strftime("%Y-%m-%d %H:%M:%S")
+                    
                         notify_message = {
                             "first_name": player["first_name"],
                             "last_name": player["last_name"].upper(),
@@ -708,7 +729,37 @@ class Ws_Helpers:
                             "activeHole": player_active_hole,
                             "time": timestamp,
                         }
+                            
+                        print("Front-End Notified...")
+                        # post to Frontend API
+                        return myclass.postNotifications(notify_message)
                         
+                    elif (int(hole_par)==4 or int(hole_par)==5) and (int(hole_par)-received_msg_json["shot"]) ==3:
+                        shotstatus ="OGR in 3 shots less than Par."
+                    
+                        player_team_id = received_msg_json["id"]
+                        # print("PLAYER TEAM ID :", player_team_id)
+                        player = tournament_players_table.search(
+                            Query()["team_id"] == player_team_id
+                        )[
+                            0
+                        ]  # Should return only 1 player in a List
+                        # print("PLAYER Found: ", player)
+                        # {'team_id': 4, 'player_id': 3434, 'first_name': 'Brian', 'last_name': 'Stuard', 'player_country': 'USA'}
+                        timestamp = datetime.fromtimestamp(
+                            received_msg_json["receivedTime"] / 1000.0
+                        ).strftime("%Y-%m-%d %H:%M:%S")
+                    
+                        notify_message = {
+                            "first_name": player["first_name"],
+                            "last_name": player["last_name"].upper(),
+                            "shot": str(received_msg_json["shot"]),
+                            "status": shotstatus,
+                            "distance":convert(received_msg_json["distance"]),
+                            "hole_par": str(hole_par),
+                            "activeHole": player_active_hole,
+                            "time": timestamp,
+                        }
                         print("Front-End Notified...")
                         # post to Frontend API
                         return myclass.postNotifications(notify_message)
@@ -721,7 +772,7 @@ class Ws_Helpers:
                 #     pass
             except (Exception) as err:
                 print("Front end NOT Notified... ERROR: ", err)
-                print("Payload : ", payload)
+                # print("Payload : ", payload)
                 print(err)
                 pass
 
@@ -765,7 +816,7 @@ class Ws_Helpers:
                     break
                 except:
                     sleep(1)
-                    print("Waiting for Tona Id to be loaded...")
+                    # print("Waiting for Tona Id to be loaded...")
             target_course_id =myclass.getCurrentSelectedTona(tona_id)
             
             course_id =target_course_id['course_id']
@@ -780,17 +831,17 @@ class Ws_Helpers:
             myclass.initializeActiveHoles(payload_msg=payload)
 
         elif "l-t-" + tona_id + "/team/" and "players" in payload:
-            print("processing players...")
+            # print("processing players...")
             myclass.processTournamentPlayers(payload)
             #l-r-p-361-3/holes/1630148120/{"courseId
         elif 'l-r-'+ str(tona_id)+"-" and "/holes/" and "courseId" in payload:
             #save  holes and Par intoDB 
-            print('processing holes and par only...')
+            # print('processing holes and par only...')
             myclass.saveHolesintoDB(payload_msg=payload)
             
         elif "l-h-"+ str(tona_id)+"-" and "/hole/" in payload:
             #l-h-p-361-4-38-8/hole/1630229132/{"par":3,"yardage":175,"tees":[{"type":"Black","tee":[7.4593498,46.3001712,0]}],"pin":[7.4587349,46.3015296,0],"holeLabel":8,"teesUTM":[{"type":"Black","tee":{"zone":32,"hemisphere":"N","easting":381351.262138,"northing":5128552.866127}}],"pinUTM":{"zone":32,"hemisphere":"N","easting":381306.843978,"northing":5128704.720241},"provider":"dde","receivedTime":1630219787545}l-h-p-361-4-38-8/eoc/1630229132/
-            print('processing holes and yardage...')
+            # print('processing holes and yardage...')
             # print(payload)
             myclass.saveHolesDetails(payload_msg=payload)
             
@@ -811,8 +862,8 @@ class Ws_Helpers:
             myclass.saveActiveHoles(payload=payload)
 
         else:
-            # pass
-            print("Payload passed")
+            pass
+            # print("Payload passed")
             # print(payload)
 
     @staticmethod
@@ -822,6 +873,7 @@ class Ws_Helpers:
     @staticmethod
     def on_close(ws):  # Handle the close stus code and  close msg later
         print("### Connection Closed ###")
+       
 
     @staticmethod
     def on_open(ws):
