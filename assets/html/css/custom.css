@@ -97,3 +97,25 @@ font-weight:bold;
 #time-div{
     padding-top: 1rem;
 }
+
+ 
+@media screen and (min-width: 1024px){
+.navbar-end {
+/* justify-content: flex-start; */
+margin-left: 1px !important;
+}
+}
+
+@media screen and (min-width: 1024px){
+.navbar, .navbar-menu, .navbar-start, .navbar-end {
+/* align-items:flex-start; */
+display: flex !important;
+}
+}
+
+section.section.is-title-bar ul li {
+    display: inline-block;
+    padding: 0.5rem 0 0;
+    font-size: 1.1rem;
+    color: #7a7a7a;
+    }

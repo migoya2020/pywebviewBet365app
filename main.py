@@ -28,4 +28,4 @@ if __name__ == "__main__":
     )
     # print(window)
     window.closing += on_closing
-    webview.start(expose, window, debug=False)
+    webview.start(expose, window, debug=True)

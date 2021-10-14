@@ -12,6 +12,7 @@ websocket-client = "^1.2.1"
 tinydb = "^4.5.1"
 pyinstaller = "^4.5.1"
 prettytable = "^2.2.1"
+PyGObject = "^3.42.0"
 
 [tool.poetry.dev-dependencies]
 
