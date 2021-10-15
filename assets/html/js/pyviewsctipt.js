@@ -224,4 +224,13 @@ let tabsWithContent = (function () {
   })();
   
 
- 
+//  Switch Par Notificatiosn On/Off
+
+function switchPar(){
+  // var switchBtn = document.getElementById("switchPar");
+  pywebview.api.turnParOn_Off().then(function(){
+    console.log("Notification tunrned on/off")
+   
+    });
+
+}

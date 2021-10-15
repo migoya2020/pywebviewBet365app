@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="css/main.min.css">
   <link rel="stylesheet" href="css/custom.css">
   <!-- <link rel="stylesheet" href="styles.css"> -->
+  <link rel="stylesheet" href="css/bulma-switch.min.css">
 
   <!-- Fonts -->
   <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -82,11 +83,13 @@
             <li id="show-selected-tona" visibility="hidden"></li>
           </ul>
         </div>
-        
       </div>
-      
     </div>
     <p id="current-tona-details" > <span id='tona-round' class="px-2"></span> <span id='tona-round-status'  class="px-2"></span><br> <span id='tona-start'  class="px-2"></span><span id='tona-end'  class="px-2"></span></p>
+    <div class="field">
+    <input id="switchPar" onclick='switchPar()' type="checkbox" name="switchPar" class="switch is-rtl" checked="checked">
+    <label title="Par On/Off" for="switchPar">Switch Par On/Off</label>
+    </div>
   </section>
   <div class="container">
   <aside class="aside is-placed-left is-expanded">

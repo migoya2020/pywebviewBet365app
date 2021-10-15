@@ -11,11 +11,25 @@ ws_headers={
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:54.0) Gecko/20100101 Firefox/54.0'
     }
 ws=None
+
 class HomeFunctions:
     global ws
     def __init__(self):
         return
     
+    def turnParOn_Off(self):
+        print("par_notification_table", par_notification_table.all()[0])
+        par_not=par_notification_table.all()[0]['parNotification']
+        if par_not:
+            par_notification_table.update({"parNotification":False})
+            print("Par Notificationis Turned OFF.")
+            return
+        else:
+            par_notification_table.update({"parNotification":True})
+            print("Par Notificationis Turned ON.")
+            return
+    
+        
     def showTournamentsOnFrontend(self):
         try:
             assert tournament_ids_table.all(), "Waiting for  Tournaments to be loaded..."
@@ -25,7 +39,7 @@ class HomeFunctions:
         except:
             return {"message": 'undefined'}
     def addRemovePlayerFromNotifications(self,player_id):
-        print(player_id)
+        # print(player_id)
         notPlayerQuery=Query()
         if removed_payers_table.contains(notPlayerQuery.team_id ==int(player_id)):
             removed_payers_table.remove(notPlayerQuery.team_id ==int(player_id))

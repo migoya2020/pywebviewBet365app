@@ -28,17 +28,6 @@ target_tona_id = None
 tona_id = ""
 course_id =""
 
-# def tree(src):
-#     return [
-#         (
-#             root,
-#             map(
-#                 lambda f: os.path.join(root, f),
-#                 filter(lambda f: os.path.splitext(f)[1] != ".map", files),
-#             ),
-#         )
-#         for (root, dirs, files) in os.walk(os.path.normpath(src))
-#     ]
 
 
 ROOT_DIR = os.path.abspath(os.curdir)
@@ -93,8 +82,8 @@ holes_and_distance =inhouse_db.table("holes_distance")
 holes_par =inhouse_db.table('holes_par')
 active_holes_table =inhouse_db.table("active_holes")
 removed_payers_table=inhouse_db.table("removed_payers")
+par_notification_table=inhouse_db.table("notification")
 class Ws_Helpers:
-
 
     @staticmethod
     def getSelectedTonaSystemID(tona_id):
@@ -134,12 +123,12 @@ class Ws_Helpers:
     
     @staticmethod
     def printPlayersTable(players_list):
-        players_table.field_names = ["team_id", "Last Name","First Name", "Country"]
+        players_table.field_names = ["team_id", "First Name", "Last Name","Country"]
         assert len(players_list), "Players List is Empy"
         for item in players_list:
-            raw_item =[item["team_id"], item["last_name"].upper(), item["first_name"], item["player_country"]]
+            raw_item =[item["team_id"], item["first_name"].upper(),item["last_name"], item["player_country"]]
             players_table.add_row(raw_item)
-        hTmlTable =players_table.get_html_string(sortby="Last Name", attributes={"id":"players_table", "class":"table is-bordered is-striped is-narrow is-hoverable"})
+        hTmlTable =players_table.get_html_string(sortby="First Name", attributes={"id":"players_table", "class":"table is-bordered is-striped is-narrow is-hoverable"})
         encoded_html_table = str(html.escape(hTmlTable)).split()
         clean_players_table = " ".join(encoded_html_table) 
         return clean_players_table
@@ -346,10 +335,10 @@ class Ws_Helpers:
         globallbd_json =json.loads(clean_global)
         team_id =globallbd_json['id']
         if active_holes_table.search(UserQuery.id ==team_id ):
-            active_holes_table.update({"activeHole": globallbd_json["activeHole"]}, UserQuery.id ==team_id)
+            active_holes_table.update({"activeHole": globallbd_json["activeHole"], "score":globallbd_json["total"]}, UserQuery.id ==team_id)
             # print("Active Hole Updated :", globallbd_json['id'])
         else:
-            active_holes_table.insert({"id":globallbd_json['id'],"activeHole": globallbd_json["activeHole"]})
+            active_holes_table.insert({"id":globallbd_json['id'],"activeHole": globallbd_json["activeHole"], "score":globallbd_json["total"]})
             # print("Active Hole Inserted :",globallbd_json['id'] )
         
         return
@@ -573,8 +562,11 @@ class Ws_Helpers:
         active_hole_query_holed =Query()
         player_active_holed =""
         player_holed_par =""
+       
         try:
-            player_active_holed = active_holes_table.search(active_hole_query_holed.id ==received_msg_json_holed["id"])[0]["activeHole"]
+            player_active_hld = active_holes_table.search(active_hole_query_holed.id ==received_msg_json_holed["id"])[0]
+            player_active_holed=player_active_hld["activeHole"]
+          
             # print("ACTIVE HOLE FROM DB:", player_active_holed)
             
             player_holed_par =holes_par.search(active_hole_query_holed.hole==player_active_holed)[0]["par"]
@@ -583,14 +575,17 @@ class Ws_Helpers:
             # print("notifyFrontendForHoled Function Error", error)
             player_active_holed="N/A"
             player_holed_par ="N/A"
+         
             
         if received_msg_json_holed["shot"] < int(player_holed_par):
             shot1=received_msg_json_holed["shot"]
             player_team_id1 = received_msg_json_holed["id"]
-            player_active_hole1 =active_holes_table.search(Query().id ==player_team_id1)[0]["activeHole"]
+            player_active_hld1 =active_holes_table.search(Query().id ==player_team_id1)[0]
+            player_active_hole1=player_active_hld1["activeHole"]
+            player_score_1=player_active_hld1["score"]
             player_holed_par1 =holes_par.search(Query().hole==player_active_hole1)[0]["par"]
             difference1 =int(shot1)-int(player_holed_par1)
-            print("Difference1 <par:", difference1)
+            # print("Difference1 <par:", difference1)
             timestamp1 = datetime.fromtimestamp(
                 received_msg_json_holed["receivedTime"] / 1000.0
             ).strftime("%Y-%m-%d %H:%M:%S")
@@ -614,6 +609,7 @@ class Ws_Helpers:
                 "shot": str(shot1),
                 "status": holedStatus1,
                 "hole_par": str(player_holed_par1),
+                "score":str(player_score_1),
                 "time": timestamp1,
             }
             print("Front-End Notified...holed")
@@ -623,7 +619,10 @@ class Ws_Helpers:
         elif received_msg_json_holed["shot"] > int(player_holed_par):
             shot2=received_msg_json_holed["shot"]
             player_team_id2 = received_msg_json_holed["id"]
-            player_active_hole2 =active_holes_table.search(Query().id ==player_team_id2)[0]["activeHole"]
+            
+            player_active_hld2 =active_holes_table.search(Query().id ==player_team_id2)[0]
+            player_active_hole2=player_active_hld2["activeHole"]
+            player_score_2=player_active_hld2["score"]
             player_holed_par2 =holes_par.search(Query().hole==player_active_hole2)[0]["par"]
             difference2 =shot2-int(player_holed_par2)
             
@@ -653,13 +652,14 @@ class Ws_Helpers:
                 "shot": str(shot2),
                 "status": holedStatus2,
                 "hole_par": str(player_holed_par2),
+                "score":str(player_score_2),
                 "time": timestamp2,
             }
             print("Front-End Notified...holed")
             # post to Frontend API
             return myclass.holed(notify_message2)
                 
-        elif received_msg_json_holed["shot"] == int(player_holed_par):
+        elif received_msg_json_holed["shot"] == int(player_holed_par) and par_notification_table.all()[0]['parNotification']==True:
             shot3=received_msg_json_holed["shot"]
             player_team_id3 = received_msg_json_holed["id"]
             timestamp3 = datetime.fromtimestamp(
@@ -668,7 +668,9 @@ class Ws_Helpers:
             player3= tournament_players_table.search(
                 Query()["team_id"] == player_team_id3
             )[0]
-            player_active_hole3 =active_holes_table.search(Query().id ==player_team_id3)[0]["activeHole"]
+            player_active_hld3 =active_holes_table.search(Query().id ==player_team_id3)[0]
+            player_active_hole3 =player_active_hld3["activeHole"]
+            player_score_3=player_active_hld3["score"]
             player_holed_par3 =holes_par.search(Query().hole==player_active_hole3)[0]["par"]
             holedStatus3 = "HOLED"+" At PAR."
             
@@ -679,11 +681,15 @@ class Ws_Helpers:
                 "shot": str(shot3),
                 "status": holedStatus3,
                 "hole_par": str(player_holed_par3),
+                "score":str(player_score_3),
                 "time": timestamp3,
             }
             print("Front-End Notified...holed")
             # post to Frontend API
             return myclass.holed(notify_message3)
+        else:
+            print("Droped Holed.")
+            pass
     
     
     @staticmethod
@@ -723,7 +729,9 @@ class Ws_Helpers:
                     active_hole_query_water =Query()
                     received_msg_json_water =received_msg_json
                     player_team_id_water = received_msg_json_water["id"]
-                    player_active_hole_w =active_holes_table.search(active_hole_query_water.id ==received_msg_json_water["id"])[0]["activeHole"]
+                    active_holew=active_holes_table.search(active_hole_query_water.id ==received_msg_json_water["id"])[0]
+                    player_active_hole_w =active_holew["activeHole"]
+                    player_score_w=active_holew["score"]
                     hole_par_w =holes_par.search(active_hole_query_water.hole==player_active_hole_w)[0]["par"]
                     # print("PLAYER TEAM ID :", player_team_id)
                     player_water = tournament_players_table.search(
@@ -744,6 +752,7 @@ class Ws_Helpers:
                         "distance":convert(received_msg_json_water["distance"]),
                         "hole_par": str(hole_par_w),
                         "activeHole": player_active_hole_w,
+                        "score":str(player_score_w),
                         "time": timestamp,
                     }
                     
@@ -756,10 +765,13 @@ class Ws_Helpers:
                     msg_penalty_json =received_msg_json
                     player_team_id_penalty = msg_penalty_json["id"]
                     active_hole_penalty =""
+                    score_penalty =""
                     hole_par_penalty =""
                     try:
                         active_hole_query =Query()
-                        active_hole_penalty = active_holes_table.search(active_hole_query.id ==player_team_id_penalty)[0]["activeHole"]
+                        active_hole_p = active_holes_table.search(active_hole_query.id ==player_team_id_penalty)[0]
+                        active_hole_penalty=active_hole_p["activeHole"]
+                        score_penalty=active_hole_p["score"]
                         # print("ACTIVE HOLE FROM DB:", active_hole_penalty)
                         
                         hole_par_penalty =holes_par.search(active_hole_query.hole==active_hole_penalty)[0]["par"]
@@ -767,6 +779,7 @@ class Ws_Helpers:
                     except:
                         active_hole_penalty="N/A"
                         hole_par_penalty ="N/A"
+                        score_penalty="N/A"
                    
                     player_penalty = tournament_players_table.search(Query()["team_id"] == player_team_id_penalty)[0]
                     # print("PLAYER Penalty: ", player_penalty)
@@ -783,6 +796,7 @@ class Ws_Helpers:
                             "distance":convert(msg_penalty_json["distance"]),
                             "hole_par": str(hole_par_penalty),
                             "activeHole": active_hole_penalty,
+                            "score":str(score_penalty),
                             "time": timestamp,
                         }
                     print("Front-End Notified...")
@@ -796,22 +810,26 @@ class Ws_Helpers:
                     player_team_id_org = msg_org_json["id"]
                     active_hole_org =""
                     hole_par_org =""
+                    score_org=""
                     try:
                         active_hole_query_org =Query()
-                        active_hole_org = active_holes_table.search(active_hole_query_org.id == player_team_id_org)[0]["activeHole"]
+                        active_hole_o=active_holes_table.search(active_hole_query_org.id == player_team_id_org)[0]
+                        active_hole_org = active_hole_o["activeHole"]
+                        score_org=active_hole_o["score"]
                         hole_par_org =holes_par.search(active_hole_query_org.hole==active_hole_org)[0]["par"]
                         
                     except:
                         # print("OGR ERROR: ",err)
                         active_hole_org="N/A"
                         hole_par_org ="N/A"
+                        score_org="N/A"
                         
                     player_org = tournament_players_table.search(Query()["team_id"] == player_team_id_org)[0]  # Should return only 1 player in a List
                     
                     if (int(hole_par_org)-msg_org_json["shot"]) ==2:
                         
                         shotstatus ="OGR in 2 shots less than Par."
-                        player_team_id_org = msg_org_json["id"]
+                        # player_team_id_org = msg_org_json["id"]
                         # print("PLAYER TEAM ID :", player_team_id_org)
                         
                         # print("PLAYER Found: ",  player_org)
@@ -827,6 +845,7 @@ class Ws_Helpers:
                             "distance":convert( msg_org_json["distance"]),
                             "hole_par": str(hole_par_org),
                             "activeHole": active_hole_org,
+                            "score":str(score_org),
                             "time": timestamp,
                         }
                             
@@ -852,6 +871,7 @@ class Ws_Helpers:
                             "distance":convert(msg_org_json["distance"]),
                             "hole_par": str(hole_par_org),
                             "activeHole": active_hole_org,
+                            "score":str(score_org),
                             "time": timestamp,
                         }
                         print("Front-End Notified...")
@@ -972,3 +992,8 @@ class Ws_Helpers:
     @staticmethod
     def on_open(ws):
         print("thread strating...")
+#initialize par_notification_table
+par_notification_table.insert({"parNotification":True})
+print("Par is on")
+
+
