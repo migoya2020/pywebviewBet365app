@@ -405,7 +405,7 @@ class Ws_Helpers:
         # print("Clean: ", clean_msg)
         mainText_list_json = json.loads("["+clean_msg+"]")
 
-        active_Hol =[active_holes_table.insert({"id":item['id'],"activeHole": item["activeHole"]}) for item in mainText_list_json if  'activeHole' in item]
+        active_Hol =[active_holes_table.insert({"id":item['id'],"activeHole": item["activeHole"], "score":item["total"]}) for item in mainText_list_json if  'activeHole' in item]
         print("Initial Active Holes added", len(active_Hol))
         #Now we can add the Players table
         players_html_table=myclass.printPlayersTable(players_list=tournament_players_table.all())
@@ -435,7 +435,7 @@ class Ws_Helpers:
                 
                 var text_parag_tag =document.createElement("p");
                 
-                text_parag_tag.innerHTML ="{message['time']} : "+ "<b> STATUS : "+ "{message['status'] } </b>"+"<br> <b>Distance: {message['distance']}</b>" +"<br>" +"<b> {message['last_name']} " + " {message['first_name']} </b>"  +"<br>"+ "<b>Hole No: </b>"+ " {message['activeHole']}"  + "<b>"+"  SHOT: " +"</b>"+ " {message['shot']}" +"<b> PAR :"+" {message['hole_par']} </b>" ;
+                text_parag_tag.innerHTML ="{message['time']} : "+ "<b> STATUS : "+ "{message['status'] } </b>"+"<br> <b>Distance: {message['distance']}</b>" +"<br>" +"<b> {message['last_name']} " + " {message['first_name']} :</b>"+"&nbsp;&nbsp;&nbsp;&nbsp;"+"<b> Score: {message['score']} </b>"  +"<br>"+ "<b>Hole No: </b>"+ " {message['activeHole']}"  + "<b>"+"  SHOT: " +"</b>"+ " {message['shot']}" +"<b> PAR :"+" {message['hole_par']} </b>" ;
                 
                 content_div.appendChild(text_parag_tag);
                 
@@ -470,7 +470,7 @@ class Ws_Helpers:
                 
                 var text_parag_tag =document.createElement("p");
                 
-                text_parag_tag.innerHTML ="{message['time']} : "+ "<b> STATUS : "+ "{message['status'] } </b>" +"<br>" +"<b> {message['last_name']} " + " {message['first_name']} </b>"  +"<br>"+ "<b>Hole No: </b>"+ " {message['activeHole']}"  + "<b>"+"  SHOT: " +"</b>"+ " {message['shot']}" +"<b> PAR :"+" {message['hole_par']} </b>" ;
+                text_parag_tag.innerHTML ="{message['time']} : "+ "<b> STATUS : "+ "{message['status'] } </b>" +"<br>" +"<b> {message['last_name']} " + " {message['first_name']} :</b>"+"&nbsp;&nbsp;&nbsp;&nbsp;"+"<b> Score: {message['score']} </b>"+"<br>"+ "<b>Hole No: </b>"+ " {message['activeHole']}"  + "<b>"+"  SHOT: " +"</b>"+ " {message['shot']}" +"<b> PAR :"+" {message['hole_par']} </b>" ;
                 
                 content_div.appendChild(text_parag_tag);
                 
@@ -537,7 +537,7 @@ class Ws_Helpers:
                 
                 var text_parag_tag =document.createElement("p");
  
-                text_parag_tag.innerHTML = "{message['time']}: "+ "<b>"+"STATUS: "+ "{message['status'] }"+"</b>" + "<br>"+"<b>"+"{message['last_name']} " + " {message['first_name']}" +"</b>"+"<br>" +"<b>"+"HOLE No: "+"</b>"+ "{message['activeHole']} "+ " <b>"+" SHOT :"+"</b> "+ "{message['shot']} :"+ "<b>"+" PAR :"+" {message['hole_par']} </b>";
+                text_parag_tag.innerHTML = "{message['time']}: "+ "<b>"+"STATUS: "+ "{message['status'] }"+"</b>" + "<br>"+"<b>"+"{message['last_name']} " + " {message['first_name']} :" +"</b>"+"&nbsp;&nbsp;&nbsp;&nbsp;"+"<b> Score: {message['score']} </b>" +"<br>" +"<b>"+"HOLE No: "+"</b>"+ "{message['activeHole']} "+ " <b>"+" SHOT :"+"</b> "+ "{message['shot']} :"+ "<b>"+" PAR :"+" {message['hole_par']} </b>";
                 
                 
                 content_div.appendChild(text_parag_tag);
@@ -564,8 +564,8 @@ class Ws_Helpers:
         player_holed_par =""
        
         try:
-            player_active_hld = active_holes_table.search(active_hole_query_holed.id ==received_msg_json_holed["id"])[0]
-            player_active_holed=player_active_hld["activeHole"]
+            
+            player_active_holed=active_holes_table.search(active_hole_query_holed.id ==received_msg_json_holed["id"])[0]["activeHole"]
           
             # print("ACTIVE HOLE FROM DB:", player_active_holed)
             
@@ -580,9 +580,9 @@ class Ws_Helpers:
         if received_msg_json_holed["shot"] < int(player_holed_par):
             shot1=received_msg_json_holed["shot"]
             player_team_id1 = received_msg_json_holed["id"]
-            player_active_hld1 =active_holes_table.search(Query().id ==player_team_id1)[0]
-            player_active_hole1=player_active_hld1["activeHole"]
-            player_score_1=player_active_hld1["score"]
+            
+            player_active_hole1=active_holes_table.search(Query().id ==player_team_id1)[0]["activeHole"]
+            player_score_1=active_holes_table.search(Query().id ==player_team_id1)[0]["score"]
             player_holed_par1 =holes_par.search(Query().hole==player_active_hole1)[0]["par"]
             difference1 =int(shot1)-int(player_holed_par1)
             # print("Difference1 <par:", difference1)
@@ -620,9 +620,9 @@ class Ws_Helpers:
             shot2=received_msg_json_holed["shot"]
             player_team_id2 = received_msg_json_holed["id"]
             
-            player_active_hld2 =active_holes_table.search(Query().id ==player_team_id2)[0]
-            player_active_hole2=player_active_hld2["activeHole"]
-            player_score_2=player_active_hld2["score"]
+             
+            player_active_hole2= active_holes_table.search(Query()['id'] ==player_team_id2)[0]["activeHole"]
+            player_score_2=active_holes_table.search(Query()['id'] ==player_team_id2)[0]["score"]
             player_holed_par2 =holes_par.search(Query().hole==player_active_hole2)[0]["par"]
             difference2 =shot2-int(player_holed_par2)
             
@@ -668,9 +668,9 @@ class Ws_Helpers:
             player3= tournament_players_table.search(
                 Query()["team_id"] == player_team_id3
             )[0]
-            player_active_hld3 =active_holes_table.search(Query().id ==player_team_id3)[0]
-            player_active_hole3 =player_active_hld3["activeHole"]
-            player_score_3=player_active_hld3["score"]
+            
+            player_active_hole3 =active_holes_table.search(Query().id ==player_team_id3)[0]["activeHole"]
+            player_score_3=active_holes_table.search(Query().id ==player_team_id3)[0]["score"]
             player_holed_par3 =holes_par.search(Query().hole==player_active_hole3)[0]["par"]
             holedStatus3 = "HOLED"+" At PAR."
             
@@ -729,9 +729,9 @@ class Ws_Helpers:
                     active_hole_query_water =Query()
                     received_msg_json_water =received_msg_json
                     player_team_id_water = received_msg_json_water["id"]
-                    active_holew=active_holes_table.search(active_hole_query_water.id ==received_msg_json_water["id"])[0]
-                    player_active_hole_w =active_holew["activeHole"]
-                    player_score_w=active_holew["score"]
+                   
+                    player_active_hole_w =active_holes_table.search(active_hole_query_water.id ==received_msg_json_water["id"])[0]["activeHole"]
+                    player_score_w=active_holes_table.search(active_hole_query_water.id ==received_msg_json_water["id"])[0]["score"]
                     hole_par_w =holes_par.search(active_hole_query_water.hole==player_active_hole_w)[0]["par"]
                     # print("PLAYER TEAM ID :", player_team_id)
                     player_water = tournament_players_table.search(
@@ -765,13 +765,13 @@ class Ws_Helpers:
                     msg_penalty_json =received_msg_json
                     player_team_id_penalty = msg_penalty_json["id"]
                     active_hole_penalty =""
-                    score_penalty =""
+                   
                     hole_par_penalty =""
                     try:
                         active_hole_query =Query()
-                        active_hole_p = active_holes_table.search(active_hole_query.id ==player_team_id_penalty)[0]
-                        active_hole_penalty=active_hole_p["activeHole"]
-                        score_penalty=active_hole_p["score"]
+  
+                        active_hole_penalty=active_holes_table.search(active_hole_query.id ==player_team_id_penalty)[0]["activeHole"]
+                        
                         # print("ACTIVE HOLE FROM DB:", active_hole_penalty)
                         
                         hole_par_penalty =holes_par.search(active_hole_query.hole==active_hole_penalty)[0]["par"]
@@ -779,10 +779,11 @@ class Ws_Helpers:
                     except:
                         active_hole_penalty="N/A"
                         hole_par_penalty ="N/A"
-                        score_penalty="N/A"
+                        
                    
                     player_penalty = tournament_players_table.search(Query()["team_id"] == player_team_id_penalty)[0]
                     # print("PLAYER Penalty: ", player_penalty)
+                    score_penalty=active_holes_table.search(active_hole_query.id ==player_team_id_penalty)[0]["score"]
                     timestamp = datetime.fromtimestamp(
                             msg_penalty_json["receivedTime"] / 1000.0
                         ).strftime("%Y-%m-%d %H:%M:%S")
@@ -810,24 +811,24 @@ class Ws_Helpers:
                     player_team_id_org = msg_org_json["id"]
                     active_hole_org =""
                     hole_par_org =""
-                    score_org=""
+                    
                     try:
                         active_hole_query_org =Query()
-                        active_hole_o=active_holes_table.search(active_hole_query_org.id == player_team_id_org)[0]
-                        active_hole_org = active_hole_o["activeHole"]
-                        score_org=active_hole_o["score"]
+                    
+                        active_hole_org = active_holes_table.search(active_hole_query_org.id == player_team_id_org)[0]["activeHole"]
+                       
                         hole_par_org =holes_par.search(active_hole_query_org.hole==active_hole_org)[0]["par"]
                         
                     except:
                         # print("OGR ERROR: ",err)
                         active_hole_org="N/A"
                         hole_par_org ="N/A"
-                        score_org="N/A"
+                      
                         
                     player_org = tournament_players_table.search(Query()["team_id"] == player_team_id_org)[0]  # Should return only 1 player in a List
                     
                     if (int(hole_par_org)-msg_org_json["shot"]) ==2:
-                        
+                        score_org=active_holes_table.search(active_hole_query_org.id == player_team_id_org)[0]["score"]
                         shotstatus ="OGR in 2 shots less than Par."
                         # player_team_id_org = msg_org_json["id"]
                         # print("PLAYER TEAM ID :", player_team_id_org)
@@ -858,7 +859,7 @@ class Ws_Helpers:
                         # print("hole_par_org in 3:", hole_par_org)
                         # print("HOle_par - Shot:=", (int(hole_par_org)-msg_org_json["shot"]))
                         shotstatus ="OGR in 3 shots less than Par."
- 
+                        score_org=active_holes_table.search(active_hole_query_org.id == player_team_id_org)[0]["score"]
                         timestamp = datetime.fromtimestamp(
                              msg_org_json["receivedTime"] / 1000.0
                         ).strftime("%Y-%m-%d %H:%M:%S")
