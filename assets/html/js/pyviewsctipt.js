@@ -132,8 +132,8 @@ function addClickEventToNotifications(){
 
 function enableBtn(){
   var tona_btn =document.getElementById("load_tona_btn");
-  tona_btn.innerHTML="Load Tournaments"
-  tona_btn.removeAttribute('disabled')
+  tona_btn.innerHTML="Load Tournaments";
+  tona_btn.removeAttribute('disabled');
 }
 
 function disableBtn(){
@@ -182,7 +182,8 @@ function showTonaPlayersTable(players_html_table){
   var decodedString = table_dom.body.textContent;
   var ton_div = document.getElementById('tona_palyers_table');
   ton_div.innerHTML= decodedString;
-  
+  var switchBtn = document.getElementById("switchPar_div");
+  switchBtn.style.display = 'block';
   addClickEventToTable()
 }
 
@@ -228,8 +229,8 @@ let tabsWithContent = (function () {
 
 function switchPar(){
   // var switchBtn = document.getElementById("switchPar");
-  pywebview.api.turnParOn_Off().then(function(){
-    console.log("Notification tunrned on/off")
+  pywebview.api.turnParOn_Off().then(function(response) {
+    console.log(response);
    
     });
 

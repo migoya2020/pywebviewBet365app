@@ -18,18 +18,9 @@ class HomeFunctions:
         return
     
     def turnParOn_Off(self):
-        print("par_notification_table", par_notification_table.all()[0])
-        par_not=par_notification_table.all()[0]['parNotification']
-        if par_not:
-            par_notification_table.update({"parNotification":False})
-            print("Par Notificationis Turned OFF.")
-            return
-        else:
-            par_notification_table.update({"parNotification":True})
-            print("Par Notificationis Turned ON.")
-            return
-    
-        
+        response = helpers_func.turnParNotiftn()
+        return  response
+         
     def showTournamentsOnFrontend(self):
         try:
             assert tournament_ids_table.all(), "Waiting for  Tournaments to be loaded..."

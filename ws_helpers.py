@@ -27,7 +27,7 @@ from distanceConverter import *
 target_tona_id = None
 tona_id = ""
 course_id =""
-
+parNotification =True
 
 
 ROOT_DIR = os.path.abspath(os.curdir)
@@ -82,9 +82,18 @@ holes_and_distance =inhouse_db.table("holes_distance")
 holes_par =inhouse_db.table('holes_par')
 active_holes_table =inhouse_db.table("active_holes")
 removed_payers_table=inhouse_db.table("removed_payers")
-par_notification_table=inhouse_db.table("notification")
+# par_notification_table=inhouse_db.table("notification")
 class Ws_Helpers:
-
+    @staticmethod
+    def turnParNotiftn():
+        global parNotification
+        if parNotification:
+            parNotification =False
+        else:
+            parNotification=True
+            
+        return parNotification
+    
     @staticmethod
     def getSelectedTonaSystemID(tona_id):
         for tona in tournament_ids_table.all():
@@ -92,7 +101,7 @@ class Ws_Helpers:
             if tona["tona_id"] == tona_id:
                 # print("TONAAA: ", tona['system_id'])
                 return tona["system_id"]
-
+  
     @staticmethod
     def getSelectedTonaRound(tona_id):
         for tona in tournament_ids_table.all():
@@ -659,7 +668,7 @@ class Ws_Helpers:
             # post to Frontend API
             return myclass.holed(notify_message2)
                 
-        elif received_msg_json_holed["shot"] == int(player_holed_par) and par_notification_table.all()[0]['parNotification']==True:
+        elif received_msg_json_holed["shot"] == int(player_holed_par) and parNotification==True:
             shot3=received_msg_json_holed["shot"]
             player_team_id3 = received_msg_json_holed["id"]
             timestamp3 = datetime.fromtimestamp(
@@ -993,8 +1002,6 @@ class Ws_Helpers:
     @staticmethod
     def on_open(ws):
         print("thread strating...")
-#initialize par_notification_table
-par_notification_table.insert({"parNotification":True})
-print("Par is on")
+
 
 

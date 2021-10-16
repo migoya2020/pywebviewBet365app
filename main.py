@@ -18,7 +18,7 @@ def expose(window):
 if __name__ == "__main__":
     # api = HomeFunctions()
     window = webview.create_window(
-        "Bet365 Golf Notify App:",
+        "Bet365 Golf Notify Me:",
         "assets/html/index.html",
         width=1024,
         height=820,
@@ -28,4 +28,4 @@ if __name__ == "__main__":
     )
     # print(window)
     window.closing += on_closing
-    webview.start(expose, window, debug=False)
+    webview.start(expose, window, debug=True)
