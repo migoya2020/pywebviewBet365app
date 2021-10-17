@@ -20,12 +20,12 @@ if __name__ == "__main__":
     window = webview.create_window(
         "Bet365 Golf Notify Me:",
         "assets/html/index.html",
-        width=1024,
-        height=820,
+        width=1112,
+        height=720,
         js_api=api,
         on_top=True,
-        min_size=(768, 820)
+        min_size=(768, 750)
     )
     # print(window)
     window.closing += on_closing
-    webview.start(expose, window, debug=False)
+    webview.start(expose, window, gui='cef', debug=False)
