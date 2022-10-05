@@ -1,19 +1,21 @@
-# pywebviewBet365app
-So just aesthetically some small changes:
+# Bet365GolfNotifyMe
 
-1. Could the size of the notification within the app be made slightly smaller to be able to see more at once?
+https://www.bet365.com/#/AS/B7/
 
-2. Colour coding messages - Birdie = Blue, Eagle = Yellow, Bogey or worse = Orange, Water/Penalty = Red
+This app was developed to Display only relevant Bet365Golf realTime Inplay Notifications for a selected Tournament.
 
-Score changes and other messages can stay green for now
+The Frontend uses ```https://pywebview.flowrl.com/``` as a GUI and Python websockets as a Backend.
 
-The OGR messages need a slight tweak so that it's OGR in 2 shots less than the par of the hole AND distance = 15 feet or less.
+**UPDATE: Bet365.com changed their websockets in January 2022. So the App will not surrently load the Tournaments. However, am currenlty working on a new backend, so check back soon.**
 
-For Par 4/5's only could we add a rule that is On Green in 3 shots less than Par.
+**See it in action**
 
-Would it be possible to add the ability to deselect/ignore players from the notifications? Would help later in the week with getting rid of players who can no longer win
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/JLDituzX2Sw/0.jpg)](http://www.youtube.com/watch?v=JLDituzX2Sw "Bet365Golf RealTime NotifyMe")
 
 
+ https://www.youtube.com/watch?v=JLDituzX2Sw
+
+**Some information filtered from the messages**
 
 1)Player X Penalty/Drop
 2)Player X has 15 feet or less for Birdie(One Shot less to Par)
