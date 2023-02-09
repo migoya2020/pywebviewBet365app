@@ -6,7 +6,7 @@ This app was developed to Display only relevant Bet365Golf realTime Inplay Notif
 
 The Frontend uses ```https://pywebview.flowrl.com/``` as a GUI and Python websockets as a Backend.
 
-**UPDATE: Bet365.com changed their websockets in January 2022. So the App will not surrently load the Tournaments. However, am currenlty working on a new backend, so check back soon.**
+**UPDATE: Bet365.com changed their websockets in January 2022. So the App will not currently load the Tournaments. However, am currenlty working on a new backend, so check back soon.**
 
 **See it in action**
 
